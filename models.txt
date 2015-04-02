@@ -1,0 +1,42 @@
+Users:
+	:email
+	:pw & pw_conf
+	:first_name
+	:last_name
+	:address
+	:phone
+
+	school_admin:
+		has_many :applications
+		has_many :applicants, through: :applications (applicants are not actually users?)
+		has_many :donations (includes pledges - have bool column :fulfilled?)
+		has_many :donors, through: :donations
+		has_many :disbursements
+		has_many :notes
+
+	donor:
+		has_many :notes
+		has_many :donations
+
+		:ssn
+		:tax_credit_certification?
+		:certification_number
+
+	dor:
+		has_many :donations
+		has_many :schools
+
+	household:
+		has_many :applications
+		has_many :applicants
+
+		:relation (mother, father, guardian, etc.)
+
+	sgo:
+		has_many :applications
+		has_many :applicants
+		has_many :donations
+		has_many :donors
+
+		:admin_fee (%)
+		:black_out_dates (this might need to be its own model so they can have many.)
