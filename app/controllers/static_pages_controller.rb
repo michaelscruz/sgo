@@ -6,4 +6,7 @@ class StaticPagesController < ApplicationController
 
 	def donor_home
 	end
+
+	def school_applications_home
+	end
 end
