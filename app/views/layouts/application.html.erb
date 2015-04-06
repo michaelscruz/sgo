@@ -1,16 +1,254 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sgo</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>SGOAS</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  	<%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
+	<div data-hook="main-content" class="main-content">
 
-<%= yield %>
+		<% if user_signed_in? %>
+		<header class="site-header">
 
+			<!-- Primary header content in blue -->
+			<section class="primary">
+
+				<div class="wrapper clearfix">
+
+					<!-- Dropdown nav - "ltl" will hide when less than the large breakpoint -->
+					<nav class="nav-drawer nav-drawer-left site-nav pull-left ltl-hide" data-nav-drawer>
+
+						<div class="nav-drawer-content" data-hook="drawer-content">
+
+							<ul class="nav-drawer-btn-list">
+								<li>
+									<a href="/">
+										Dashboard
+									</a>
+								</li>
+								<li>
+									<a href="/contacts">
+										Contacts
+									</a>
+								</li>
+								<li>
+									<a href="/reports">
+										Reports
+									</a>
+								</li>
+							</ul>
+
+						</div>
+
+					</nav>
+
+					<!-- Another dropdown nav, pulled to the right. -->
+					<nav class="nav-drawer pull-right nav-drawer-right user-nav" data-nav-drawer>
+
+						<button class="btn btn-primary btn-inline" data-hook="drawer-toggle">
+							<span class="btn-content"><%= current_user.full_name %></span>
+						</button>
+
+						<div class="nav-drawer-content nav-drawer-content-padding" data-hook="drawer-content">
+
+							<ul class="nav-drawer-list">
+								<li>
+									<%= link_to("Edit Profile", edit_user_registration_path) %>
+								</li>
+							</ul>
+
+							<%= link_to('Sign Out', destroy_user_session_path, :method => :delete, :class => "btn btn-secondary btn-block") %> 
+
+						</div>
+
+					</nav>
+
+					<!-- Mobile navigation. This content gets moved by the Nav Slideout plugin (applied with the data attribute). -->
+					<nav class="nav-slideout nav-slideout-left" data-nav-slideout>
+
+						<a href="#" class="btn btn-toggle gtm-hide pull-left nav-slideout-toggle" data-hook="slideout-toggle"><i class="icon icon-toggle"></i></a>
+
+						<div class="nav-slideout-content" data-hook="slideout-content">
+
+							<form class="form shadow form-lockup search-dropdown nav-slideout-search" data-search-dropdown>
+
+								<div class="search-dropdown-input">
+
+									<input class="input" type="text" placeholder="Search" name="search" autocomplete="off">
+
+									<button class="btn btn-primary btn-inline">
+										<i class="icon icon-search"></i>
+									</button>
+
+								</div>
+
+								<div class="search-dropdown-content" data-hook="search-dropdown-content">
+
+									<ul class="search-dropdown-content-group">
+										<li>Citizen</li>
+										<li>
+											<a href="#">Andrew Luck</a>
+										</li>
+										<li>
+											<a href="#">Reggie Wayne</a>
+										</li>
+										<li>
+											<a href="#">Anthony Castonzo</a>
+										</li>
+									</ul>
+
+									<ul class="search-dropdown-content-group">
+										<li>Corporation</li>
+										<li>
+											<a href="#">Pat McAffee</a>
+										</li>
+										<li>
+											<a href="#">Barry Sanders</a>
+										</li>
+									</ul>
+
+									<ul class="search-dropdown-content-group">
+										<li>Legislator</li>
+										<li>
+											<a href="#">Robert PorchÃ¨</a>
+										</li>
+										<li>
+											<a href="#">Ty Hilton</a>
+										</li>
+										<li>
+											<a href="#">Terry Bradshaw</a>
+										</li>
+									</ul>
+
+									<ul class="search-dropdown-content-group">
+										<li>Event</li>
+									</ul>
+
+									<ul class="search-dropdown-content-group">
+										<li>Organization</li>
+									</ul>
+
+									<ul class="search-dropdown-content-group">
+										<li>School</li>
+									</ul>
+
+								</div>
+
+							</form>
+
+							<ul class="nav-slideout-list">
+								<li>
+									<a href="/">
+										Dashboard
+									</a>
+								</li>
+								<li>
+									<a href="/contacts">
+										Contacts
+									</a>
+								</li>
+								<li>
+									<a href="/reports">
+										Reports
+									</a>
+								</li>
+								<li>
+									<a href="#">Print</a>
+								</li>
+								<li>
+									<a href="#">Share</a>
+								</li>
+								<li>
+									<a href="#">Download CSV</a>
+								</li>
+							</ul>
+
+						</div>
+
+					</nav>
+
+				</div>
+
+			</section>
+
+			<!-- Secondary header content in white -->
+			<section class="secondary ltl-hide">
+
+				<div class="wrapper clearfix">
+
+					<nav class="nav-inline nav-alt pull-right">
+						<ul>
+							<li>
+								<a>SGOAS</a>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+
+			</section>
+
+			<!-- Tabs go here -->
+
+		</header>
+
+		<% else %>
+
+		<header class="site-header">
+
+			<section class="primary">
+
+			</section>
+
+			<section class="tabs">
+
+				<div class="wrapper clearfix">
+
+					<nav class="nav-inline nav-tabs pull-right">
+						<ul>
+							<li>
+								<a href="#">Homepage</a>
+							</li>
+							<li>
+								<a href="#">Support</a>
+							</li>
+						</ul>
+
+					</nav>
+
+				</div>
+
+			</section>
+
+		</header>
+
+		<% end %>
+
+		<% if notice %>
+
+		<div class="wrapper main-alert">
+			
+			<div class="alert alert-success">
+				
+				<%= notice %>
+
+			</div>
+		
+		</div>
+
+		<% end %>
+		
+		<%= yield %>
+
+	</div>
+
+	<% if Rails.env.development? %>
+	<div class="wrapper">
+		<%= debug(params) %>
+	</div>
+	<% end %>
 </body>
 </html>

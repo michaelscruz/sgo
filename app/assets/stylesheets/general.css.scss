@@ -1,0 +1,52 @@
+header.site-header{
+	section.primary{
+		min-height: 2.2em;
+	}
+}
+
+.wrapper{
+	&.main-alert{
+		padding: 2.5em 2.5em 0 2.5em;
+
+		.alert{
+			margin-bottom: 0;
+		}
+	}
+}
+
+.overlay{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	background: rgba(248,250,250,0.95);
+
+	.wrapper{
+		padding-top: 10em;
+	}
+
+	a.close{
+		float: right;
+		margin-top: .5em;
+		margin-right: .7em;
+		cursor: pointer;
+		color: #48626C;
+		font-size: 3em;
+		line-height: 1em;
+	}
+
+	a.close:before {
+		content: "×";
+	}
+}
+
+.box{
+	.box-header{
+		span.light{
+			color: #879BA3;
+			font-weight: normal;
+		}
+	}
+}

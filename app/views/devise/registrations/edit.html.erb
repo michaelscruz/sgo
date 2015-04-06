@@ -1,39 +1,69 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<article class="profile">
+  
+  <div class="wrapper">
+    
+    <div class="grid">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <div class="xl-6 l-6 ltl-12">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "box form form-normal" }) do |f| %>
+
+        <div class="box-header">
+          Edit Profile
+        </div>
+
+        <div class="box-content">
+
+          <% if resource.errors.any? %>
+          <div class="alert alert-danger">
+            <% resource.errors.full_messages.each do |msg| %>
+            <%= msg %><br>
+            <% end %>
+          </div>
+          <% end %>
+
+          <label class="form-field">
+            <span class="label">First Name</span>
+            <%= f.text_field :first_name, autofocus: true, :class => "input" %>
+          </label>
+
+          <label class="form-field">
+            <span class="label">Last Name</span>
+            <%= f.text_field :last_name, autofocus: true, :class => "input" %>
+          </label>
+
+           <label class="form-field">
+            <span class="label">Email</span>
+            <%= f.email_field :email, autofocus: true, :class => "input" %>
+          </label>
+
+          <label class="form-field">
+            <span class="label">New Password</span>
+             <%= f.password_field :password, autocomplete: "off", :class => "input" %>
+          </label>
+
+          <label class="form-field">
+            <span class="label">Confirm New Password</span>
+            <%= f.password_field :password_confirmation, autocomplete: "off", :class => "input" %>
+          </label>
+
+          <hr>
+
+          <label class="form-field">
+            <span class="label">Current Password</span>
+            <%= f.password_field :current_password, autocomplete: "off", :class => "input" %>
+          </label>
+
+          <%= f.submit "Update Profile", :class => "btn btn-secondary btn-block" %>
+
+        </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</article>

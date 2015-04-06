@@ -1,0 +1,16 @@
+.form-normal{
+	.box-content{
+		// wrap the inner contents with color
+		&.color{
+			background: #F8FAFA;
+		}
+	}
+
+	&.sign-in{
+		.box-content{
+			&.color{
+				padding: 2em 2.5em;
+			}
+		}
+	}
+}
