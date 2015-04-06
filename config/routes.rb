@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
   root 'static_pages#donor_home'
 
+  get 'static', :to => "static_pages#static_elements", :as => "static"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
