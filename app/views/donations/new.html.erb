@@ -10,7 +10,7 @@
 				<form accept-charset="UTF-8" action="/schools" class="box form form-normal" method="get"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
 
 					<div class="box-header">
-						One Time Donation
+						<%= params[:type] %> Donation
 					</div>
 
 					<div class="box-content narrow">
@@ -178,7 +178,7 @@
 						</div>
 
 						<div class="grid">
-							<div class="xl-3 l-3 ltl-12">
+							<div class="xl-4 l-4 ltl-12">
 								<label class="form-field">
 									<span class="label">Will the funds be matched?</span>
 									<div class="select">
