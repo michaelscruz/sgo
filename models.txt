@@ -40,3 +40,17 @@ Users:
 
 		:admin_fee (%)
 		:black_out_dates (this might need to be its own model so they can have many.)
+
+Applicants:
+	has_many :applications
+
+Donations:
+	belongs_to :donor
+
+Schools:
+
+Disbursements:
+
+Notes:
+	belongs_to :school_admin
+	belongs_to :donor
