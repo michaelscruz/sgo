@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   get 'static', :to => "static_pages#static_elements"
   get 'school/applications', :to => "static_pages#school_applications_home"
+  get 'school/applications/new', :to => "static_pages#school_applications_new"
+  get 'school/donations', :to => "static_pages#school_donations_home"
+  get 'school/disbursements', :to => "static_pages#school_disbursements_home"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

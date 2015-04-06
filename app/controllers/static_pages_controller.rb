@@ -9,4 +9,10 @@ class StaticPagesController < ApplicationController
 
 	def school_applications_home
 	end
+
+	def school_disbursements_home
+	end
+
+	def school_applications_new
+	end
 end

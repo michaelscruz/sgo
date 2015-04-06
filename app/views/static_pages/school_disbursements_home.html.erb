@@ -36,7 +36,7 @@
 					<div class="grid">
 
 						<div class="xl-3 l-3 ltl-12">
-							<%= link_to("New Application", "/school/applications/new", :class => "btn btn-secondary btn-block") %>
+							<%= link_to("Request Disbursement", "#", :class => "btn btn-secondary btn-block open-overlay") %>
 						</div>
 
 					</div>
@@ -51,40 +51,19 @@
 						About
 					</header>
 
-					<form class="box-content form form-horizontal xl-2-and-10 l-2-and-10 ltl-12-and-0">
+					<form class="box-content form form-horizontal xl-4-and-8 l-4-and-8 ltl-12-and-0">
 
 						<label class="form-field">
-							<span class="label">Completed</span>
+							<span class="label">Last Disbursement</span>
 							<span class="input placeholder">
-								48
+								10/20/2015
 							</span>
 						</label>
 
 						<label class="form-field">
-							<span class="label">Pending</span>
+							<span class="label">Last Disbursement Amount</span>
 							<span class="input placeholder">
-								$235
-							</span>
-						</label>
-
-						<label class="form-field">
-							<span class="label">This Month</span>
-							<span class="input placeholder">
-								$3,120
-							</span>
-						</label>
-
-						<label class="form-field">
-							<span class="label">This Year</span>
-							<span class="input placeholder">
-								$150,340
-							</span>
-						</label>
-
-						<label class="form-field">
-							<span class="label">Leading Donor</span>
-							<span class="input placeholder">
-								Mike Lindell
+								$10,440
 							</span>
 						</label>
 
@@ -95,10 +74,7 @@
 				<section class="box xl-12 ltxl-12">
 
 					<header class="box-header">
-						Applications
-
-						<a href="#" class="btn btn-secondary abs-right center-y open-overlay">Search</a>
-
+						Disbursements
 					</header>
 
 					<div class="table-responsive">
@@ -106,30 +82,33 @@
 						<table class="box-content table">
 
 							<colgroup>
-							<col class="w-5">
 							<col class="w-15">
-							<col class="w-20">
-							<col class="w-20">
+							<col class="w-15">
+							<col class="w-15">
+							<col class="w-15">
+							<col class="w-15">
 							<col class="w-25">
-							<col class="w-15">
 						</colgroup>
 
 						<thead>
 							<tr>
-								<th></th>
 								<th>
 									ID
 								</th>
 								<th>
-									Applicant
+									Date
 								</th>
 								<th>
-									Student
+									Amount
+								</th>
+								<th>
+									Type
+								</th>
+								<th>
+									Awards
 								</th>
 								<th>
 									Status
-								</th>
-								<th>
 								</th>
 							</tr>
 						</thead>
@@ -137,42 +116,44 @@
 						<tbody>
 
 							<tr>
-								<td class="center">
-									<%= check_box_tag "edit" %>
-								</td>
 								<td>
 									<%= link_to("00192831", "#") %>
 								</td>
 								<td>
-									Lorraine Fowler
+									10/20/15
 								</td>
 								<td>
-									Forrest Fowler
+									$500
 								</td>
 								<td>
-									Scholarship Awarded
+									One Time
 								</td>
 								<td>
+									12
+								</td>
+								<td>
+									Disbursement Pending
 								</td>
 							</tr>
 
 							<tr>
-								<td class="center">
-									<%= check_box_tag "edit" %>
+								<td>
+									<%= link_to("00192843", "#") %>
 								</td>
 								<td>
-									<%= link_to("00192846", "#") %>
+									10/20/15
 								</td>
 								<td>
-									Tim Henke
+									$700
 								</td>
 								<td>
-									Tyler Henke
+									Monthly
 								</td>
 								<td>
-									Pending Household
+									9
 								</td>
 								<td>
+									Disbursement Made
 								</td>
 							</tr>
 
@@ -279,5 +260,70 @@
 	</div>
 
 </div>
+
+<div class="overlay" style="display:none;">
+
+	<%= render 'shared/close_overlay' %>
+
+	<div class="wrapper">
+
+		<div class="grid">
+
+			<div class="xl-8 l-8 ltl-12 center-x">
+
+				<%= form_tag "#", :class => "box form form-normal" do |f| %>
+
+				<div class="box-header">
+					New Disbursement
+				</div>
+
+				<div class="box-content">
+
+					<div class="grid">
+
+						<label class="form-field xl-6 l-6 ltl-12">
+							<span class="label">Type</span>
+							<div class="select">
+								<select class="input" id="school_type_id" name="school_type_id">
+									<option value="1">Fall/Spring</option>
+									<option value="1">Monthly</option>
+								</select>
+							</div>
+						</label>
+
+					</div>
+
+					<div class="grid">
+
+						<label class="form-field xl-6 l-6 ltl-12">
+							<span class="label">Fall Date</span>
+							<input type="text" class="input">
+						</label>
+
+						<label class="form-field xl-6 l-6 ltl-12">
+							<span class="label">Spring Date</span>
+							<input type="text" class="input">
+						</label>
+
+					</div>
+
+					<hr>
+
+					<%= submit_tag "Submit", :class => "btn btn-secondary btn-block" %>
+
+				</div>
+
+				<% end %>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+
 
 
