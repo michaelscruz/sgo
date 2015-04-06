@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   
+  resources :donations
+
   devise_for :users
   
-  root 'static_pages#donor_home'
+  root 'donations#index'
 
   get 'static', :to => "static_pages#static_elements", :as => "static"
 

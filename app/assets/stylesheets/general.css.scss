@@ -49,4 +49,10 @@ header.site-header{
 			font-weight: normal;
 		}
 	}
+
+	.box-content{
+		&.narrow{
+			padding: 3em 5em 5em 5em;
+		}
+	}
 }

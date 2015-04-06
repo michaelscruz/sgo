@@ -1,0 +1,213 @@
+<article class="profile">
+
+  <div class="wrapper">
+
+    <div class="grid">
+
+      <div class="xl-12 l-12 ltl-12">
+
+        <%= form_tag "#", method: :get, :class => "box form form-normal" do %>
+
+        <div class="box-header">
+          Actions
+        </div>
+
+        <div class="box-content">
+
+          <div class="grid">
+
+            <div class="xl-3 l-3 ltl-12">
+              <%= link_to("One Time Donation", new_donation_path, :class => "btn btn-secondary btn-block") %>
+            </div>
+
+            <div class="xl-3 l-3 ltl-12">
+              <%= link_to("Monthly Donation", "#", :class => "btn btn-secondary btn-block") %>
+            </div>
+
+            <div class="xl-3 l-3 ltl-12">
+              <%= link_to("Stock Donation", "#", :class => "btn btn-secondary btn-block") %>
+            </div>
+
+          </div>
+
+        </div>
+        <% end %>
+
+        <section class="box xl-12 ltxl-12">
+
+          <header class="box-header">
+            Donation History
+          </header>
+
+          <div class="table-responsive">
+
+            <table class="box-content table">
+
+            <colgroup>
+              <col class="w-5">
+              <col class="w-10">
+              <col class="w-12">
+              <col class="w-13">
+              <col class="w-12">
+              <col class="w-13">
+              <col class="w-10">
+              <col class="w-10">
+              <col class="w-15">
+            </colgroup>
+
+            <thead>
+              <tr>
+                <th></th>
+                <th>
+                  ID
+                </th>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Amount
+                </th>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Method
+                </th>
+                <th>
+                  Match
+                </th>
+                <th>
+                  Status
+                </th>
+                <th>
+                  TCCN
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td class="center">
+                  <%= check_box_tag "edit" %>
+                </td>
+                <td>
+                  <%= link_to("00192831", "#") %>
+                </td>
+                <td>
+                  10/22/2014
+                </td>
+                <td>
+                  $200
+                </td>
+                <td>
+                  One Time
+                </td>
+                <td>
+                  Credit Card
+                </td>
+                <td>
+                  Yes
+                </td>
+                <td>
+                  Pledged
+                </td>
+                <td>
+                  15-001-2012
+                </td>
+              </tr>
+
+              <tr>
+                <td class="center">
+                  <%= check_box_tag "edit" %>
+                </td>
+                <td>
+                  <%= link_to("10238479", "#") %>
+                </td>
+                <td>
+                  10/21/2014
+                </td>
+                <td>
+                  $50
+                </td>
+                <td>
+                  Recurring
+                </td>
+                <td>
+                  Credit Card
+                </td>
+                <td>
+                  No
+                </td>
+                <td>
+                  Pending
+                </td>
+                <td>
+                  15-001-2009
+                </td>
+              </tr>
+
+              <tr>
+                <td class="center">
+                  <%= check_box_tag "edit" %>
+                </td>
+                <td>
+                  <%= link_to("00119838", "#") %>
+                </td>
+                <td>
+                  10/20/2014
+                </td>
+                <td>
+                  $400
+                </td>
+                <td>
+                  One Time
+                </td>
+                <td>
+                  Credit Card
+                </td>
+                <td>
+                  Yes
+                </td>
+                <td>
+                  Processed
+                </td>
+                <td>
+                  15-001-2072
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+      <section class="box xl-12 ltxl-12">
+
+        <header class="box-header">
+          Support
+        </header>
+
+        <div class="box-content form">
+          <label class="form-field">
+            <span class="label">Updating a Monthly Donation</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </label>
+          <br>
+          <label class="form-field">
+            <span class="label">Status Descriptions</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </label>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+
+</div>
+
+</article>
