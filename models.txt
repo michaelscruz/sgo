@@ -40,3 +40,9 @@ Users:
 
 		:admin_fee (%)
 		:black_out_dates (this might need to be its own model so they can have many.)
+
+
+Priorities
+ - User model setup, routing to correct "static" pages (Forrest is finishing static pages). Michael is working on User model
+ - Pledging/donations (for users and schools) completely functional
+
