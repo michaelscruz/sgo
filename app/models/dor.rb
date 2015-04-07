@@ -1,0 +1,2 @@
+class Dor < User
+end
