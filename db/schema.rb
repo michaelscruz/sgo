@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150407162553) do
     t.text     "address"
     t.string   "phone"
     t.string   "relation"
+    t.string   "type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

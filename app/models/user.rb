@@ -7,4 +7,21 @@ class User < ActiveRecord::Base
   def full_name
   	[self.first_name, self.last_name].join(' ')
   end
+
+  def school_admin?
+  	return self.type == "SchoolAdmin"
+  end
+
+  def donor?
+  	return self.type == "Donor"
+  end
+
+  def dor?
+  	return self.type == "Dor"
+  end
+
+  def household?
+  	return self.type == "Household"
+  end
+  
 end
