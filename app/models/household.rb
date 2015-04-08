@@ -24,4 +24,6 @@
 #
 
 class Household < User
+	has_many :applications
+	has_many :applicants
 end

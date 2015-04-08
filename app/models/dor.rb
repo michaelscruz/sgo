@@ -24,4 +24,6 @@
 #
 
 class Dor < User
+	has_many :donations
+	has_many :schools
 end

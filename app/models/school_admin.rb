@@ -24,4 +24,6 @@
 #
 
 class SchoolAdmin < User
+	belongs_to :school
+	has_many :notes	
 end
