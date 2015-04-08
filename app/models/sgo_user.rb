@@ -1,0 +1,2 @@
+class SgoUser < User
+end
