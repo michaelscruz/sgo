@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>School:</strong>
+  <%= @application.school %>
+</p>
+
+<p>
+  <strong>Applicant:</strong>
+  <%= @application.applicant %>
+</p>
+
+<p>
+  <strong>Requested amount:</strong>
+  <%= @application.requested_amount %>
+</p>
+
+<%= link_to 'Edit', edit_application_path(@application) %> |
+<%= link_to 'Back', applications_path %>
