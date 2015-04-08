@@ -1,2 +1,0 @@
-class SgoUser < User
-end
