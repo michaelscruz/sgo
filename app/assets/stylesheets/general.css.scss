@@ -56,3 +56,16 @@ header.site-header{
 		}
 	}
 }
+
+.alert-header{
+	background: rgb(255,163,0);
+	padding: .8em;
+	font-size: 1em;
+	font-weight: bold;
+	color: #FFFFFF;
+
+	&.dor{
+		text-align: center;
+	}
+
+}

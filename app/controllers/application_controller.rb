@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
   	elsif user.donor?
   		donations_path
   	elsif user.dor?
-  		static_path
+  		'/dor/donations'
   	elsif user.household?
-  		static_path
+  		new_application_path
   	end
   end  		
 end

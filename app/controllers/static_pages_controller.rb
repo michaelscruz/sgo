@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, :except => :landing_page
 
 	def static_elements
 	end
@@ -14,5 +14,11 @@ class StaticPagesController < ApplicationController
 	end
 
 	def school_applications_new
+	end
+
+	def dor_donations_home
+	end
+
+	def landing_page
 	end
 end

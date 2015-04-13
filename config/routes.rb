@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   root 'donations#index'
 
   get 'static', :to => "static_pages#static_elements"
+  get 'schools/1/landing', :to => "static_pages#landing_page"
+  get 'dor/donations', :to => "static_pages#dor_donations_home"
+  get 'dor/donations/1', :to => "static_pages#dor_donation"
   get 'school/applications', :to => "static_pages#school_applications_home"
   get 'school/applications/new', :to => "static_pages#school_applications_new"
   get 'school/donations', :to => "static_pages#school_donations_home"

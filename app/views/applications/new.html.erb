@@ -1,5 +1,249 @@
-<h1>New application</h1>
+ <header>
 
-<%= render 'form' %>
+ 	<section class="tabs">
 
-<%= link_to 'Back', applications_path %>
+ 		<div class="wrapper clearfix">
+
+ 			<nav class="nav-inline nav-tabs">
+ 				<ul>
+ 					<%= nav_link("Applications", "/school/applications") %>
+ 					<%= nav_link("Donations", "/school/donations") %>
+ 					<%= nav_link("Disbursements", "/school/disbursements") %>
+ 				</ul>
+ 			</nav>
+ 		</div>
+
+ 	</section>
+
+ </header>
+
+ <article class="citizen profile">
+
+ 	<div class="wrapper">
+
+ 		<div class="grid">
+
+ 			<!-- User info -->
+ 			<div class="xl-12 l-12 ltl-12">
+
+ 				<form accept-charset="UTF-8" action="/schools" class="box form form-normal" method="get"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+
+ 					<div class="box-header">
+ 						New Application
+ 					</div>
+
+ 					<div class="toggle-list" data-toggle-list>
+ 						<a class="toggle-list-item" data-value="assigned">Household</a>
+ 						<a class="toggle-list-item active" data-value="recurring">School</a>
+ 					</div>
+
+ 					<div class="box-content narrow">
+
+ 						<h2>School Official</h2>
+
+ 						<div class="grid">
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">First Name</span>
+ 									<input class="input" id="name" name="name" type="text">
+ 								</label>
+ 							</div>
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Last Name</span>
+ 									<input class="input" id="name" name="name" type="text">
+ 								</label>
+ 							</div>
+ 						</div>
+
+ 						<div class="grid">
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Email Address</span>
+ 									<input class="input" id="name" name="name" type="text">
+ 								</label>
+ 							</div>
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Confirm Address</span>
+ 									<input class="input" id="name" name="name" type="text">
+ 								</label>
+ 							</div>
+ 						</div>
+
+ 						<div class="grid">
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Phone Number</span>
+ 									<input class="input" id="name" name="name" type="text">
+ 								</label>
+ 							</div>
+ 							<div class="xl-2 l-2 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Ext #</span>
+ 									<input class="input" id="name" name="name" type="text">
+ 								</label>
+ 							</div>
+ 						</div>
+
+ 						<hr>
+ 						<br>
+
+ 						<h2>Applicant</h2>
+
+ 						<div class="grid">
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Previously received tax credit scholarship?</span>
+ 									<div class="grid">
+ 										<div class="xl-3">
+ 											<div class="select">
+ 												<select class="input" id="school_type_id" name="school_type_id">
+ 													<option value="1">Yes</option>
+ 													<option value="1">No</option>
+ 												</select>
+ 											</div>
+ 										</div>
+ 									</div>
+ 								</label>
+ 							</div>
+ 						</div>
+
+ 						<div class="grid">
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Application information relevant?</span>
+ 									<div class="grid">
+ 										<div class="xl-3">
+ 											<div class="select">
+ 												<select class="input" id="school_type_id" name="school_type_id">
+ 													<option value="1">Yes</option>
+ 													<option value="1">No</option>
+ 												</select>
+ 											</div>
+ 										</div>
+ 									</div>
+ 								</label>
+ 							</div>
+ 						</div>
+
+ 						<div class="grid">
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Individuals in household</span>
+ 									<div class="grid">
+ 										<div class="xl-3">
+ 											<div class="select">
+ 												<select class="input" id="school_type_id" name="school_type_id">
+ 													<option value="1">1</option>
+ 													<option value="1">2</option>
+ 													<option value="1">3</option>
+ 													<option value="1">4</option>
+ 												</select>
+ 											</div>
+ 										</div>
+ 									</div>
+ 								</label>
+ 							</div>
+ 						</div>
+
+ 						<div class="grid">
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Total Annual Household Income</span>
+ 									<div class="grid">
+ 										<div class="xl-6">
+ 											<input class="input" id="name" name="name" type="text">
+ 										</div>
+ 									</div>
+ 								</label>
+ 							</div>
+ 							<div class="xl-6 l-6 ltl-12">
+ 							</div>
+ 						</div>
+
+ 						<div class="grid">
+ 							<div class="xl-8 l-8 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Which of these sources did you use to verify income?</span>
+ 								</label>
+ 								<label class="form-field">
+ 									<input type="checkbox" name="cooperative" value="1">
+									<span class="text">3rd Party Service</span>
+ 								</label>
+ 								<label class="form-field">
+ 									<input type="checkbox" name="cooperative" value="1">
+									<span class="text">Choice Scholarship Award</span>
+ 								</label>
+ 								<label class="form-field">
+ 									<input type="checkbox" name="cooperative" value="1">
+									<span class="text">Income Verification Form (and Supporting Documentation)</span>
+ 								</label>
+ 							</div>
+ 							<div class="xl-6 l-6 ltl-12">
+ 							</div>
+ 						</div>
+
+ 						<hr>
+
+ 						<br>
+
+ 						<h2>Scholarship Award</h2>
+
+ 						<div class="grid">
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Tuition and Fees for Applicant</span>
+ 									<input class="input" id="name" name="name" type="text" placeholder="$">
+ 								</label>
+ 							</div>
+ 							<div class="xl-2 l-2 ltl-12">
+ 							</div>
+ 						</div>
+
+ 						<div class="grid">
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Amount of Choice Scholarship Award</span>
+ 									<input class="input" id="name" name="name" type="text" placeholder="$">
+ 								</label>
+ 							</div>
+ 							<div class="xl-6 l-6 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">Amount of Choice Scholarship Award</span>
+ 									<input class="input" id="name" name="name" type="text" placeholder="$">
+ 								</label>
+ 							</div>
+ 						</div>
+
+ 						<div class="grid">
+ 							<div class="xl-12 l-12 ltl-12">
+ 								<label class="form-field">
+ 									<span class="label">If Less than $5,000 Why?</span>
+ 									<textarea class="input" rows="10"></textarea>
+ 								</label>
+ 							</div>
+ 						</div>
+
+ 						<hr>
+
+ 						<br>
+
+ 						<%= submit_tag "Submit", :class => "btn btn-secondary btn-block" %>
+ 						
+ 					</div>
+
+ 				</form>
+
+ 			</div>
+
+ 		</div>
+
+ 	</div>
+
+ </article>
+
+
+
+
+

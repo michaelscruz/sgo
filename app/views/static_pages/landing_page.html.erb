@@ -1,0 +1,72 @@
+<article class="profile">
+
+	<div class="wrapper">
+
+		<div class="grid">
+
+			<!-- User info -->
+			<div class="xl-12 l-12 ltl-12">
+
+				<!-- Notes - Content items with a large textarea at the bottom -->
+				<section class="box">
+
+					<header class="box-header">
+						About
+					</header>
+
+					<div class="box-content">
+
+						<div class="box-items">
+
+							<div class="box-item">
+
+								<h3 class="title">
+									New Application
+								</h3>
+
+								<p>
+									Quas illum officiis similique sed excepturi porro omnis fugiat quibusdam totam vitae eum. Cumque eaque sint eius ratione maiores earum. Quis ipsa voluptatem sunt cupiditate occaecati distinctio. Labore magnam dignissimos laudantium architecto quisquam dolores. Asperiores labore ducimus iusto mollitia. Aut veniam quis quia et error voluptate voluptatem eaque. Quaerat numquam maxime deserunt adipisci. Et facilis saepe est consequatur blanditiis quam et accusantium.
+								</p>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</section>
+
+				<%= form_tag "#", method: :get, :class => "box form form-normal" do %>
+
+				<div class="box-header">
+					Actions
+				</div>
+
+				<div class="box-content">
+
+					<div class="grid">
+
+						<div class="xl-3 l-3 ltl-12">
+							<%= link_to("One Time Donation", new_donation_path(:type => "One Time"), :class => "btn btn-secondary btn-block open-overlay") %>
+						</div>
+
+						<div class="xl-3 l-3 ltl-12">
+							<%= link_to("Monthly Donation", new_donation_path(:type => "Monthly"), :class => "btn btn-secondary btn-block") %>
+						</div>
+
+						<div class="xl-3 l-3 ltl-12">
+							<%= link_to("Stock Donation", "#", :class => "btn btn-secondary btn-block") %>
+						</div>
+
+					</div>
+
+				</div>
+				<% end %>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</article>

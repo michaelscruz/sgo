@@ -11,6 +11,14 @@
 	<div data-hook="main-content" class="main-content">
 
 		<% if user_signed_in? %>
+
+			<% if current_user.dor? %>
+
+				<div class="alert-header dor">
+					INDOR - Donations
+				</div>
+
+			<% end %>
 		
 		<header class="site-header">
 
