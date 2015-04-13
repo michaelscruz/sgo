@@ -10,49 +10,52 @@
 #User.create(:email => "admin@example.com", :first_name => "Test", :last_name => "User", :password => "password", :password_confirmation => "password")
 
 school_admins = [
-					SchoolAdmin.new(email: "school_admin@example.com", first_name: "School", last_name: "Admin", 
+					SchoolAdminUser.new(email: "school_admin@example.com", first_name: "School", last_name: "Admin", 
 						password: "password", password_confirmation: "password")
 				]
 school_admins.each do |s|
-	if SchoolAdmin.find_by_email(s.email).nil?
+	if SchoolAdminUser.find_by_email(s.email).nil?
 		s.save!
 		puts "Creating School Admin #{s.full_name}."
 	end
 end
 
 donors = [
-			Donor.new(email: "amy@example.com", first_name: "Amy", last_name: "Cruz", password: "password",
+			DonorUser.new(email: "amy@example.com", first_name: "Amy", last_name: "Cruz", password: "password",
 				password_confirmation: "password", address: "123 Some Lane, Someville CA, 98765", phone: "555-555-5555"),
-			Donor.new(email: "bob@example.com", first_name: "Bob", last_name: "Smith", password: "password",
+			DonorUser.new(email: "bob@example.com", first_name: "Bob", last_name: "Smith", password: "password",
 				password_confirmation: "password", address: "123 Another Lane, Elsewhere WY, 98765", phone: "555-555-5555")
 		]
 donors.each do |d|
-	if Donor.find_by_email(d.email).nil?
+	if DonorUser.find_by_email(d.email).nil?
 		d.save!
 		puts "Creating donor #{d.full_name}."
 	end
 end
 
 dors = [
-			Dor.new(email: "dor@example.com", first_name: "Dept O.", last_name: "Revenue", password: "password",
+			DorUser.new(email: "dor@example.com", first_name: "Dept O.", last_name: "Revenue", password: "password",
 				password_confirmation: "password")
 		]
 dors.each do |d|
-	if Dor.find_by_email(d.email).nil?
+	if DorUser.find_by_email(d.email).nil?
 		d.save!
 		puts "Creating dept. of rev #{d.full_name}."
 	end
 end
 
 households = [
-				Household.new(email: "betty@example.com", first_name: "Betty", last_name: "Money", password: "password",
-					password_confirmation: "password", address: "1 Money Lane, Cashville $$, 99999", phone: "555-555-1234"),
-				Household.new(email: "rich@example.com", first_name: "Richie", last_name: "Rich", password: "password",
-					password_confirmation: "password", address: "111 Money Lane, Cashville $$, 99999", phone: "555-555-4321")
+				HouseholdUser.new(email: "betty@example.com", first_name: "Betty", last_name: "Money", password: "password",
+					password_confirmation: "password", address: "1 Money Lane, Cashville $$, 99999", phone: "555-555-1234",
+					:household_attributes => {:income => 20000, :number_in_household => 4, :address => "1310 S Cobble Creek Circle", :address_two => "Apt #2", :city => "Bloomington", :state => "IN", :zip => "47401"}),
+				HouseholdUser.new(email: "rich@example.com", first_name: "Richie", last_name: "Rich", password: "password",
+					password_confirmation: "password", address: "111 Money Lane, Cashville $$, 99999", phone: "555-555-4321",
+					:household_attributes => {:income => 21000, :number_in_household => 5, :address => "7150 S Lucas Rd",  :address_two => "", :city => "Bloomington", :state => "IN", :zip => "47401"})
 			]
 households.each do |h|
-	if Household.find_by_email(h.email).nil?
+	if HouseholdUser.find_by_email(h.email).nil?
 		h.save!
+		h.household.children.create(:first_name => "Billy", :last_name => "Joel", :dob => Date.today - 15.years)
 		puts "Creating household #{h.full_name}."
 	end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408062413) do
+ActiveRecord::Schema.define(version: 20150413160734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20150408062413) do
   add_index "applications", ["applicant_id"], name: "index_applications_on_applicant_id", using: :btree
   add_index "applications", ["school_id"], name: "index_applications_on_school_id", using: :btree
 
+  create_table "children", force: true do |t|
+    t.integer  "household_id"
+    t.date     "dob"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "school_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "donations", force: true do |t|
     t.integer  "donor_id"
     t.string   "donor_type"
@@ -56,6 +66,19 @@ ActiveRecord::Schema.define(version: 20150408062413) do
   end
 
   add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
+
+  create_table "households", force: true do |t|
+    t.decimal  "income"
+    t.integer  "number_in_household"
+    t.string   "address"
+    t.string   "address_two"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "household_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "schools", force: true do |t|
     t.string   "name"

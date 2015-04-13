@@ -23,7 +23,9 @@
 #  type                   :string(255)
 #
 
-class SchoolAdmin < User
-	belongs_to :school
-	has_many :notes	
+class HouseholdUser < User
+	has_many :applications
+	has_many :applicants
+	has_one :household
+	accepts_nested_attributes_for :household
 end

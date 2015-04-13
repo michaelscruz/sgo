@@ -23,6 +23,7 @@
 #  type                   :string(255)
 #
 
-class Donor < User
+class DorUser < User
 	has_many :donations
+	has_many :schools
 end

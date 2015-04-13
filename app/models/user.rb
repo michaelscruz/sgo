@@ -34,19 +34,19 @@ class User < ActiveRecord::Base
   end
 
   def school_admin?
-  	return self.type == "SchoolAdmin"
+  	return self.type == "SchoolAdminUser"
   end
 
   def donor?
-  	return self.type == "Donor"
+  	return self.type == "DonorUser"
   end
 
   def dor?
-  	return self.type == "Dor"
+  	return self.type == "DorUser"
   end
 
   def household?
-  	return self.type == "Household"
+  	return self.type == "HouseholdUser"
   end
   
 end

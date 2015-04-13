@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: schools
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  tuition    :decimal(, )
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class School < ActiveRecord::Base
 	has_many :applications
 	has_many :applicants, through: :applications

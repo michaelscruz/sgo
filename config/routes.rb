@@ -2,16 +2,13 @@ Rails.application.routes.draw do
 
   # real routes
   get 'household', :to => "households#index", :as => :household_root
-
-  scope(:path => '/households') do
-    resources :children, :only => :new
+  
+  resources :households, :only => [:edit, :update] do
+    member do
+      resources :children, :only => [:new, :create, :edit, :update]
+    end
   end
 
-
-
-
-
-  
   resources :applications
 
   resources :donations

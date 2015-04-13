@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   	elsif user.dor?
   		'/dor/donations'
   	elsif user.household?
-  		new_application_path
+  		household_root_path
   	end
   end  		
 end

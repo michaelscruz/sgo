@@ -23,10 +23,7 @@
 #  type                   :string(255)
 #
 
-require 'test_helper'
-
-class SchoolAdminTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class SchoolAdminUser < User
+	belongs_to :school
+	has_many :notes	
 end

@@ -23,10 +23,6 @@
 #  type                   :string(255)
 #
 
-require 'test_helper'
-
-class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class DonorUser < User
+	has_many :donations
 end
