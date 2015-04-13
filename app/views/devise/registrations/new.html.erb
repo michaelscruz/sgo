@@ -1,29 +1,70 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<article class="profile">
+  
+  <div class="wrapper">
+    
+    <div class="grid">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+      <div class="xl-6 l-6 ltl-12 center-x">
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "box form form-normal" }) do |f| %>
+
+        <div class="box-header">
+          Sign Up
+        </div>
+
+        <div class="box-content">
+
+          <% if resource.errors.any? %>
+          <div class="alert alert-danger">
+            <% resource.errors.full_messages.each do |msg| %>
+            <%= msg %><br>
+            <% end %>
+          </div>
+          <% end %>
+
+          <label class="form-field">
+            <span class="label">First Name</span>
+            <%= f.text_field :first_name, autofocus: true, :class => "input" %>
+          </label>
+
+          <label class="form-field">
+            <span class="label">Last Name</span>
+            <%= f.text_field :last_name, autofocus: true, :class => "input" %>
+          </label>
+
+           <label class="form-field">
+            <span class="label">Email</span>
+            <%= f.email_field :email, autofocus: true, :class => "input" %>
+          </label>
+
+          <label class="form-field">
+            <span class="label">Password</span>
+             <%= f.password_field :password, autocomplete: "off", :class => "input" %>
+          </label>
+
+          <label class="form-field">
+            <span class="label">Confirm Password</span>
+            <%= f.password_field :password_confirmation, autocomplete: "off", :class => "input" %>
+          </label>
+
+          <label class="form-field">
+            I accept the <a href="#">terms of use</a> of this site
+            <%= f.check_box :remember_me %>
+          </label>
+
+          <hr>
+
+          <%= f.submit "Sign Up", :class => "btn btn-secondary btn-block" %>
+
+        </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</article>
