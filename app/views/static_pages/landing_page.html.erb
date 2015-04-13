@@ -39,7 +39,30 @@
 				<%= form_tag "#", method: :get, :class => "box form form-normal" do %>
 
 				<div class="box-header">
-					Actions
+					Submit & Review Scholarship Applications
+				</div>
+
+				<div class="box-content">
+
+					<div class="grid">
+
+						<div class="xl-3 l-3 ltl-12">
+							<%= link_to("Create New Application", new_donation_path(:type => "One Time"), :class => "btn btn-secondary btn-block open-overlay") %>
+						</div>
+
+						<div class="xl-3 l-3 ltl-12">
+							<%= link_to("Edit Application", new_donation_path(:type => "Monthly"), :class => "btn btn-secondary btn-block") %>
+						</div>
+
+					</div>
+
+				</div>
+				<% end %>
+
+				<%= form_tag "#", method: :get, :class => "box form form-normal" do %>
+
+				<div class="box-header">
+					Make a Donation
 				</div>
 
 				<div class="box-content">
