@@ -21,6 +21,8 @@
 #  phone                  :string(255)
 #  relation               :string(255)
 #  type                   :string(255)
+#  school_id              :integer
+#  terms_of_use           :boolean
 #
 
 class Dor < User

@@ -1,13 +1,28 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  # sign in/sign up routes
+  devise_for :users, :controllers => { 
+    registrations: 'users/registrations' 
+  }
 
   # household actions
   get 'household', :to => "households#index", :as => :household_root
   resources :households do
     resources :children, :only => [:index, :new, :create, :edit, :update]
-    resources :applications, :only => [:index, :new]
   end
+  resources :applications, :only => [:index, :new]
+
+  # school actions
+  resources :schools, :only => [:show] do
+    member do
+      get 'landing', :to => "schools#landing"
+    end
+  end
+
+
+
+
+  
 
   # resources :applications
   resources :donations

@@ -1,5 +1,7 @@
 <article class="profile">
 
+  <%= render 'shared/basic_header' %>
+
   <div class="wrapper">
 
     <div class="grid">
@@ -45,6 +47,15 @@
           <% end -%>
 
           <%= f.submit "Sign In", :class => "btn btn-secondary btn-block" %>
+
+          <hr>
+
+          <div class="help-actions">
+            <%= link_to("Help! I forgot my password", new_user_password_path) %>
+            <br>
+            <br>
+            Or, <%= link_to("I need to create a new account", new_user_registration_path) %>
+          </div>
 
         </div>
 

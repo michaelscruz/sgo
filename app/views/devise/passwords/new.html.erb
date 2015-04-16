@@ -1,16 +1,60 @@
-<h2>Forgot your password?</h2>
+<article class="profile">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+  <%= render 'shared/basic_header' %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="wrapper">
+
+    <div class="grid">
+
+      <div class="xl-6 l-6 ltl-12 center-x">
+
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "box form form-normal sign-in"}) do |f| %>
+
+        <div class="box-header">
+          Sign In
+        </div>
+
+        <div class="box-content">
+
+        	<% if resource.errors.any? %>
+					<div class="alert alert-danger">
+						<% resource.errors.full_messages.each do |msg| %>
+						<%= msg %><br>
+						<% end %>
+					</div>
+					<% end %>
+
+          <div class="center">
+            <%= image_tag("logo.png", :alt => "Institute for Quality Education") %>
+          </div>
+        </div>
+
+        <div class="box-content color">
+
+          <label class="form-field">
+            <span class="label">Email Address</span>
+            <%= f.email_field :email, autofocus: true, :class => "input" %>
+          </label>
+
+          <%= f.submit "Send me reset password instructions", :class => "btn btn-secondary btn-block" %>
+
+          <hr>
+
+          <div class="help-actions">
+            <%= link_to("Nevermind, take me back to sign in", new_user_session_path) %>
+            <br>
+            <br>
+            Or, <%= link_to("I need to create a new account", new_user_registration_path) %>
+          </div>
+
+        </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</article>

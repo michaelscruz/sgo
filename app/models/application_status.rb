@@ -4,7 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  user_id        :integer
-#  status         :string(255)
+#  status_code    :string(255)
 #  application_id :integer
 #  created_at     :datetime
 #  updated_at     :datetime

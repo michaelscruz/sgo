@@ -1,0 +1,106 @@
+<article class="profile">
+
+	<%= render 'shared/basic_header' %>
+
+	<div class="wrapper">
+
+		<div class="grid">
+
+			<div class="xl-12 l-12 ltl-12">
+
+				<section class="box">
+
+					<header class="box-header">
+						About
+					</header>
+
+					<div class="box-content">
+
+						<div class="box-items">
+
+							<div class="box-item">
+								<h3 class="title">Welcome to the <%= @school.name %> SGO portal! </h3>
+								<p>
+									Quas illum officiis similique sed excepturi porro omnis fugiat quibusdam totam vitae eum. Cumque eaque sint eius ratione maiores earum. Quis ipsa voluptatem sunt cupiditate occaecati distinctio. Labore magnam dignissimos laudantium architecto quisquam dolores. Asperiores labore ducimus iusto mollitia. Aut veniam quis quia et error voluptate voluptatem eaque. Quaerat numquam maxime deserunt adipisci. Et facilis saepe est consequatur blanditiis quam et accusantium.
+								</p>
+								<br>
+								<p><strong>Questions? Contact <a href="#">someone@i4qed.org</a> or call +1 (800) 542-1899</strong></p>
+							</div>
+
+						</div>
+
+					</div>
+
+				</section>
+
+
+				<section class="box form form-normal">
+
+					<div class="box-header">
+						Submit & Review Scholarship Applications
+					</div>
+
+					<div class="box-content">
+
+						<div class="grid">
+
+							<div class="xl-3 l-3 ltl-12">
+								<%= link_to("Create New Application", "#", :class => "btn btn-secondary btn-block open-overlay") %>
+							</div>
+
+							<div class="xl-4 l-4 ltl-12">
+								<%= link_to("View Application Status", "#", :class => "btn btn-secondary btn-block") %>
+							</div>
+
+						</div>
+
+					</div>
+
+				</section>
+
+				<section class="box form form-normal">
+
+					<div class="box-header">
+						Make a Donation
+					</div>
+
+					<div class="box-content">
+
+						<div class="box-items">
+
+							<div class="box-item">
+								<p>
+									Coming soon! Make a cash or stock donation to <%= @school.name %> to qualify for an Indiana Tax Credit!
+								</p>
+							</div>
+
+						</div>
+
+					<!-- 
+					<div class="grid">
+
+						<div class="xl-3 l-3 ltl-12">
+							<%= link_to("One Time Donation", "#", :class => "btn btn-secondary btn-block open-overlay") %>
+						</div>
+
+						<div class="xl-3 l-3 ltl-12">
+							<%= link_to("Monthly Donation", "#", :class => "btn btn-secondary btn-block") %>
+						</div>
+
+						<div class="xl-3 l-3 ltl-12">
+							<%= link_to("Stock Donation", "#", :class => "btn btn-secondary btn-block") %>
+						</div>
+
+					</div> -->
+
+				</div>
+				
+			</section>
+
+		</div>
+
+	</div>
+
+</div>
+
+</article>

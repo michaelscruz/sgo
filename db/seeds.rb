@@ -21,7 +21,7 @@ end
 
 school_admins = [
 					SchoolAdmin.new(email: "school_admin@example.com", first_name: "School", last_name: "Admin", 
-						password: "password", password_confirmation: "password")
+						password: "password", password_confirmation: "password", school: School.first, terms_of_use: true)
 				]
 school_admins.each do |s|
 	if SchoolAdmin.find_by_email(s.email).nil?
@@ -32,9 +32,9 @@ end
 
 donors = [
 			Donor.new(email: "amy@example.com", first_name: "Amy", last_name: "Cruz", password: "password",
-				password_confirmation: "password", address: "123 Some Lane, Someville CA, 98765", phone: "555-555-5555"),
+				password_confirmation: "password", address: "123 Some Lane, Someville CA, 98765", phone: "555-555-5555", terms_of_use: true),
 			Donor.new(email: "bob@example.com", first_name: "Bob", last_name: "Smith", password: "password",
-				password_confirmation: "password", address: "123 Another Lane, Elsewhere WY, 98765", phone: "555-555-5555")
+				password_confirmation: "password", address: "123 Another Lane, Elsewhere WY, 98765", phone: "555-555-5555", terms_of_use: true)
 		]
 donors.each do |d|
 	if Donor.find_by_email(d.email).nil?
@@ -45,7 +45,7 @@ end
 
 dors = [
 			Dor.new(email: "dor@example.com", first_name: "Dept O.", last_name: "Revenue", password: "password",
-				password_confirmation: "password")
+				password_confirmation: "password", terms_of_use: true)
 		]
 dors.each do |d|
 	if Dor.find_by_email(d.email).nil?
@@ -56,9 +56,9 @@ end
 
 households = [
 				Household.new(email: "betty@example.com", first_name: "Betty", last_name: "Money", password: "password",
-					password_confirmation: "password", address: "1 Money Lane, Cashville $$, 99999", phone: "555-555-1234"),
+					password_confirmation: "password", address: "1 Money Lane, Cashville $$, 99999", phone: "555-555-1234", terms_of_use: true),
 				Household.new(email: "rich@example.com", first_name: "Richie", last_name: "Rich", password: "password",
-					password_confirmation: "password", address: "111 Money Lane, Cashville $$, 99999", phone: "555-555-4321")
+					password_confirmation: "password", address: "111 Money Lane, Cashville $$, 99999", phone: "555-555-4321", terms_of_use: true)
 			]
 households.each do |h|
 	if Household.find_by_email(h.email).nil?

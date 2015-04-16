@@ -1,5 +1,6 @@
-
 <article class="profile">
+
+   <%= render 'shared/basic_header' %>
   
   <div class="wrapper">
     
@@ -7,7 +8,7 @@
 
       <div class="xl-6 l-6 ltl-12 center-x">
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "box form form-normal" }) do |f| %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "box form form-normal sign-in" }) do |f| %>
 
         <div class="box-header">
           Sign Up
@@ -48,14 +49,18 @@
             <%= f.password_field :password_confirmation, autocomplete: "off", :class => "input" %>
           </label>
 
-          <label class="form-field">
+          <label class="form-field checkbox-wrap">
             I accept the <a href="#">terms of use</a> of this site
-            <%= f.check_box :remember_me %>
+            <%= f.check_box :terms_of_use %>
           </label>
+
+          <%= f.submit "Sign Up", :class => "btn btn-secondary btn-block" %>
 
           <hr>
 
-          <%= f.submit "Sign Up", :class => "btn btn-secondary btn-block" %>
+          <div class="help-actions">
+            <%= link_to("Nevermind, take me back to sign in", new_user_session_path) %>
+          </div>
 
         </div>
 

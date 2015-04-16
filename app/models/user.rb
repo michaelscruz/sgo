@@ -21,6 +21,8 @@
 #  phone                  :string(255)
 #  relation               :string(255)
 #  type                   :string(255)
+#  school_id              :integer
+#  terms_of_use           :boolean
 #
 
 class User < ActiveRecord::Base
@@ -28,6 +30,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+  validates_inclusion_of :terms_of_use, in: [true], message: "must be accepted to sign up"
 
   def full_name
   	[self.first_name, self.last_name].join(' ')
