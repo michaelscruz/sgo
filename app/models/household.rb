@@ -28,4 +28,8 @@
 class Household < User
 	has_many :applications
 	has_many :children
+
+	def has_children?
+		self.children.count > 0
+	end
 end

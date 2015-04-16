@@ -1,0 +1,18 @@
+<header>
+
+	<section class="tabs">
+
+		<div class="wrapper clearfix">
+
+			<nav class="nav-inline nav-tabs">
+				<ul>
+					<%= nav_link("Home", household_root_path) %>
+					<%= nav_link("My Children", household_children_path(@household)) %>
+					<%= nav_link("My Applications", applications_household_path(@household)) %>
+				</ul>
+			</nav>
+		</div>
+
+	</section>
+
+</header>

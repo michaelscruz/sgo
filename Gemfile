@@ -25,11 +25,11 @@ gem 'jbuilder', '~> 2.0'
 
 ###############
 
-gem 'cocoon'
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_skin'
-gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem 'aws-s3'
+gem 'paperclip'
 gem 'annotate'
 
 ###############

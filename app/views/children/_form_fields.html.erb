@@ -1,3 +1,11 @@
+<% if @child.errors.any? %>
+<div class="alert alert-danger">
+	<% @child.errors.full_messages.each do |msg| %>
+	<%= msg %><br>
+	<% end %>
+</div>
+<% end %>
+
 <div class="grid">
 	<div class="xl-6 l-6 ltl-12">
 		<label class="form-field">
@@ -14,10 +22,14 @@
 </div>
 
 <div class="grid">
-	<div class="xl-4 l-4 ltl-12">
+	<div class="xl-6 l-6 ltl-12">
 		<label class="form-field">
 			<span class="label">Birthday</span>
-			<%= f.date_select :dob, {:start_year => Date.today.year, :end_year => Date.today.year - 100, :order => [:month, :day, :year], :prompt => { :day => 'Day', :month => 'Month', :year => 'Year'}}, {:class => "input"} %>
+			<div class="birthday-select">
+				<div class="select">
+					<%= f.date_select :dob, {:start_year => Date.today.year, :end_year => Date.today.year - 100, :order => [:month, :day, :year], :prompt => { :day => 'Day', :month => 'Month', :year => 'Year'}, :date_separator => '</div><div class="select">'}, {:class => "input"} %>
+				</div>
+			</div>
 		</label>
 	</div>
 </div>

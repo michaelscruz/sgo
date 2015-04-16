@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   	elsif user.is_a?(Dor)
       Rails.logger.info("DOR SIGNED IN")
   	elsif user.is_a?(Household)
-      Rails.logger.info("HOUSEHOLD SIGNED IN")
+      household_root_path
   	end
   end  		
 end

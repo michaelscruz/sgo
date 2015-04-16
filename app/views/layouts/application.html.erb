@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <link rel="icon" type="image/x-icon" href="<%= asset_path('favicon.png') %>" />
+	<title><%= full_title(yield(:title)) %></title>
+	<%= stylesheet_link_tag 'application', media: 'all' %>
+	<%= javascript_include_tag 'application' %>
+	<%= csrf_meta_tags %>
+	<link rel="icon" type="image/x-icon" href="<%= asset_path('favicon.png') %>" />
 </head>
 <body>
 
@@ -13,7 +13,37 @@
 
 		<header class="site-header">
 
-			<section class="primary"></section>
+			<section class="primary">
+
+				<% if user_signed_in? %>
+				
+				<div class="wrapper clearfix">
+
+					<nav class="nav-drawer pull-right nav-drawer-right user-nav" data-nav-drawer>
+
+						<button class="btn btn-primary btn-inline" data-hook="drawer-toggle">
+							<span class="btn-content"><%= current_user.full_name %></span>
+						</button>
+
+						<div class="nav-drawer-content nav-drawer-content-padding" data-hook="drawer-content">
+
+							<ul class="nav-drawer-list">
+								<li>
+									<%= link_to("Edit Profile", edit_user_registration_path) %>
+								</li>
+							</ul>
+
+							<%= link_to('Sign Out', destroy_user_session_path, :method => :delete, :class => "btn btn-secondary btn-block") %> 
+
+						</div>
+
+					</nav>
+
+				</div>
+
+				<% end %>
+
+			</section>
 
 		</header>
 

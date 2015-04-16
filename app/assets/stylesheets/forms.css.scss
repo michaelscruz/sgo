@@ -28,12 +28,27 @@
 	}
 }
 
-// hack to fix checkbox error on sign up
 .form-field{
+	// hack to fix checkbox error on sign up
 	&.checkbox-wrap{
 		.field_with_errors{
 			display: inline;
 		}
+	}
+
+	input[type="text"]{
+		&:disabled{
+			background: #EDF1F2;
+		}
+	}
+}
+
+// birthday date selector
+.birthday-select{
+	.select{
+		float: left;
+		width: 30%;
+		margin-right: 3%;
 	}
 }
 

@@ -1,6 +1,6 @@
 <article class="profile">
 
-	<%= render 'households/tab_navigation' %>
+	<%= render 'tab_navigation' %>
 
 	<div class="wrapper">
 
@@ -8,7 +8,7 @@
 
 			<div class="xl-12 l-12 ltl-12">
 
-				<section class="box">
+				<section class="box form form-normal">
 
 					<div class="box-header">
 						Actions
@@ -19,7 +19,7 @@
 						<div class="grid">
 
 							<div class="xl-3 l-3 ltl-12">
-								<%= link_to("Add Child", new_household_child_path(@household), :class => "btn btn-secondary btn-block open-overlay") %>
+								<%= link_to("Create New Application", new_application_household_path(@household), :class => "btn btn-secondary btn-block open-overlay") %>
 							</div>
 
 						</div>
@@ -28,12 +28,10 @@
 
 				</section>
 
-				<% if @household.has_children? %>
-
 				<section class="box xl-12 ltxl-12">
 
 					<header class="box-header">
-						Children
+						Applications
 					</header>
 
 					<div class="table-responsive">
@@ -56,7 +54,7 @@
 									Age
 								</th>
 								<th>
-									Last Application Submitted On
+									
 								</th>
 								<th>
 
@@ -66,23 +64,6 @@
 
 						<tbody>
 
-							<% @household.children.each do |c| %>
-							<tr>
-								<td>
-									<%= link_to(c.first_name, edit_household_child_path(@household, c)) %>
-								</td>
-								<td>
-									<%= c.age %>
-								</td>
-								<td>
-								</td>
-								<td class="actions hover-only">
-									<%= link_to("Create New Application", "#", :class => "btn btn-secondary") %>
-								</td>
-							</tr>
-
-							<% end %>
-
 						</tbody>
 
 					</table>
@@ -90,8 +71,6 @@
 				</div>
 
 			</section>
-
-			<% end %>
 
 			</div>
 

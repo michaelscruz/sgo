@@ -6,11 +6,15 @@ Rails.application.routes.draw do
   }
 
   # household actions
-  get 'household', :to => "households#index", :as => :household_root
+  get 'household', :to => "households#root", :as => :household_root
   resources :households do
     resources :children, :only => [:index, :new, :create, :edit, :update]
+    member do
+      get 'applications', :to => "households#applications", :as => :applications
+      get 'applications/new', :to => "households#new_application", :as => :new_application
+      post 'applications', :to => "households#create_application", :as => :create_application
+    end
   end
-  resources :applications, :only => [:index, :new]
 
   # school actions
   resources :schools, :only => [:show] do
@@ -19,16 +23,10 @@ Rails.application.routes.draw do
     end
   end
 
-
-
-
-  
-
   # resources :applications
   resources :donations
   
   root 'donations#index'
-
   get 'static', :to => "static_pages#static_elements"
   get 'schools/1/landing', :to => "static_pages#landing_page"
   get 'dor/donations', :to => "static_pages#dor_donations_home"

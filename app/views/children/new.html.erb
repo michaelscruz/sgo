@@ -1,6 +1,6 @@
 <article class="citizen profile">
 	
-	<%= render 'shared/back_header', :c => "Children", :l => children_path %>
+	<%= render 'shared/back_header', :c => "Children", :l => household_children_path(@household) %>
 
 	<div class="wrapper">
 
@@ -9,7 +9,7 @@
 			<!-- User info -->
 			<div class="xl-12 l-12 ltl-12">
 
-				<%= form_for @child, :url => "#", :html => {:class => "box form form-normal"} do |f| %>
+				<%= form_for([@household, @child], :html => {:class => "box form form-normal"}) do |f| %>
 
 				<div class="box-header">
 					Add Child

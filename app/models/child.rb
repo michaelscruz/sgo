@@ -14,6 +14,8 @@
 
 class Child < ActiveRecord::Base
 	belongs_to :household
+	validates :first_name, :presence => true
+	validates :last_name, :presence => true
 
 	def age
 		(Time.now.to_s(:number).to_i - self.dob.to_time.to_s(:number).to_i)/10e9.to_i

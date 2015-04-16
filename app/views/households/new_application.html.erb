@@ -1,0 +1,69 @@
+ <article class="profile">
+
+ 	<%= render 'shared/back_header', :c => "Applications", :l => applications_household_path(@household) %>
+
+ 	<div class="wrapper">
+
+ 		<div class="grid">
+
+ 			<div class="xl-12 l-12 ltl-12">
+
+ 				<%= form_for @application, :url => create_application_household_path(@household), :html => {:class => "box form form-normal"} do |f| %>
+
+ 				<div class="box-header">
+ 					New Application
+ 				</div>
+
+ 				<div class="box-content narrow">
+
+ 					<% if @application.errors.any? %>
+ 					<div class="alert alert-danger">
+ 						<% @application.errors.full_messages.each do |msg| %>
+ 						<%= msg %><br>
+ 						<% end %>
+ 					</div>
+ 					<% end %>
+
+ 					<h2>General Information</h2>
+
+ 					<div class="grid">
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Select School</span>
+ 								<div class="select">
+ 									<%= f.select :school_id, options_for_select(School.all.map{|s| [s.name, s.id]}), {:include_blank => true}, :class => "input" %>
+ 								</div>
+ 								<p>Don't see your school listed? <a href="#">Contact us</a></p>
+ 							</label>
+ 						</div>
+ 						<div class="xl-4 l-4 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Annual Tuition</span>
+ 									<input type="text" value="$" class="input" disabled="disabled">
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<div class="grid">
+ 						<div class="xl-5 l-5 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Requested Scholarship Amount</span>
+ 								<%= f.text_field :requested_amount, :class => "input", :placeholder => "$" %>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<hr>
+ 					<%= f.submit "Submit Application", :class => "btn btn-secondary btn-block" %>
+
+ 				</div>
+
+ 				<% end %>
+
+ 			</div>
+
+ 		</div>
+
+ 	</div>
+
+ </article>

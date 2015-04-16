@@ -12,6 +12,6 @@
 
 class Application < ActiveRecord::Base
 	belongs_to :school
-	belongs_to :applicant
-	belongs_to :child
+	has_many :applicants
+	validates_presence_of :school
 end
