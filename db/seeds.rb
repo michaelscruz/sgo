@@ -9,6 +9,16 @@
 # Create test user
 #User.create(:email => "admin@example.com", :first_name => "Test", :last_name => "User", :password => "password", :password_confirmation => "password")
 
+schools = [
+	School.new(name: "Software Development Academy", tuition: 10000)
+]
+schools.each do |s|
+	if School.find_by_name(s.name).nil?
+		s.save!
+		puts "Creating School #{s.name}."
+	end
+end
+
 school_admins = [
 					SchoolAdmin.new(email: "school_admin@example.com", first_name: "School", last_name: "Admin", 
 						password: "password", password_confirmation: "password")
