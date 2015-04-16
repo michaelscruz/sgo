@@ -1,5 +1,5 @@
 class DonationsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => :new
   # before_action :set_donation, only: [:show, :edit, :update, :destroy]
 
   # GET /donations
@@ -23,13 +23,11 @@ class DonationsController < ApplicationController
   # POST /donations
   # POST /donations.json
   def create
-
   end
 
   # PATCH/PUT /donations/1
   # PATCH/PUT /donations/1.json
   def update
-
   end
 
   # DELETE /donations/1

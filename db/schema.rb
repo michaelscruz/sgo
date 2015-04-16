@@ -11,23 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413160734) do
+ActiveRecord::Schema.define(version: 20150413211118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "applicants", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "middle_init"
-    t.text     "address"
+    t.integer  "child_id"
+    t.integer  "application_id"
+    t.string   "grade"
+    t.string   "address"
     t.string   "city"
-    t.string   "apt"
     t.string   "state"
     t.string   "zip"
-    t.date     "birthdate"
-    t.integer  "grade"
-    t.boolean  "attended_public_or_charter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "application_statuses", force: true do |t|
+    t.integer  "user_id"
+    t.string   "status_code"
+    t.integer  "application_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -66,19 +70,6 @@ ActiveRecord::Schema.define(version: 20150413160734) do
   end
 
   add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
-
-  create_table "households", force: true do |t|
-    t.decimal  "income"
-    t.integer  "number_in_household"
-    t.string   "address"
-    t.string   "address_two"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.integer  "household_user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "schools", force: true do |t|
     t.string   "name"

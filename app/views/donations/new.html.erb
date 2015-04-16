@@ -1,5 +1,11 @@
 <article class="citizen profile">
 
+	<% if user_signed_in? %>
+
+	<%= render 'shared/back_header', :c => "Donations", :l => donations_path %>
+
+	<% end %>
+
 	<div class="wrapper">
 
 		<div class="grid">

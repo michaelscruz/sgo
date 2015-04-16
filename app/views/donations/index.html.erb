@@ -1,6 +1,22 @@
 <article class="profile">
 
+  <%= render 'shared/date_header' %>
+
   <div class="wrapper">
+
+    <% if notice %>
+
+    <div class="main-alert">
+      
+      <div class="alert alert-success">
+        
+        <%= notice %>
+
+      </div>
+    
+    </div>
+
+    <% end %>
 
     <div class="grid">
 

@@ -23,9 +23,6 @@
 #  type                   :string(255)
 #
 
-class HouseholdUser < User
-	has_many :applications
-	has_many :applicants
-	has_one :household
-	accepts_nested_attributes_for :household
+class Donor < User
+	has_many :donations
 end

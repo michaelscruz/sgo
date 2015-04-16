@@ -1,6 +1,10 @@
 class ChildrenController < ApplicationController
 	before_action :authenticate_user!
 
+	def index
+		@household = current_user
+	end
+
 	def new
 		@child = Child.new
 	end

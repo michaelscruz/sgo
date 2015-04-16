@@ -1,5 +1,26 @@
 <article class="profile">
 
+	<%= render 'shared/date_header' %>
+
+	 <header>
+
+ 	<section class="tabs">
+
+ 		<div class="wrapper clearfix">
+
+ 			<nav class="nav-inline nav-tabs">
+ 				<ul>
+ 					<%= nav_link("Home", household_root_path) %>
+ 					<%= nav_link("Children", children_path(@household)) %>
+ 					<%= nav_link("Applications", applications_path(@household)) %>
+ 				</ul>
+ 			</nav>
+ 		</div>
+
+ 	</section>
+
+ </header>
+
 	<div class="wrapper">
 
 		<div class="grid">
@@ -21,7 +42,7 @@
 							</div>
 
 							<div class="xl-3 l-3 ltl-12">
-								<%= link_to("New Application", new_application_path, :class => "btn btn-secondary btn-block") %>
+								<%= link_to("New Application", new_application_path(@household), :class => "btn btn-secondary btn-block") %>
 							</div>
 
 							<div class="xl-4 l-4 ltl-12">
@@ -67,68 +88,6 @@
 					</form>
 
 				</section>
-
-				<section class="box xl-12 ltxl-12">
-
-					<header class="box-header">
-						Children
-					</header>
-
-					<div class="table-responsive">
-
-						<table class="box-content table">
-
-						<colgroup>
-							<col class="w-15">
-							<col class="w-15">
-							<col class="w-40">
-							<col class="w-30">
-						</colgroup>
-
-						<thead>
-							<tr>
-								<th>
-									Name
-								</th>
-								<th>
-									Age
-								</th>
-								<th>
-									Last Application Submitted On
-								</th>
-								<th>
-
-								</th>
-							</tr>
-						</thead>
-
-						<tbody>
-
-							<% @household.children.each do |c| %>
-							<tr>
-								<td>
-									<%= link_to(c.first_name, edit_child_path(@household, c)) %>
-								</td>
-								<td>
-									<%= c.age %>
-								</td>
-								<td>
-									<%= Date.today %>
-								</td>
-								<td>
-									<%= link_to("Create New Application", new_application_path, :class => "btn btn-secondary") %>
-								</td>
-							</tr>
-
-							<% end %>
-
-						</tbody>
-
-					</table>
-
-				</div>
-
-			</section>
 
 			</div>
 

@@ -15,14 +15,14 @@ class ApplicationController < ActionController::Base
 
   # Devise override
   def after_sign_in_path_for(user)
-  	if user.school_admin?
-  		school_applications_path
-  	elsif user.donor?
-  		donations_path
-  	elsif user.dor?
-  		'/dor/donations'
-  	elsif user.household?
-  		household_root_path
+  	if user.is_a?(SchoolAdmin)
+      Rails.logger.info("SCHOOL ADMIN SIGNED IN")
+  	elsif user.is_a?(Donor)
+      donations_path
+  	elsif user.is_a?(Dor)
+      Rails.logger.info("DOR SIGNED IN")
+  	elsif user.is_a?(Household)
+      Rails.logger.info("HOUSEHOLD SIGNED IN")
   	end
   end  		
 end

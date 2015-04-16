@@ -1,22 +1,16 @@
 Rails.application.routes.draw do
 
-  # real routes
+  devise_for :users
+
+  # household actions
   get 'household', :to => "households#index", :as => :household_root
-  
-  resources :households, :only => [:edit, :update] do
-    member do
-      resources :children, :only => [:new, :create, :edit, :update]
-    end
+  resources :households do
+    resources :children, :only => [:index, :new, :create, :edit, :update]
+    resources :applications, :only => [:index, :new]
   end
 
-  resources :applications
-
+  # resources :applications
   resources :donations
-
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
-  }
   
   root 'donations#index'
 

@@ -4,13 +4,13 @@ header.site-header{
 	}
 }
 
-.wrapper{
-	&.main-alert{
-		padding: 2.5em 2.5em 0 2.5em;
 
-		.alert{
-			margin-bottom: 0;
-		}
+.main-alert{
+	padding: 2.5em 2.5em 0 2.5em;
+	margin-bottom: 2em;
+
+	.alert{
+		margin-bottom: 0;
 	}
 }
 

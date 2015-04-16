@@ -23,7 +23,7 @@
 #  type                   :string(255)
 #
 
-class SchoolAdminUser < User
+class SchoolAdmin < User
 	belongs_to :school
 	has_many :notes	
 end

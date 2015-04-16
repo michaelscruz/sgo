@@ -15,4 +15,5 @@ class School < ActiveRecord::Base
 	has_many :donations
 	has_many :donors, through: :donations
 	has_many :disbursements
+	has_many :school_admins
 end
