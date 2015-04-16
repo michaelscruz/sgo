@@ -11,7 +11,7 @@
  			<nav class="nav-inline nav-tabs">
  				<ul>
  					<%= nav_link("Home", household_root_path) %>
- 					<%= nav_link("Children", children_path(@household)) %>
+ 					<%= nav_link("Children", household_children_path(@household)) %>
  					<%= nav_link("Applications", applications_path(@household)) %>
  				</ul>
  			</nav>
@@ -38,7 +38,7 @@
 						<div class="grid">
 
 							<div class="xl-3 l-3 ltl-12">
-								<%= link_to("Add Child", new_child_path(@household), :class => "btn btn-secondary btn-block open-overlay") %>
+								<%= link_to("Add Child", new_household_child_path(@household), :class => "btn btn-secondary btn-block open-overlay") %>
 							</div>
 
 							<div class="xl-3 l-3 ltl-12">

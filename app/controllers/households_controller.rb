@@ -7,5 +7,4 @@ class HouseholdsController < ApplicationController
 
 	def edit
 	end
-
 end

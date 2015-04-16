@@ -13,8 +13,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.type = "Household"
 
     if @user.save
-      flash[:notice] = "You have signed up successfully."
-      redirect_to root_url
+      sign_in(@user)
+      redirect_to household_root_path
     else
       render :action => :new
     end
