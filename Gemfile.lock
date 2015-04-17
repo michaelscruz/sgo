@@ -52,6 +52,10 @@ GEM
     arbre (1.0.3)
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
+    aws-s3 (0.6.3)
+      builder
+      mime-types
+      xml-simple
     aws-sdk (1.63.0)
       aws-sdk-v1 (= 1.63.0)
     aws-sdk-v1 (1.63.0)
@@ -66,7 +70,6 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
-    cocoon (1.2.6)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -201,6 +204,7 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    xml-simple (1.1.5)
 
 PLATFORMS
   ruby
@@ -209,8 +213,8 @@ DEPENDENCIES
   active_skin
   activeadmin!
   annotate
+  aws-s3
   aws-sdk (< 2.0)
-  cocoon
   coffee-rails (~> 4.0.0)
   devise
   jbuilder (~> 2.0)

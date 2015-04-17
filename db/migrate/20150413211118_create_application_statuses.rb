@@ -4,6 +4,7 @@ class CreateApplicationStatuses < ActiveRecord::Migration
       t.integer :user_id
       t.string :status_code
       t.integer :application_id
+      t.text :notes
 
       t.timestamps
     end

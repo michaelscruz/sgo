@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150416192612) do
     t.integer  "user_id"
     t.string   "status_code"
     t.integer  "application_id"
+    t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
