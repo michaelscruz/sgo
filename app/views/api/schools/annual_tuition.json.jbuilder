@@ -1,0 +1,1 @@
+json.tuition @school.formatted_tuition
