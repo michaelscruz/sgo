@@ -9,6 +9,9 @@ $(document).ready(function() {
 	  }
 	});
 
+	// autoNumeric
+	initFields();
+	
 	// fade out notice
 	$(".main-alert").delay(2500).fadeOut()
 
@@ -36,47 +39,9 @@ $(document).ready(function() {
 		}
 	});
 
-	// Sample usage of the tableAppend plugin. Should be used when data is returned
-	// from the server via AJAX or something.
-	$('.view-more-example').click(function(e) {
-		e.preventDefault();
-		$(this).parents('table').tableAppend([
-		{
-			name: 'Drew Loomer',
-			source: 'Twitter',
-			activity: 'Died a little inside.',
-			date: '10/30/2014'
-		},
-		{
-			name: 'Woody Hoban',
-			source: 'Myspace',
-			activity: 'Was a dog.',
-			date: '1/23/2015'
-		},
-		{
-			name: 'Drew Loomer',
-			source: 'Twitter',
-			activity: 'Died a little inside.',
-			date: '10/30/2014'
-		},
-		{
-			name: 'Woody Hoban',
-			source: 'Myspace',
-			activity: 'Was a dog.',
-			date: '1/23/2015'
-		},
-		{
-			name: 'Drew Loomer',
-			source: 'Twitter',
-			activity: 'Died a little inside.',
-			date: '10/30/2014'
-		},
-		{
-			name: 'Woody Hoban',
-			source: 'Myspace',
-			activity: 'Was a dog.',
-			date: '1/23/2015'
-		}
-		]);
-	});
 });
+
+function initFields() {
+	$('.currency').autoNumeric('init', {aSign:'$ ', mDec: 0});
+	$('.percentage').autoNumeric('init', {aSign:' %', pSign: 's', vMin: '-1000.00', vMax: '1000.00'});
+}

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get 'applications', :to => "households#applications", :as => :applications
       get 'applications/new', :to => "households#new_application", :as => :new_application
       post 'applications', :to => "households#create_application", :as => :create_application
+      get 'applications/:application_id', :to => "households#show_application", :as => :show_application
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420160411) do
+ActiveRecord::Schema.define(version: 20150420174103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150420160411) do
 
   create_table "application_statuses", force: true do |t|
     t.integer  "user_id"
-    t.string   "status_code"
+    t.integer  "status_code"
     t.integer  "application_id"
     t.text     "notes"
     t.datetime "created_at"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20150420160411) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.integer  "household_id"
   end
 
   add_index "applications", ["applicant_id"], name: "index_applications_on_applicant_id", using: :btree

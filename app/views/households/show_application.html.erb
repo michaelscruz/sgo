@@ -1,0 +1,139 @@
+<article class="profile">
+
+	<div class="wrapper">
+
+		<div class="grid">
+
+			<div class="xl-12 l-12 ltl-12">
+
+				<section class="box">
+
+					<header class="box-header">
+						Application #<%= @application.display_id %>
+					</header>
+
+					<div class="box-content form narrow form-horizontal xl-4-and-8 l-4-and-8 ltl-12-and-0">
+
+						<h2>General Information</h2>
+
+						<label class="form-field">
+							<span class="label">School</span>
+							<span class="input placeholder">
+								<%= @application.school.name %>
+							</span>
+						</label>
+
+						<label class="form-field">
+							<span class="label">Annual Tuition</span>
+							<span class="input placeholder">
+								<%= @application.school.formatted_tuition %>
+							</span>
+						</label>
+
+						<label class="form-field">
+							<span class="label">Requested Scholarship</span>
+							<span class="input placeholder">
+								<%= @application.requested_amount %>
+							</span>
+						</label>
+
+						<hr>
+
+						<h2>Applicant(s)</h2>
+
+						<% @application.applicants.each do |a| %>
+						<label class="form-field">
+							<span class="label">Name</span>
+							<span class="input placeholder">
+								<%= a.child.full_name %>
+							</span>
+						</label>
+
+						<label class="form-field">
+							<span class="label">Full Address</span>
+							<span class="input placeholder">
+								<%= a.full_address %>
+							</span>
+						</label>
+
+						<label class="form-field">
+							<span class="label">Grade Level</span>
+							<span class="input placeholder">
+								<%= a.grade %>
+							</span>
+						</label>
+
+						<label class="form-field">
+							<span class="label">Ever attended public/charter school?</span>
+							<span class="input placeholder">
+								<%= a.public_school %>
+							</span>
+						</label>
+
+						<label class="form-field">
+							<span class="label">If Yes, what grade(s) was applicant in when he or she attended this school?</span>
+							<span class="input placeholder">
+								<%= a.public_school_grade %>
+							</span>
+						</label>
+
+						<label class="form-field">
+							<span class="label">Ever received tax credit scholarship?</span>
+							<span class="input placeholder">
+								<%= a.tax_credit_scholarship %>
+							</span>
+						</label>
+
+						<label class="form-field">
+							<span class="label">If Yes, what grade(s) was applicant in when he or she first received this scholarship?</span>
+							<span class="input placeholder">
+								<%= a.tax_credit_scholarship_grade %>
+							</span>
+						</label>
+
+						<label class="form-field">
+							<span class="label">Relationship to Applicant</span>
+							<span class="input placeholder">
+								<%= a.relationship_to_applicant %>
+							</span>
+						</label>
+
+						<hr>
+
+						<h2>Parent or Guardian</h2>
+
+						<label class="form-field">
+							<span class="label">Name</span>
+							<span class="input placeholder">
+								<%= @application.full_name %>
+							</span>
+						</label>
+
+
+
+						<% end %>
+
+
+						<hr>
+
+						<div class="grid">
+
+							<div class="xl-4 ltl-12">
+
+								<button class="btn btn-secondary btn-block">Download Letter</button>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</section>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</article>

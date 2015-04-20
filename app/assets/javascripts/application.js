@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require_tree .
 //= require sid3car-enterprise
+//= require autoNumeric
 //= require main
 

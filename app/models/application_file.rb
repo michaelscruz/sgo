@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: application_files
+#
+#  id                :integer          not null, primary key
+#  application_id    :integer
+#  file_file_name    :string(255)
+#  file_content_type :string(255)
+#  file_file_size    :integer
+#  file_updated_at   :datetime
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 class ApplicationFile < ActiveRecord::Base
 	# associations
 	belongs_to :application

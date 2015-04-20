@@ -47,7 +47,7 @@
  						<div class="xl-5 l-5 ltl-12">
  							<label class="form-field">
  								<span class="label">Requested Scholarship Amount</span>
- 								<%= f.text_field :requested_amount, :class => "input", :placeholder => "$" %>
+ 								<%= f.text_field :requested_amount, :class => "input currency" %>
  							</label>
  						</div>
  					</div>
@@ -55,7 +55,7 @@
  					<hr>	
  					<h2>Applicants</h2>
  					<%= f.fields_for :applicants do |ff| %>
- 					<%= render 'applicant', :f => ff %>
+ 						<%= render 'applicant', :f => ff %>
  					<% end %>
  					<%= link_to_add_applicant "Add Another Applicant", f %>
  					<hr>
@@ -152,6 +152,19 @@
  							</label>
  						</div>
  					</div>
+
+ 					<hr>
+
+ 					<label class="form-field">
+ 						<span class="label">Income Verification</span>
+ 						<p class="help-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+ 					</label>
+
+ 					<%= f.fields_for :application_files do |ff| %>
+ 						<%= render 'application_file', :f => ff %>
+ 					<% end %>
+
+ 					<%= link_to_add_file "Add Another File", f %>
 
  					<hr>
  					<%= f.submit "Submit Application", :class => "btn btn-secondary btn-block" %>

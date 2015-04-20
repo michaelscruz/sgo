@@ -43,8 +43,7 @@
 						<colgroup>
 							<col class="w-15">
 							<col class="w-15">
-							<col class="w-40">
-							<col class="w-30">
+							<col class="w-70">
 						</colgroup>
 
 						<thead>
@@ -57,9 +56,6 @@
 								</th>
 								<th>
 									Last Application Submitted On
-								</th>
-								<th>
-
 								</th>
 							</tr>
 						</thead>
@@ -75,9 +71,9 @@
 									<%= c.age %>
 								</td>
 								<td>
-								</td>
-								<td class="actions hover-only">
-									<%= link_to("Create New Application", "#", :class => "btn btn-secondary") %>
+									<% if c.has_applications? %>
+										<%= link_to(c.most_recent_application.created_at.strftime("%m/%d/%Y"), "#") %>
+									<% end %>
 								</td>
 							</tr>
 

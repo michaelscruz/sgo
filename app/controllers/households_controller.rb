@@ -17,6 +17,7 @@ class HouseholdsController < ApplicationController
 
 	def create_application
 		@application = Application.new(application_params)
+		@application.household = @household
 
 		if @application.save
 			redirect_to applications_household_path(@household)
@@ -25,7 +26,8 @@ class HouseholdsController < ApplicationController
 		end
 	end
 
-	def edit
+	def show_application
+		@application = Application.find(params[:application_id])
 	end
 
 	private
@@ -62,6 +64,9 @@ class HouseholdsController < ApplicationController
 				:city, 
 				:state,
 				:zip,
+			],
+			:application_files_attributes => [
+				:file
 			]
 		)
 	end
