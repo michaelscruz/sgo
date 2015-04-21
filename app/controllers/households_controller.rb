@@ -18,6 +18,7 @@ class HouseholdsController < ApplicationController
 	def create_application
 		@application = Application.new(application_params)
 		@application.household = @household
+		@application.family_application = true
 
 		if @application.save
 			redirect_to applications_household_path(@household)
@@ -40,6 +41,8 @@ class HouseholdsController < ApplicationController
 		params.require(:application).permit(
 			:school_id, 
 			:requested_amount, 
+			:household_income,
+			:number_in_household,
 			:parent_first_name, 
 			:parent_last_name, 
 			:parent_middle_initial, 

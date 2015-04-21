@@ -11,6 +11,22 @@ $(document).ready(function() {
 
 	// autoNumeric
 	initFields();
+
+	// clear autoNumeric formatting from all fields on submit
+	$('form').submit(function(){
+		var form = $(this);
+		$('input').each(function(i){
+			var self = $(this);
+			try{
+				var v = self.autoNumeric('get');
+				self.autoNumeric('destroy');
+				self.val(v);
+			}catch(err){
+				console.log("Not an autonumeric field: " + self.attr("name"));
+			}
+		});
+		return true;
+	});
 	
 	// fade out notice
 	$(".main-alert").delay(2500).fadeOut()

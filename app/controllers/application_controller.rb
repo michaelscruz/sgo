@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   # Devise override
   def after_sign_in_path_for(user)
   	if user.is_a?(SchoolAdmin)
-      # TODO: route to correct action
+      school_root_path
   	elsif user.is_a?(Donor)
       donations_path
   	elsif user.is_a?(Dor)

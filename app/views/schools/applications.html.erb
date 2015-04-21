@@ -8,23 +8,22 @@
 
 			<div class="xl-12 l-12 ltl-12">
 
-				<section class="box form form-normal">
+				<section class="box">
 
-					<div class="box-header">
-						Actions
-					</div>
+					<header class="box-header">
+						Overview
+					</header>
 
-					<div class="box-content">
+					<section class="box-content form form-horizontal xl-4-and-8 l-4-and-8 ltl-12-and-0">
 
-						<div class="grid">
+						<label class="form-field">
+							<span class="label">Applications Submitted</span>
+							<span class="input placeholder">
+								<%= @school.applications.count %>
+							</span>
+						</label>
 
-							<div class="xl-3 l-3 ltl-12">
-								<%= link_to("Create New Application", new_application_household_path(@household), :class => "btn btn-secondary btn-block open-overlay") %>
-							</div>
-
-						</div>
-
-					</div>
+					</section>
 
 				</section>
 
@@ -41,8 +40,8 @@
 						<colgroup>
 							<col class="w-10">
 							<col class="w-15">
-							<col class="w-25">
 							<col class="w-20">
+							<col class="w-25">
 							<col class="w-30">
 						</colgroup>
 
@@ -54,37 +53,37 @@
 								<th>
 									Date
 								</th>
-								<th>	
-									School
-								</th>
 								<th>
 									Applicant(s)
 								</th>
 								<th>
 									Status
 								</th>
+								<th>
+								
+								</th>
 							</tr>
 						</thead>
 
 						<tbody>
 
-							<% @household.applications.each do |a| %>
+							<% @school.applications.each do |a| %>
 
 							<tr>
 								<td>
-									<%= link_to(a.display_id, show_application_household_path(@household, a)) %>
+									<%= link_to(a.display_id, show_application_school_path(@school, a)) %>
 								</td>
 								<td>
 									<%= a.created_at.strftime("%m/%d/%Y") %>
-								</td>
-								<td>
-									<%= truncate(a.school.name, :length => 20) %>
 								</td>
 								<td>
 									<%= a.applicants.each.map{|a| a.child.full_name}.join(', ') %>
 								</td>
 								<td>
 									<%= a.current_status.display_status %>
+								</td>
+								<td>
+									<%= link_to("Verify Application", confirm_application_school_path(@school, a), :class => "btn btn-secondary") %>
 								</td>
 							</tr>
 

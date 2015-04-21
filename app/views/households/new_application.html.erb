@@ -53,11 +53,10 @@
  					</div>
 
  					<hr>	
- 					<h2>Applicants</h2>
+ 					<h2>Applicant</h2>
  					<%= f.fields_for :applicants do |ff| %>
  						<%= render 'applicant', :f => ff %>
  					<% end %>
- 					<%= link_to_add_applicant "Add Another Applicant", f %>
  					<hr>
  					<h2>Parent or Guardian</h2>
 
@@ -157,8 +156,28 @@
 
  					<label class="form-field">
  						<span class="label">Income Verification</span>
- 						<p class="help-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+ 						<p class="help-block">Enter your household information below. Include any government assistance, child support, etc. Please attach any files that could help the school verify this number.</p>
  					</label>
+
+ 					<div class="grid">
+ 						<div class="xl-3 l-3 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Number in Household</span>
+ 								<div class="select">
+ 									<%= f.select :number_in_household, [1,2,3,4,5,6,7,8,9,10], {:include_blank => true}, :class => "input" %>
+ 								</div>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<div class="grid">
+ 						<div class="xl-5 l-5 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Annual Household Income</span>
+ 								<%= f.text_field :household_income, :class => "input currency" %>
+ 							</label>
+ 						</div>
+ 					</div>
 
  					<%= f.fields_for :application_files do |ff| %>
  						<%= render 'application_file', :f => ff %>

@@ -4,7 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  user_id        :integer
-#  status_code    :string(255)
+#  status_code    :integer
 #  application_id :integer
 #  notes          :text
 #  created_at     :datetime
@@ -27,19 +27,26 @@ class ApplicationStatus < ActiveRecord::Base
 	validates :user, :presence => true
 	validates_inclusion_of :status_code, :in => [1, 2, 3, 4, 5]
 
+	# callbacks
+	after_create :send_status_update
+
 	# custom methods
 	def display_status
 		case self.status_code
 			when ApplicationStatus::PENDING_FAMILY
 				"Pending Family"
 			when ApplicationStatus::PENDING_SCHOOL
-				"Pending School"
+				"Pending School Review"
 			when ApplicationStatus::PENDING_SGO
-				"Pending SGO"
+				"Pending SGO Review"
 			when ApplicationStatus::PENDING_DOR
-				"Pending DOR"
+				"Pending DOR Review"
 			when ApplicationStatus::APPROVED
 				"Approved"
 		end
+	end
+
+	def send_status_update
+		ApplicationStatusMailer.status_change(self, self.application).deliver
 	end
 end

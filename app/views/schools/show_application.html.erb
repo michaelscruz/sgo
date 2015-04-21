@@ -1,6 +1,6 @@
 <article class="profile">
 
-	<%= render 'shared/back_header', :c => "Applications", :l => applications_household_path(@household) %>
+	<%= render 'shared/back_header', :c => "Applications", :l => applications_school_path(@school) %>
 
 	<div class="wrapper">
 
@@ -9,7 +9,7 @@
 			<div class="xl-12 l-12 ltl-12">
 
 				<div class="alert alert-success">
-					Your application has been submitted and is <strong><%= @application.current_status.display_status %></strong>
+					This application has been submitted and is <strong><%= @application.current_status.display_status %></strong>
 				</div>
 
 				<br>
@@ -164,7 +164,6 @@
 						<hr>
 
 						<h2>Income Verification</h2>
-
 						<label class="form-field">
 							<span class="label">Number in Household</span>
 							<span class="input placeholder">

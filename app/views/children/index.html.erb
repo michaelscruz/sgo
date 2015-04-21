@@ -72,7 +72,7 @@
 								</td>
 								<td>
 									<% if c.has_applications? %>
-										<%= link_to(c.most_recent_application.created_at.strftime("%m/%d/%Y"), "#") %>
+										<%= link_to(c.most_recent_application.created_at.strftime("%m/%d/%Y"), show_application_household_path(@household, c.most_recent_application)) %>
 									<% end %>
 								</td>
 							</tr>

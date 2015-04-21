@@ -1,0 +1,160 @@
+ <article class="profile">
+
+ 	<%= render 'shared/back_header', :c => "Applications", :l => applications_school_path(@school) %>
+
+ 	<div class="wrapper">
+
+ 		<div class="grid">
+
+ 			<div class="xl-12 l-12 ltl-12">
+
+ 				<section class="box">
+
+ 					<div class="box-header">
+ 						Actions
+ 					</div>
+
+ 					<div class="box-content">
+
+ 						<div class="grid">
+
+ 							<div class="xl-3 l-3 ltl-12">
+ 								<a href="javascript:window.print()" class="btn btn-secondary btn-block">Print Application</a>
+ 							</div>
+
+ 						</div>
+
+ 					</div>
+
+ 				</section>
+
+ 				<%= form_for @application, :url => update_application_school_path(@school, @application), :method => "put", :html => {:class => "box form form-normal"} do |f| %>
+
+ 				<div class="box-header">
+ 					Verify Application #<%= @application.display_id %>
+ 				</div>
+
+ 				<div class="box-content narrow">
+
+ 					<% if @application.errors.any? %>
+ 					<div class="alert alert-danger">
+ 						<% @application.errors.full_messages.each do |msg| %>
+ 						<%= msg %><br>
+ 						<% end %>
+ 					</div>
+ 					<% end %>
+
+ 					<h2>School Official</h2>
+ 					<div class="grid">
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">First Name</span>
+ 								<%= f.text_field :school_official_first_name, :class => "input" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Last Name</span>
+ 								<%= f.text_field :school_official_last_name, :class => "input" %>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<div class="grid">
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Email Address</span>
+ 								<%= f.text_field :school_official_email, :class => "input" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Confirm Email Address</span>
+ 								<%= f.text_field :school_official_confirm_email, :class => "input" %>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<div class="grid">
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Phone</span>
+ 								<%= f.text_field :school_official_phone, :class => "input" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-2 l-2 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Ext #</span>
+ 								<%= f.text_field :school_official_phone_ext, :class => "input" %>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<hr>
+
+ 					<h2>Review Application</h2>
+
+ 					<label class="form-field">
+ 						<span class="label long">Application information relevant?</span><br>
+ 						<%= link_to("View Application →", show_application_school_path(@school, @application), :target => "_blank") %>
+ 						<br>
+ 						<br>
+ 						<div class="grid">
+ 							<div class="xl-2 l-2 ltl-12">
+ 								<div class="select">
+ 									<%= f.select :information_verified, options_for_select([['Yes', true], ['No', false]], f.object.information_verified), {}, :class => "input" %>
+ 								</div>
+ 							</div>
+ 						</div>
+ 					</label>
+
+ 					<label class="form-field" style="margin-bottom: .2em;">
+ 						<span class="label long">Which of these sources did you use to verify income eligibility?</span>
+ 					</label>
+ 					<label class="form-field">
+ 						<%= f.check_box :third_party_income_verified %> <span class="text">Third Party Service</span>
+ 					</label>
+ 					<label class="form-field">
+ 						<%= f.check_box :choice_scholarship_income_verified %> <span class="text">Choice Scholarship Award</span>
+ 					</label>
+ 					<label class="form-field">
+ 						<%= f.check_box :document_income_verified %> <span class="text">Income Verification Form (and Supporting Documentation)</span>
+ 					</label>
+
+ 					<hr>
+
+ 					<h2>Scholarship Award</h2>
+
+ 					<div class="grid">
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Tuition and Fees for Applicant</span>
+ 								<%= f.text_field :tuition_for_application, :class => "input currency" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Amount of Choice Scholarship Award</span>
+ 								<%= f.text_field :choice_scholarship_amount, :class => "input currency" %>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<label class="form-field">
+ 						<span class="label long">If amount is less than $5,000, why?</span>
+ 						<%= f.text_area :choice_scholarship_explanation, :class => "input" %>
+ 					</label>
+
+ 					<%= f.submit "Submit Application", :class => "btn btn-secondary btn-block" %>
+
+ 				</div>
+
+ 				<% end %>
+
+ 			</div>
+
+ 		</div>
+
+ 	</div>
+
+ </article>

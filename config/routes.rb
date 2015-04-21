@@ -23,9 +23,14 @@ Rails.application.routes.draw do
   end
 
   # school actions
+  get 'school', :to => "schools#root", :as => :school_root
   resources :schools, :only => [:show] do
     member do
       get 'landing', :to => "schools#landing"
+      get 'applications', :to => "schools#applications", :as => :applications
+      get 'applications/:application_id/confirm', :to => "schools#confirm_application", :as => :confirm_application
+      put 'applications/:application_id', :to => "schools#update_application", :as => :update_application
+      get 'applications/:application_id', :to => "schools#show_application", :as => :show_application
     end
   end
 

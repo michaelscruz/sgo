@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420174103) do
+ActiveRecord::Schema.define(version: 20150421134103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,21 @@ ActiveRecord::Schema.define(version: 20150420174103) do
     t.string   "state"
     t.string   "zip"
     t.integer  "household_id"
+    t.integer  "number_in_household"
+    t.decimal  "household_income"
+    t.string   "school_official_first_name"
+    t.string   "school_official_last_name"
+    t.string   "school_official_email"
+    t.string   "school_official_confirm_email"
+    t.string   "school_official_phone"
+    t.string   "school_official_phone_ext"
+    t.boolean  "information_verified"
+    t.boolean  "third_party_income_verified"
+    t.boolean  "choice_scholarship_income_verified"
+    t.boolean  "document_income_verified"
+    t.decimal  "tuition_for_application"
+    t.decimal  "choice_scholarship_amount"
+    t.text     "choice_scholarship_explanation"
   end
 
   add_index "applications", ["applicant_id"], name: "index_applications_on_applicant_id", using: :btree
