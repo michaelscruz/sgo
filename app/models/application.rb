@@ -35,12 +35,15 @@
 #  tuition_for_application            :decimal(, )
 #  choice_scholarship_amount          :decimal(, )
 #  choice_scholarship_explanation     :text
+#  scholarship_approved               :boolean
+#  approved_by_initials               :string(255)
+#  approved_date                      :date
 #
 
 class Application < ActiveRecord::Base
 	# static values
 	VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	attr_accessor :family_application, :school_application
+	attr_accessor :family_application, :school_application, :sgo_application
 
 	# dependencies
 	include ActionView::Helpers::NumberHelper
@@ -90,6 +93,10 @@ class Application < ActiveRecord::Base
 
 	def school_confirm!(user)
 		self.application_statuses.create(:status_code => ApplicationStatus::PENDING_SGO, :user => user, :notes => "Auto generated on school confirmation.")
+	end
+
+	def sgo_confirm!(user)
+		self.application_statuses.create(:status_code => ApplicationStatus::APPROVED, :user => user, :notes => "Auto generated on SGO confirmation.")
 	end
 
 	def current_status

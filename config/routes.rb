@@ -40,6 +40,10 @@ Rails.application.routes.draw do
 
   # sgo actions
   get 'sgo', :to => "sgo#root", :as => :sgo_root
+  get 'sgo/applications', :to => "sgo#applications", :as => :sgo_applications
+  get 'sgo/applications/:id', :to => "sgo#show_application", :as => :sgo_show_application
+  get 'sgo/applications/:id/confirm', :to => "sgo#confirm_application", :as => :sgo_confirm_application
+  put 'sgo/applications/:id', :to => "sgo#update_application", :as => :sgo_update_application
 
   # resources :applications
   resources :donations

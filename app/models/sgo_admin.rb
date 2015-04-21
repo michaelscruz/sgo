@@ -26,4 +26,7 @@
 #
 
 class SgoAdmin < User
+	def initials
+		self.first_name[0] + self.last_name[0]
+	end
 end

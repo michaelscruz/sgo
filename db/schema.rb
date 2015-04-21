@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421134103) do
+ActiveRecord::Schema.define(version: 20150421151641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,9 @@ ActiveRecord::Schema.define(version: 20150421134103) do
     t.decimal  "tuition_for_application"
     t.decimal  "choice_scholarship_amount"
     t.text     "choice_scholarship_explanation"
+    t.boolean  "scholarship_approved"
+    t.string   "approved_by_initials"
+    t.date     "approved_date"
   end
 
   add_index "applications", ["applicant_id"], name: "index_applications_on_applicant_id", using: :btree

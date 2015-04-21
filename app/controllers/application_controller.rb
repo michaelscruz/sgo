@@ -18,9 +18,11 @@ class ApplicationController < ActionController::Base
   	if user.is_a?(SchoolAdmin)
       school_root_path
   	elsif user.is_a?(Donor)
-      donations_path
+      # TODO: route to correct action
   	elsif user.is_a?(Dor)
       # TODO: route to correct action
+    elsif user.is_a?(SgoAdmin)
+      sgo_root_path
   	elsif user.is_a?(Household)
       household_root_path
   	end

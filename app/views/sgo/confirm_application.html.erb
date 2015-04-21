@@ -1,0 +1,74 @@
+ <article class="profile">
+
+ 	<%= render 'shared/back_header', :c => "Applications", :l => sgo_applications_path %>
+
+ 	<div class="wrapper">
+
+ 		<div class="grid">
+
+ 			<div class="xl-12 l-12 ltl-12">
+
+ 				<%= form_for @application, :url => sgo_update_application_path(@application), :method => "put", :html => {:class => "box form form-normal"} do |f| %>
+
+ 				<div class="box-header">
+ 					Verify Application #<%= @application.display_id %>
+ 				</div>
+
+ 				<div class="box-content narrow">
+
+ 					<% if @application.errors.any? %>
+ 					<div class="alert alert-danger">
+ 						<% @application.errors.full_messages.each do |msg| %>
+ 						<%= msg %><br>
+ 						<% end %>
+ 					</div>
+ 					<% end %>
+
+ 					<h2>Review Application</h2>
+
+ 					<label class="form-field">
+ 						<span class="label long">Application information relevant?</span><br>
+ 						<%= link_to("View Application →", sgo_show_application_path(@application), :target => "_blank") %>
+ 					</label>
+
+ 					<label class="form-field">
+ 						<span class="label">Scholarship Approved?</span>
+ 						<div class="grid">
+ 							<div class="xl-2 l-2 ltl-12">
+ 								<div class="select">
+ 									<%= f.select :scholarship_approved, options_for_select([['Yes', true], ['No', false]], f.object.scholarship_approved), {}, :class => "input" %>
+ 								</div>
+ 							</div>
+ 						</div>
+ 					</label>
+
+ 					<div class="grid">
+ 						<div class="xl-3 l-3 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Approved By (initials)</span>
+ 								<%= f.text_field :approved_by_initials, :class => "input" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-3 l-3 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Date</span>
+ 								<%= f.text_field :approved_date, :class => "input" %>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<hr>
+
+ 					<%= f.submit "Submit Application", :class => "btn btn-secondary btn-block" %>
+
+ 				</div>
+
+ 				<% end %>
+
+ 			</div>
+
+ 		</div>
+
+ 	</div>
+
+ </article>
