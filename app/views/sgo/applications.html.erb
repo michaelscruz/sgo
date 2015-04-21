@@ -61,7 +61,7 @@
 									<%= truncate(a.school.name, :length => 20) %>
 								</td>
 								<td>
-									<%= a.applicants.each.map{|a| a.child.full_name}.join(', ') %>
+									<%= a.applicants.each.map{|a| a.full_name}.join(', ') %>
 								</td>
 								<td>
 									<%= a.current_status.display_status %>

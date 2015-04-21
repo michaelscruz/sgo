@@ -1,6 +1,22 @@
 <div class="grid">
 	<div class="xl-6 l-6 ltl-12">
 		<label class="form-field">
+			<span class="label">First Name</span>
+			<%= f.text_field :first_name, :class => "input" %>
+		</label>
+	</div>
+	<div class="xl-6 l-6 ltl-12">
+		<label class="form-field">
+			<span class="label">Last Name</span>
+			<%= f.text_field :last_name, :class => "input" %>
+		</label>
+	</div>
+</div>
+
+
+<div class="grid">
+	<div class="xl-6 l-6 ltl-12">
+		<label class="form-field">
 			<span class="label">Address</span>
 			<%= f.text_field :address, :class => "input" %>
 		</label>

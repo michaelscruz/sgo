@@ -43,7 +43,7 @@
 class Application < ActiveRecord::Base
 	# static values
 	VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	attr_accessor :family_application, :school_application, :sgo_application
+	attr_accessor :family_application, :school_application, :new_school_application, :sgo_application
 
 	# dependencies
 	include ActionView::Helpers::NumberHelper
@@ -51,9 +51,9 @@ class Application < ActiveRecord::Base
 	# relationships
 	belongs_to :school
 	belongs_to :household
-	has_many :applicants
-	has_many :application_files
-	has_many :application_statuses
+	has_many :applicants, :dependent => :destroy
+	has_many :application_files, :dependent => :destroy
+	has_many :application_statuses, :dependent => :destroy
 	accepts_nested_attributes_for :applicants
 	accepts_nested_attributes_for :application_files
 
@@ -80,7 +80,8 @@ class Application < ActiveRecord::Base
 	# TODO: validations for SGO approval of an application
 
 	# callbacks
-	after_create :set_initial_status!
+	after_create :set_initial_family_status!, :if => :family_application
+	after_create :set_initial_school_status!, :if => :new_school_application
 
 	# custom methods
 	def emails_must_match
@@ -89,8 +90,13 @@ class Application < ActiveRecord::Base
 		end
 	end
 
-	def set_initial_status!
+	def set_initial_family_status!
 		self.application_statuses.create(:status_code => ApplicationStatus::PENDING_SCHOOL, :user => self.household, :notes => "Auto generated on application submission.")
+	end
+
+	# TODO: Get initial user when a school creates the application
+	def set_initial_school_status!
+		self.application_statuses.create(:status_code => ApplicationStatus::PENDING_SGO, :notes => "Auto generated on application submission.")
 	end
 
 	def school_confirm!(user)

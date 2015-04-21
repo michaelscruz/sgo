@@ -32,9 +32,23 @@ class Applicant < ActiveRecord::Base
 	has_many :application_files
 
 	# validations
-	validates :child, :presence => true
+	validate :child_or_full_name
 
 	# custom methods
+	def child_or_full_name
+		if self.child_id.blank? && (self.first_name.blank? || self.last_name.blank?)
+			errors.add(:first_and_last_name, " cannot be blank")
+		end
+	end
+
+	def full_name
+		if self.child
+			self.child.full_name
+		else
+			[self.first_name, self.last_name].join(' ')
+		end
+	end
+
 	def full_address
 		[self.address, self.apartment_number, self.city, self.state, self.zip].reject!{|v| v.empty?}.join(', ')
 	end

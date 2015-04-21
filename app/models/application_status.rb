@@ -24,7 +24,7 @@ class ApplicationStatus < ActiveRecord::Base
 	belongs_to :application
 
 	# validations
-	validates :user, :presence => true
+	# validates :user, :presence => true
 	validates_inclusion_of :status_code, :in => [1, 2, 3, 4, 5]
 
 	# callbacks
