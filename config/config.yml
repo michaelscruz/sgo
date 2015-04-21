@@ -1,7 +1,7 @@
 defaults: &defaults
-  s3_bucket: "sgo-development"
-  s3_access_key_id: "AKIAJZ3SHIAREQAZYJMA"
-  s3_secret_access_key: "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"
+  s3_bucket: "iqe-sgo-development"
+  s3_access_key_id: "AKIAJPZA2FRKBQBZ24MQ"
+  s3_secret_access_key: "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"
   smtp:
     username: "AKIAIUMLQOVK4TWLG6PA"
     password: "AscBkv/hrps24dwALz0jXhoxKkJPy9hejyChYFFXNyey"
@@ -11,4 +11,4 @@ test:
   <<: *defaults
 production:
   <<: *defaults
-  s3_bucket: "sgo-production"
+  s3_bucket: "iqe-sgo-production"
