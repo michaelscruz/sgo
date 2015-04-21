@@ -12,6 +12,13 @@ class SchoolsController < ApplicationController
 	def applications
 	end
 
+	def new_application
+		@application = Application.new
+		@application.applicants.build
+		@application.application_files.build
+		set_application_defaults
+	end
+
 	def show_application
 		@application = Application.find(params[:application_id])
 	end

@@ -1,0 +1,95 @@
+<div class="grid">
+	<div class="xl-6 l-6 ltl-12">
+		<label class="form-field">
+			<span class="label">Address</span>
+			<%= f.text_field :address, :class => "input" %>
+		</label>
+	</div>
+	<div class="xl-2 l-2 ltl-12">
+		<label class="form-field">
+			<span class="label">Apt #</span>
+			<%= f.text_field :apartment_number, :class => "input" %>
+		</label>
+	</div>
+</div>
+
+<div class="grid">
+	<div class="xl-5 l-5 ltl-12">
+		<label class="form-field">
+			<span class="label">City</span>
+			<%= f.text_field :city, :class => "input" %>
+		</label>
+	</div>
+	<div class="xl-2 l-2 ltl-12">
+		<label class="form-field">
+			<span class="label">State</span>
+			<%= f.text_field :state, :class => "input", :readonly => true %>
+		</label>
+	</div>
+	<div class="xl-2 l-2 ltl-12">
+		<label class="form-field">
+			<span class="label">Zip</span>
+			<%= f.text_field :zip, :class => "input" %>
+		</label>
+	</div>
+</div>
+
+
+<label class="form-field">
+	<span class="label">Grade</span>
+	<div class="grid">
+		<div class="xl-3 l-3 ltl-12">
+			<div class="select">
+				<%= f.select :grade, options_for_select(School::GRADE_LEVELS, f.object.grade), {:include_blank => true}, :class => "input" %>
+			</div>
+		</div>
+	</div>
+	<p class="help-block">
+		Please select the grade for which this child is applying for a tax credit scholarship.
+	</p>
+</label>
+
+<label class="form-field">
+	<span class="label long">Ever attended public/charter school?</span>
+	<div class="grid">
+		<div class="xl-2 l-2 ltl-12">
+			<div class="select">
+				<%= f.select :public_school, options_for_select([['Yes', true], ['No', false]], f.object.public_school), {:include_blank => true}, :class => "input" %>
+			</div>
+		</div>
+	</div>
+</label>
+
+<label class="form-field">
+	<span class="label long">If Yes, what grade(s) was applicant in when he or she attended this school?</span>
+	<div class="grid">
+		<div class="xl-3 l-3 ltl-12">
+			<div class="select">
+				<%= f.select :public_school_grade, options_for_select(School::GRADE_LEVELS, f.object.public_school_grade), {:include_blank => true}, :class => "input" %>
+			</div>
+		</div>
+	</div>
+</label>
+
+<label class="form-field">
+	<span class="label long">Ever received tax credit scholarship?</span>
+	<div class="grid">
+		<div class="xl-2 l-2 ltl-12">
+			<div class="select">
+				<%= f.select :tax_credit_scholarship, options_for_select([['Yes', true], ['No', false]], f.object.tax_credit_scholarship), {:include_blank => true}, :class => "input" %>
+			</div>
+		</div>
+	</div>
+</label>
+
+<label class="form-field">
+	<span class="label long">If Yes, what grade(s) was applicant in when he or she first received this scholarship?</span>
+	<div class="grid">
+		<div class="xl-3 l-3 ltl-12">
+			<div class="select">
+				<%= f.select :tax_credit_scholarship_grade, options_for_select(School::GRADE_LEVELS, f.object.public_school_grade), {:include_blank => true}, :class => "input" %>
+			</div>
+		</div>
+	</div>
+</label>
+<br>

@@ -77,6 +77,8 @@ class Application < ActiveRecord::Base
 	validates :tuition_for_application, :presence => true, :if => :school_application
 	validates :choice_scholarship_amount, :presence => true, :if => :school_application
 
+	# TODO: validations for SGO approval of an application
+
 	# callbacks
 	after_create :set_initial_status!
 

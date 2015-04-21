@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     member do
       get 'landing', :to => "schools#landing"
       get 'applications', :to => "schools#applications", :as => :applications
+      get 'applications/new', :to => "schools#new_application", :as => :new_application
+      post 'applications', :to => "schools#create_application", :as => :create_application
       get 'applications/:application_id/confirm', :to => "schools#confirm_application", :as => :confirm_application
       put 'applications/:application_id', :to => "schools#update_application", :as => :update_application
       get 'applications/:application_id', :to => "schools#show_application", :as => :show_application
