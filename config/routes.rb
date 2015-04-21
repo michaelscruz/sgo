@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api, :defaults => { :format => :json } do
+    get 'schools/:id/tuition', :to => "schools#annual_tuition", :as => :annual_tuition
+  end
+
   # school actions
   get 'school', :to => "schools#root", :as => :school_root
   resources :schools, :only => [:show] do
@@ -34,13 +38,8 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :api, :defaults => { :format => :json } do
-    get 'schools/:id/tuition', :to => "schools#annual_tuition", :as => :annual_tuition
-  end
-
-
-
-
+  # sgo actions
+  get 'sgo', :to => "sgo#root", :as => :sgo_root
 
   # resources :applications
   resources :donations

@@ -66,3 +66,14 @@ households.each do |h|
 		puts "Creating household #{h.full_name}."
 	end
 end
+
+sgo_admins = [
+				SgoAdmin.new(email: "sgo_admin@example.com", first_name: "SGO", last_name: "Admin", password: "password",
+					password_confirmation: "password", address: "1 Money Lane, Cashville $$, 99999", phone: "555-555-1234", terms_of_use: true)
+			]
+sgo_admins.each do |a|
+	if SgoAdmin.find_by_email(a.email).nil?
+		a.save!
+		puts "Creating SGO admin #{a.full_name}."
+	end
+end
