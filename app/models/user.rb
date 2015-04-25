@@ -23,6 +23,14 @@
 #  type                   :string(255)
 #  school_id              :integer
 #  terms_of_use           :boolean
+#  donor_type             :string(255)
+#  middle_initial         :string(255)
+#  ssn                    :string(255)
+#  apt                    :string(255)
+#  city                   :string(255)
+#  zip                    :string(255)
+#  state                  :string(255)
+#  one_time               :boolean
 #
 
 class User < ActiveRecord::Base
@@ -53,6 +61,18 @@ class User < ActiveRecord::Base
 
   def household?
   	return self.type == "HouseholdUser"
+  end
+
+  def password_required?
+    !donor? || !one_time_donor?
+  end
+
+  def email_required?
+    password_required?
+  end
+
+  def one_time_donor?
+    return self.one_time
   end
   
 end

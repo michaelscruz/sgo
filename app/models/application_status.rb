@@ -6,6 +6,7 @@
 #  user_id        :integer
 #  status_code    :string(255)
 #  application_id :integer
+#  notes          :text
 #  created_at     :datetime
 #  updated_at     :datetime
 #

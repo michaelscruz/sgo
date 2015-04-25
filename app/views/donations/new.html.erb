@@ -13,238 +13,244 @@
 			<!-- User info -->
 			<div class="xl-12 l-12 ltl-12">
 
-				<form accept-charset="UTF-8" action="/schools" class="box form form-normal" method="get"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+				<!-- <form accept-charset="UTF-8" action="/schools" class="box form form-normal" method="get"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div> -->
 
 					<div class="box-header">
 						<%= params[:type] %> Donation
 					</div>
 
-					<div class="box-content narrow">
+					<%= form_for @donation do |f| %>
 
-						<div class="grid">
-							<div class="xl-4 l-4 ltl-12">
-								<label class="form-field">
-									<span class="label">Donor Type</span>
-									<div class="select">
-										<select class="input" id="school_type_id" name="school_type_id">
-											<option>- Select type -</option>
-											<option value="1">Parent</option>
-											<option value="2">Concerned Citizen</option>
-										</select>
+						<div class="box-content narrow">
+
+							<%= f.fields_for :donor do |ff| %>
+
+								<div class="grid">
+									<div class="xl-4 l-4 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :donor_type %></span>
+											<%= ff.select :donor_type, options_for_select(["Parent/Guardian", "Concerned Citizen"]), class: "input" %>
+										</label>
 									</div>
-								</label>
-							</div>
-						</div>
+								</div>
 
-						<hr>
+								<% unless current_user %>
 
-						<div class="grid">
-							<div class="xl-6 l-6 ltl-12">
-								<label class="form-field">
-									<span class="label">Email</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-							<div class="xl-6 l-6 ltl-12">
-							</div>
-						</div>
+									<hr>
 
-						<div class="grid">
-							<div class="xl-6 l-6 ltl-12">
-								<label class="form-field">
-									<span class="label">Password</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-							<div class="xl-6 l-6 ltl-12">
-								<label class="form-field">
-									<span class="label">Password Confirmation</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-						</div>
-
-						<hr>
-
-						<div class="grid">
-							<div class="xl-6 l-6 ltl-12">
-								<label class="form-field">
-									<span class="label">First Name</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-							<div class="xl-6 l-6 ltl-12">
-								<label class="form-field">
-									<span class="label">Last Name</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-						</div>
-
-						<div class="grid">
-							<div class="xl-6 l-6 ltl-12">
-								<label class="form-field">
-									<span class="label">Middle Initial</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-							<div class="xl-6 l-6 ltl-12">
-							</div>
-						</div>
-
-						<div class="grid">
-							<div class="xl-6 l-6 ltl-12">
-								<label class="form-field">
-									<span class="label">SSN</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-							<div class="xl-6 l-6 ltl-12">
-							</div>
-						</div>
-
-						<div class="grid">
-							<div class="xl-6 l-6 ltl-12">
-								<label class="form-field">
-									<span class="label">Street Address</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-							<div class="xl-2 l-2 ltl-12">
-								<label class="form-field">
-									<span class="label">Apt #</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-						</div>
-
-						<div class="grid">
-							<div class="xl-6 l-6 ltl-12">
-								<label class="form-field">
-									<span class="label">City</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-							<div class="xl-2 l-2 ltl-12">
-								<label class="form-field">
-									<span class="label">State</span>
-									<div class="select">
-										<select class="input" id="school_type_id" name="school_type_id">
-											<option value="1">IN</option>
-										</select>
+									<div class="grid">
+										<div class="xl-6 l-6 ltl-12">
+											<label class="form-field">
+												<span class="label"><%= ff.label :email %></span>
+												<%= ff.email_field :email, class: "input" %>
+											</label>
+										</div>
+										<div class="xl-6 l-6 ltl-12">
+										</div>
 									</div>
-								</label>
-							</div>
-							<div class="xl-3 l-3 ltl-12">
-								<label class="form-field">
-									<span class="label">ZIP Code</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-						</div>
 
-						<hr>
-
-						<div class="grid">
-							<div class="xl-4 l-4 ltl-12">
-								<label class="form-field">
-									<span class="label">Amount</span>
-									<input class="input" id="name" name="name" type="text" placeholder="$">
-								</label>
-							</div>
-						</div>
-
-						<div class="grid">
-							<div class="xl-4 l-4 ltl-12">
-								<label class="form-field">
-									<span class="label">Fund Designation</span>
-									<div class="select">
-										<select class="input" id="school_type_id" name="school_type_id">
-											<option value="1">Lakeview Elementary</option>
-										</select>
+									<div class="grid">
+										<div class="xl-6 l-6 ltl-12">
+											<label class="form-field">
+												<span class="label"><%= ff.label :password %></span>
+												<%= ff.password_field :password, class: "input"  %>
+											</label>
+										</div>
+										<div class="xl-6 l-6 ltl-12">
+											<label class="form-field">
+												<span class="label"><%= ff.label :password_confirmation %></span>
+												<%= ff.password_field :password_confirmation, class: "input"  %>
+											</label>
+										</div>
 									</div>
-								</label>
-							</div>
-							<div class="xl-2 l-2 ltl-12">
-								<label class="form-field">
-									<span class="label">&nbsp;</span>
-									<input class="input" id="name" name="name" type="text" placeholder="%">
-								</label>
-							</div>
-						</div>
 
-						<div class="grid">
-							<div class="xl-12 l-12 ltl-12">
-								<label class="form-field">
-									<input type="checkbox" name="cooperative" value="1">
-									<span class="display-box"></span>
-									<span class="text">Apply all to general fund?</span>
-								</label>
-							</div>
-						</div>
+								<% end %>
 
-						<div class="grid">
-							<div class="xl-4 l-4 ltl-12">
-								<label class="form-field">
-									<span class="label">Will the funds be matched?</span>
-									<div class="select">
-										<select class="input" id="school_type_id" name="school_type_id">
-											<option value="1">No</option>
-											<option value="1">Yes</option>
-										</select>
+								<hr>
+
+								<div class="grid">
+									<div class="xl-6 l-6 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :first_name %></span>
+											<%= ff.text_field :first_name, class: "input"  %>
+										</label>
 									</div>
-								</label>
-							</div>
-						</div>
-
-						<hr>
-
-						<div class="grid">
-							<div class="xl-4 l-4 ltl-12">
-								<label class="form-field">
-									<span class="label">Payment Type</span>
-									<div class="select">
-										<select class="input" id="school_type_id" name="school_type_id">
-											<option value="1">Credit Card</option>
-										</select>
+									<div class="xl-6 l-6 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :last_name %></span>
+											<%= ff.text_field :last_name, class: "input"  %>
+										</label>
 									</div>
-								</label>
+								</div>
+
+								<div class="grid">
+									<div class="xl-6 l-6 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :middle_initial %></span>
+											<%= ff.text_field :middle_initial, class: "input"  %>
+										</label>
+									</div>
+									<div class="xl-6 l-6 ltl-12">
+									</div>
+								</div>
+
+								<div class="grid">
+									<div class="xl-6 l-6 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :ssn, "SSN" %></span>
+											<%= ff.text_field :ssn, class: "input"  %>
+										</label>
+									</div>
+									<div class="xl-6 l-6 ltl-12">
+									</div>
+								</div>
+
+								<div class="grid">
+									<div class="xl-6 l-6 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :address, "Street Address" %></span>
+											<%= ff.text_field :address, class: "input"  %>
+										</label>
+									</div>
+									<div class="xl-2 l-2 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :apt, 'Apt #' %></span>
+											<%= ff.text_field :apt, class: "input"  %>
+										</label>
+									</div>
+								</div>
+
+								<div class="grid">
+									<div class="xl-6 l-6 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :city %></span>
+											<%= ff.text_field :city, class: "input"  %>
+										</label>
+									</div>
+									<div class="xl-2 l-2 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :state %></span>
+											<%= ff.select :state, options_for_select(["IN"]	), class: "input"  %>
+										</label>
+									</div>
+									<div class="xl-3 l-3 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :zip %></span>
+											<%= ff.text_field :zip, class: "input"  %>
+										</label>
+									</div>
+								</div>
+
+							<% end %> 
+
+							<hr>
+
+							<div class="grid">
+								<div class="xl-4 l-4 ltl-12">
+									<label class="form-field">
+										<span class="label">
+											<%= f.label :amount %>
+										</span>
+										<%= f.text_field :amount, class: "input" %>
+									</label>
+								</div>
 							</div>
-							<div class="xl-2 l-2 ltl-12">
+
+							<%= f.fields_for :fund_designations do |ff| %>
+
+								<div class="grid">
+									<div class="xl-4 l-4 ltl-12">
+										<label class="form-field">
+											<span class="label">Fund Designation</span>
+											<div class="select">
+												<select class="input" id="school_type_id" name="school_type_id">
+													<option value="1">Lakeview Elementary</option>
+												</select>
+											</div>
+										</label>
+									</div>
+									<div class="xl-2 l-2 ltl-12">
+										<label class="form-field">
+											<span class="label">&nbsp;</span>
+											<input class="input" id="name" name="name" type="text" placeholder="%">
+										</label>
+									</div>
+								</div>
+
+								<div class="grid">
+									<div class="xl-12 l-12 ltl-12">
+										<label class="form-field">
+											<input type="checkbox" name="cooperative" value="1">
+											<span class="display-box"></span>
+											<span class="text">Apply all to general fund?</span>
+										</label>
+									</div>
+								</div>
+
+							<% end %>
+
+							<div class="grid">
+								<div class="xl-4 l-4 ltl-12">
+									<label class="form-field">
+										<span class="label">Will the funds be matched?</span>
+										<div class="select">
+											<%= f.select :matched, options_for_select([['Yes', true], ['No', false]]) %>
+										</div>
+									</label>
+								</div>
 							</div>
+
+							<hr>
+
+							<div class="grid">
+								<div class="xl-4 l-4 ltl-12">
+									<label class="form-field">
+										<span class="label">Payment Type</span>
+										<div class="select">
+											<select class="input" id="school_type_id" name="school_type_id">
+												<option value="1">Credit Card</option>
+											</select>
+										</div>
+									</label>
+								</div>
+								<div class="xl-2 l-2 ltl-12">
+								</div>
+							</div>
+
+							<div class="grid">
+								<div class="xl-6 l-6 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= label_tag :card_number, "Card Number" %></span>
+										<%= text_field_tag :card_number, nil, name: nil, class: "input" %>
+									</label>
+								</div>
+								<div class="xl-3 l-3 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= label_tag :card_month, "Expiration Date" %></span>
+										<%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+										<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+									</label>
+								</div>
+							</div>
+
+							<div class="grid">
+								<div class="xl-2 l-2 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= label_tag :card_code, "Security Code" %></span>
+										<%= text_field_tag :card_code, nil, name: nil, class: "input" %>
+									</label>
+								</div>
+							</div>
+
+							<hr>
+
+							<%= f.submit "Submit Payment", :class => "btn btn-secondary btn-block" %>
+
 						</div>
 
-						<div class="grid">
-							<div class="xl-6 l-6 ltl-12">
-								<label class="form-field">
-									<span class="label">Card Number</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-							<div class="xl-3 l-3 ltl-12">
-								<label class="form-field">
-									<span class="label">Expiration Date</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-						</div>
+					<% end %>
 
-						<div class="grid">
-							<div class="xl-2 l-2 ltl-12">
-								<label class="form-field">
-									<span class="label">Security Code</span>
-									<input class="input" id="name" name="name" type="text">
-								</label>
-							</div>
-						</div>
-
-						<hr>
-
-						<%= submit_tag "Submit Payment", :class => "btn btn-secondary btn-block" %>
-
-					</div>
-
-				</form>
+				<!-- </form> -->
 
 			</div>
 

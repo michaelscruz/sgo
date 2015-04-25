@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416192612) do
+ActiveRecord::Schema.define(version: 20150425185146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,17 @@ ActiveRecord::Schema.define(version: 20150416192612) do
 
   add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
 
+  create_table "fund_designations", force: true do |t|
+    t.decimal  "percentage"
+    t.integer  "school_id"
+    t.integer  "donation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fund_designations", ["donation_id"], name: "index_fund_designations_on_donation_id", using: :btree
+  add_index "fund_designations", ["school_id"], name: "index_fund_designations_on_school_id", using: :btree
+
   create_table "schools", force: true do |t|
     t.string   "name"
     t.decimal  "tuition"
@@ -100,6 +111,14 @@ ActiveRecord::Schema.define(version: 20150416192612) do
     t.string   "type"
     t.integer  "school_id"
     t.boolean  "terms_of_use"
+    t.string   "donor_type"
+    t.string   "middle_initial"
+    t.string   "ssn"
+    t.string   "apt"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "state"
+    t.boolean  "one_time"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

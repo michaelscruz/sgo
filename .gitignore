@@ -15,3 +15,7 @@ database.yml
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore personal stripe account info
+/config/local_env.yml
+
