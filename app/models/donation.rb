@@ -19,5 +19,5 @@ class Donation < ActiveRecord::Base
 	has_many :fund_designations
 
 	accepts_nested_attributes_for :donor
-	accepts_nested_attributes_for :fund_designations, dependent: :destroy
+	accepts_nested_attributes_for :fund_designations, allow_destroy: true
 end

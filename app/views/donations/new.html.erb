@@ -158,34 +158,21 @@
 
 							<%= f.fields_for :fund_designations do |ff| %>
 
-								<div class="grid">
-									<div class="xl-4 l-4 ltl-12">
-										<label class="form-field">
-											<span class="label">Fund Designation</span>
-											<div class="select">
-												<select class="input" id="school_type_id" name="school_type_id">
-													<option value="1">Lakeview Elementary</option>
-												</select>
-											</div>
-										</label>
-									</div>
-									<div class="xl-2 l-2 ltl-12">
-										<label class="form-field">
-											<span class="label">&nbsp;</span>
-											<input class="input" id="name" name="name" type="text" placeholder="%">
-										</label>
-									</div>
-								</div>
+								<%= render 'fund_designation_fields', f: ff %>
+
+								<div class="links">
+									<%= link_to_add_association 'Add New', f, :fund_designations %>
+								</div>			
 
 								<div class="grid">
-									<div class="xl-12 l-12 ltl-12">
+									<div class="xl-12 l-12 ltl-12 field">
 										<label class="form-field">
 											<input type="checkbox" name="cooperative" value="1">
 											<span class="display-box"></span>
 											<span class="text">Apply all to general fund?</span>
 										</label>
 									</div>
-								</div>
+								</div>	
 
 							<% end %>
 

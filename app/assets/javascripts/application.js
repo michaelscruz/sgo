@@ -15,4 +15,5 @@
 //= require_tree .
 //= require sid3car-enterprise
 //= require main
+//= require cocoon
 

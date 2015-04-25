@@ -1,5 +1,6 @@
 class DonationsController < ApplicationController
   before_action :authenticate_user!, :except => [:new, :create]
+  before_action :set_schools, only: [:new, :create]
   # before_action :set_donation, only: [:show, :edit, :update, :destroy]
 
   # GET /donations
@@ -16,6 +17,7 @@ class DonationsController < ApplicationController
   def new
     @donation = Donation.new
     @donation.build_donor
+    @donation.fund_designations.build
   end
 
   # GET /donations/1/edit
@@ -62,11 +64,15 @@ class DonationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
-      params.require(:donation).permit(:id, :amount, :matched, fund_designations: [:id, :percentage, :school_id, :donation_id, :_destroy])
+      params.require(:donation).permit(:id, :amount, :matched, fund_designations_attributes: [:id, :percentage, :school_id, :donation_id, :_destroy])
     end
 
     def donor_params
       params.require(:donor).permit(:id, :donor_type, :email, :password, :password_confirmation, :first_name, :last_name,
         :middle_initial, :ssn, :address, :apt, :city, :state, :zip)
+    end
+
+    def set_schools
+      @schools = School.all.map { |s| [s.name, s.id] }
     end
 end

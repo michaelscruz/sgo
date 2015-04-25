@@ -1,0 +1,18 @@
+<div class="nested-fields">
+	<div class="grid">
+		<div class="xl-4 l-4 ltl-12 field">
+			<label class="form-field">
+				<span class="label"><%= f.label :school_id, "Fund Designation" %></span>
+				<div class="select">
+					<%= f.select :school_id, options_for_select(@schools), class: "input" %>
+				</div>
+			</label>
+		</div>
+		<div class="xl-2 l-2 ltl-12 field">
+			<label class="form-field">
+				<span class="label">&nbsp;</span>
+				<%= f.text_field :percentage, placeholder: "%", class: "input" %>
+			</label>
+		</div>
+	</div>
+</div>
