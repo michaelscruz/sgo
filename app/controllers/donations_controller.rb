@@ -28,20 +28,27 @@ class DonationsController < ApplicationController
   # POST /donations.json
   def create
     @donation = Donation.new(donation_params)
-    @donor = Donor.new(donor_params) ## !! Will have to look up the donor if current_user is returning donor
-    if @donor.email.blank? || @donor.password.blank?
-      @donor.one_time = true
-    end
+    begin
+      @donation.total_for_general_fund
 
-    # Try to save the donor first if they have entered
-  
-    if @donor.save
-      if @donation.save
-        redirect_to root_url, notice: "Thank you for your donation! It has been successfully submitted."
+      @donor = Donor.new(donor_params) ## !! Will have to look up the donor if current_user is returning donor
+      if @donor.email.blank? || @donor.password.blank?
+        @donor.one_time = true
+      end
+
+      # Try to save the donor first if they have entered
+    
+      if @donor.save
+        if @donation.save
+          redirect_to root_url, notice: "Thank you for your donation! It has been successfully submitted."
+        else
+          render 'new'
+        end
       else
         render 'new'
       end
-    else
+    rescue PercentageOverageException
+      @donation.errors.add "Fund Designations percentages must add up to 100 or less."
       render 'new'
     end
   end
