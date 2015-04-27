@@ -20,6 +20,7 @@
 					</div>
 
 					<%= form_for @donation do |f| %>
+						<%= f.hidden_field :stripe_card_token %>
 
 						<div class="box-content narrow">
 
@@ -63,6 +64,11 @@
 											</label>
 										</div>
 									</div>
+
+							        <label class="form-field checkbox-wrap">
+							            I accept the <a href="#">terms of use</a> of this site
+							            <%= ff.check_box :terms_of_use %>
+							        </label>
 
 								<% end %>
 
@@ -227,6 +233,10 @@
 										<%= text_field_tag :card_code, nil, name: nil, class: "input" %>
 									</label>
 								</div>
+							</div>
+
+							<div id="stripe_error">
+								<noscript>Javascript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>	
 							</div>
 
 							<hr>

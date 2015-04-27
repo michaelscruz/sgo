@@ -36,5 +36,5 @@
 class Donor < User
 	has_many :donations
 	
-	validates_presence_of :ssn, :address, :city, :state, :zip
+	#validates_presence_of :ssn, :address, :city, :state, :zip
 end

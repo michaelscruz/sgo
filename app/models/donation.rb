@@ -18,6 +18,8 @@ class Donation < ActiveRecord::Base
 	belongs_to :donor
 	has_many :fund_designations
 
+	attr_accessor :stripe_card_token
+
 	accepts_nested_attributes_for :donor
 	accepts_nested_attributes_for :fund_designations, allow_destroy: true
 
@@ -29,10 +31,23 @@ class Donation < ActiveRecord::Base
 		if total_designated <= 100
 			self.general_fund = ((100 - total_designated) / 100) * self.amount
 		else
-			raise PercentageOverageException, "Fund designation percentages must not total more than 100."
+			raise "Fund designation percentages must not total more than 100."
 		end
 	end
 
-	class PercentageOverageException < RuntimeError
+	def save_with_payment
+		if valid?
+			customer = Stripe::Customer.create(description: "Donation of #{amount} from #{donor.full_name}.", 
+				card: stripe_card_token)
+			charge_amount = (amount * 100).to_i
+			charge = Stripe::Charge.create(customer: customer.id, amount: charge_amount, currency: 'usd', 
+				description: "Donation of #{amount} from #{donor.full_name}.")
+			self.stripe_customer_token = customer.id
+			save!
+		end
+	rescue Stripe::InvalidRequestError => e
+		logger.error "Stripe error while creating customer: #{e.message}"
+		errors.add :base, "There was a problem with your credit card."
+		false
 	end
 end

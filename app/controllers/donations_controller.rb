@@ -31,15 +31,20 @@ class DonationsController < ApplicationController
     begin
       @donation.total_for_general_fund
 
-      @donor = Donor.new(donor_params) ## !! Will have to look up the donor if current_user is returning donor
-      if @donor.email.blank? || @donor.password.blank?
+      if current_user
+        @donor = current_user
+      else
+        @donor = @donation.donor ## !! Will have to look up the donor if current_user is returning donor
+      end
+
+      if @donor.email.blank?
         @donor.one_time = true
       end
 
       # Try to save the donor first if they have entered
     
       if @donor.save
-        if @donation.save
+        if @donation.save_with_payment
           redirect_to root_url, notice: "Thank you for your donation! It has been successfully submitted."
         else
           render 'new'
@@ -47,7 +52,7 @@ class DonationsController < ApplicationController
       else
         render 'new'
       end
-    rescue PercentageOverageException
+    rescue RuntimeError
       @donation.errors.add "Fund Designations percentages must add up to 100 or less."
       render 'new'
     end
@@ -71,12 +76,10 @@ class DonationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
-      params.require(:donation).permit(:id, :amount, :matched, fund_designations_attributes: [:id, :percentage, :school_id, :donation_id, :_destroy])
-    end
-
-    def donor_params
-      params.require(:donor).permit(:id, :donor_type, :email, :password, :password_confirmation, :first_name, :last_name,
-        :middle_initial, :ssn, :address, :apt, :city, :state, :zip)
+      params.require(:donation).permit(:id, :amount, :matched, :stripe_card_token,
+        fund_designations_attributes: [:id, :percentage, :school_id, :donation_id, :_destroy],
+        donor_attributes: [:donor_type, :email, :password, :password_confirmation, :first_name, :last_name, 
+          :middle_initial, :ssn, :address, :apt, :city, :state, :zip, :terms_of_use])
     end
 
     def set_schools

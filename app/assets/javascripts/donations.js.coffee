@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-->
+jQuery ->
 	Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
 	donation.setUpForm()
 
@@ -23,6 +23,8 @@ donation =
 
 	handleStripeResponse: (status, response) ->
 		if status == 200
-			alert(response.id)
+			$('#donation_stripe_card_token').val(response.id)
+			$('#new_donation')[0].submit()
 		else
-			alert(response.error.message)
+			$('#stripe_error').text(response.error.message)
+			$('input[type=submit]').attr('disabled', false)

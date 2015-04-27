@@ -37,11 +37,20 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable#, :validatable
+
+  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
-  validates_inclusion_of :terms_of_use, in: [true], message: "must be accepted to sign up"
+  validates_inclusion_of :terms_of_use, in: [true], message: "must be accepted to sign up", unless: :one_time_donor?
+  validates_presence_of   :email, if: :email_required?
+  validates_uniqueness_of :email, allow_blank: true, if: :email_changed?
+  validates_format_of     :email, with: EMAIL_REGEX, allow_blank: true, if: :email_changed?
+
+  validates_presence_of     :password, if: :password_required?
+  validates_confirmation_of :password, if: :password_required?
+  validates_length_of       :password, within: 8..20, allow_blank: true
 
   def full_name
   	[self.first_name, self.last_name].join(' ')
@@ -63,8 +72,11 @@ class User < ActiveRecord::Base
   	return self.type == "HouseholdUser"
   end
 
+
+private
+
   def password_required?
-    !donor? || !one_time_donor?
+    !one_time_donor?
   end
 
   def email_required?
