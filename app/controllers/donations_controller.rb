@@ -17,6 +17,7 @@ class DonationsController < ApplicationController
   def new
     @donation = Donation.new
     @donation.build_donor
+    @donation.build_non_user_donor
     @donation.fund_designations.build
   end
 
@@ -30,30 +31,24 @@ class DonationsController < ApplicationController
     @donation = Donation.new(donation_params)
     begin
       @donation.total_for_general_fund
+      @non_user_donor = @donation.non_user_donor
+      @donor = @donation.donor
+      @donor.first_name = @non_user_donor.first_name
+      @donor.last_name = @non_user_donor.last_name
+      @non_user_donor.email = @donor.email
 
-      if current_user
-        @donor = current_user
-      else
-        @donor = @donation.donor ## !! Will have to look up the donor if current_user is returning donor
-      end
-
-      if @donor.email.blank?
-        @donor.one_time = true
-      end
-
-      # Try to save the donor first if they have entered
-    
-      if @donor.save
-        if @donation.save_with_payment
-          redirect_to root_url, notice: "Thank you for your donation! It has been successfully submitted."
+      if !@donor.password.blank?
+        if @donor.save
+          create_donation
         else
           render 'new'
         end
       else
-        render 'new'
+        @donation.donor = nil
+        create_donation
       end
     rescue RuntimeError
-      @donation.errors.add "Fund Designations percentages must add up to 100 or less."
+      @donation.errors.add :base, "Fund Designations percentages must add up to 100 or less."
       render 'new'
     end
   end
@@ -77,12 +72,26 @@ class DonationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
       params.require(:donation).permit(:id, :amount, :matched, :stripe_card_token,
+        donor_attributes: [:donor_type, :email, :password, :password_confirmation, :terms_of_use],
         fund_designations_attributes: [:id, :percentage, :school_id, :donation_id, :_destroy],
-        donor_attributes: [:donor_type, :email, :password, :password_confirmation, :first_name, :last_name, 
-          :middle_initial, :ssn, :address, :apt, :city, :state, :zip, :terms_of_use])
+        non_user_donor_attributes: [:first_name, :last_name, :middle_initial, :ssn, :address, :apt, :city, 
+          :state, :zip])
     end
 
     def set_schools
       @schools = School.all.map { |s| [s.name, s.id] }
+    end
+
+    def create_donation
+      if @non_user_donor.save
+        if @donation.save_with_payment
+          redirect_to root_url, notice: "Thank you for your donation! It has been successfully submitted."
+        else
+          puts @donation.matching_organization
+          render 'new'
+        end
+      else
+        render 'new'
+      end
     end
 end

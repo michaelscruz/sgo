@@ -3,7 +3,6 @@
 # Table name: donations
 #
 #  id                    :integer          not null, primary key
-#  donor_id              :integer
 #  donor_type            :string(255)
 #  amount                :decimal(, )
 #  matched               :boolean
@@ -12,15 +11,21 @@
 #  information           :text
 #  created_at            :datetime
 #  updated_at            :datetime
+#  donor_id              :integer
+#  general_fund          :decimal(, )
+#  stripe_customer_token :string(255)
+#  non_user_donor_id     :integer
 #
 
 class Donation < ActiveRecord::Base
-	belongs_to :donor
+	belongs_to :non_user_donor
 	has_many :fund_designations
+	belongs_to :donor
 
 	attr_accessor :stripe_card_token
 
 	accepts_nested_attributes_for :donor
+	accepts_nested_attributes_for :non_user_donor
 	accepts_nested_attributes_for :fund_designations, allow_destroy: true
 
 	def total_for_general_fund
@@ -37,11 +42,11 @@ class Donation < ActiveRecord::Base
 
 	def save_with_payment
 		if valid?
-			customer = Stripe::Customer.create(description: "Donation of #{amount} from #{donor.full_name}.", 
+			customer = Stripe::Customer.create(description: "Donation of #{amount} from #{non_user_donor.full_name}.", 
 				card: stripe_card_token)
 			charge_amount = (amount * 100).to_i
 			charge = Stripe::Charge.create(customer: customer.id, amount: charge_amount, currency: 'usd', 
-				description: "Donation of #{amount} from #{donor.full_name}.")
+				description: "Donation of #{amount} from #{non_user_donor.full_name}.")
 			self.stripe_customer_token = customer.id
 			save!
 		end

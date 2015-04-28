@@ -23,18 +23,11 @@
 #  type                   :string(255)
 #  school_id              :integer
 #  terms_of_use           :boolean
+#  non_user_donor_id      :integer
 #  donor_type             :string(255)
-#  middle_initial         :string(255)
-#  ssn                    :string(255)
-#  apt                    :string(255)
-#  city                   :string(255)
-#  zip                    :string(255)
-#  state                  :string(255)
-#  one_time               :boolean
 #
 
 class Donor < User
+	belongs_to :non_user_donor
 	has_many :donations
-	
-	#validates_presence_of :ssn, :address, :city, :state, :zip
 end

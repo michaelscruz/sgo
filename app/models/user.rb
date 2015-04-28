@@ -23,34 +23,18 @@
 #  type                   :string(255)
 #  school_id              :integer
 #  terms_of_use           :boolean
+#  non_user_donor_id      :integer
 #  donor_type             :string(255)
-#  middle_initial         :string(255)
-#  ssn                    :string(255)
-#  apt                    :string(255)
-#  city                   :string(255)
-#  zip                    :string(255)
-#  state                  :string(255)
-#  one_time               :boolean
 #
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable#, :validatable
-
-  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+         :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
-  validates_inclusion_of :terms_of_use, in: [true], message: "must be accepted to sign up", unless: :one_time_donor?
-  validates_presence_of   :email, if: :email_required?
-  validates_uniqueness_of :email, allow_blank: true, if: :email_changed?
-  validates_format_of     :email, with: EMAIL_REGEX, allow_blank: true, if: :email_changed?
-
-  validates_presence_of     :password, if: :password_required?
-  validates_confirmation_of :password, if: :password_required?
-  validates_length_of       :password, within: 8..20, allow_blank: true
 
   def full_name
   	[self.first_name, self.last_name].join(' ')
@@ -70,21 +54,6 @@ class User < ActiveRecord::Base
 
   def household?
   	return self.type == "HouseholdUser"
-  end
-
-
-private
-
-  def password_required?
-    !one_time_donor?
-  end
-
-  def email_required?
-    password_required?
-  end
-
-  def one_time_donor?
-    return self.one_time
   end
   
 end

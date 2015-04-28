@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427160941) do
+ActiveRecord::Schema.define(version: 20150427195829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 20150427160941) do
   end
 
   create_table "donations", force: true do |t|
-    t.integer  "donor_id"
     t.string   "donor_type"
     t.decimal  "amount"
     t.boolean  "matched"
@@ -68,11 +67,11 @@ ActiveRecord::Schema.define(version: 20150427160941) do
     t.text     "information"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "donor_id"
     t.decimal  "general_fund"
     t.string   "stripe_customer_token"
+    t.integer  "non_user_donor_id"
   end
-
-  add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
 
   create_table "fund_designations", force: true do |t|
     t.decimal  "percentage"
@@ -84,6 +83,22 @@ ActiveRecord::Schema.define(version: 20150427160941) do
 
   add_index "fund_designations", ["donation_id"], name: "index_fund_designations_on_donation_id", using: :btree
   add_index "fund_designations", ["school_id"], name: "index_fund_designations_on_school_id", using: :btree
+
+  create_table "non_user_donors", force: true do |t|
+    t.string   "donor_type"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_initial"
+    t.string   "ssn"
+    t.string   "apt"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "state"
+    t.string   "email"
+    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "schools", force: true do |t|
     t.string   "name"
@@ -113,14 +128,8 @@ ActiveRecord::Schema.define(version: 20150427160941) do
     t.string   "type"
     t.integer  "school_id"
     t.boolean  "terms_of_use"
+    t.integer  "non_user_donor_id"
     t.string   "donor_type"
-    t.string   "middle_initial"
-    t.string   "ssn"
-    t.string   "apt"
-    t.string   "city"
-    t.string   "zip"
-    t.string   "state"
-    t.boolean  "one_time"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
