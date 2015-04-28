@@ -35,6 +35,7 @@ class DonationsController < ApplicationController
       if current_user
         @donation.donor = current_user
       elsif @donation.donor.password.blank?
+        @donation.set_donor_fields
         @donation.donor = nil
       else
         @donation.set_donor_fields
