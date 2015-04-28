@@ -31,24 +31,24 @@ class DonationsController < ApplicationController
     @donation = Donation.new(donation_params)
     begin
       @donation.total_for_general_fund
-      @non_user_donor = @donation.non_user_donor
-      @donor = @donation.donor
-      @donor.first_name = @non_user_donor.first_name
-      @donor.last_name = @non_user_donor.last_name
-      @non_user_donor.email = @donor.email
 
-      if !@donor.password.blank?
-        if @donor.save
-          create_donation
-        else
-          render 'new'
-        end
-      else
+      if current_user
+        @donation.donor = current_user
+      elsif @donation.donor.password.blank?
         @donation.donor = nil
-        create_donation
+      else
+        @donation.set_donor_fields
       end
-    rescue RuntimeError
-      @donation.errors.add :base, "Fund Designations percentages must add up to 100 or less."
+
+      if @donation.save_with_payment
+        redirect_to root_url, notice: "Thank you for your donation! It has been successfully submitted."
+      else
+        puts @donation.matching_organization
+        render 'new'
+      end
+
+    rescue RuntimeError => e
+      @donation.errors.add :base, e.message
       render 'new'
     end
   end
@@ -80,18 +80,5 @@ class DonationsController < ApplicationController
 
     def set_schools
       @schools = School.all.map { |s| [s.name, s.id] }
-    end
-
-    def create_donation
-      if @non_user_donor.save
-        if @donation.save_with_payment
-          redirect_to root_url, notice: "Thank you for your donation! It has been successfully submitted."
-        else
-          puts @donation.matching_organization
-          render 'new'
-        end
-      else
-        render 'new'
-      end
     end
 end

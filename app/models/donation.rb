@@ -55,4 +55,10 @@ class Donation < ActiveRecord::Base
 		errors.add :base, "There was a problem with your credit card."
 		false
 	end
+
+	def set_donor_fields
+		donor.first_name = non_user_donor.first_name
+		donor.last_name = non_user_donor.last_name
+		non_user_donor.email = donor.email
+    end
 end
