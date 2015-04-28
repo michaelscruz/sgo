@@ -78,3 +78,13 @@ header.site-header{
 	}
 
 }
+
+.btn{
+	&.btn-secondary{
+		padding: .6em 2em;
+	}
+	
+	&.btn-block{
+		padding: 1em;
+	}
+}

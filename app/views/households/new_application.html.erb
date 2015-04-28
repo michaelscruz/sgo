@@ -25,21 +25,20 @@
  					<% end %>
 
  					<h2>General Information</h2>
-
  					<div class="grid">
  						<div class="xl-6 l-6 ltl-12">
  							<label class="form-field">
  								<span class="label">Select School</span>
  								<div class="select">
- 									<%= f.select :school_id, options_for_select(School.all.map{|s| [s.name, s.id]}), {:include_blank => true}, :class => "input" %>
+ 									<%= f.select :school_id, options_for_select(School.all.map{|s| [s.name, s.id]}, @application.school_id), {:include_blank => true}, :class => "input" %>
  								</div>
- 								<p>Don't see your school listed? <a href="#">Contact us</a></p>
+ 								<p class="help-block">Don't see your school listed? <a href="#">Contact us</a></p>
  							</label>
  						</div>
  						<div class="xl-4 l-4 ltl-12">
  							<label class="form-field">
  								<span class="label">Annual Tuition</span>
- 									<input type="text" value="$" class="input" disabled="disabled">
+ 								<%= text_field_tag "annual-tuition", @application.school ? @application.school.formatted_tuition : "$", :disabled => true, :class => "input" %>
  							</label>
  						</div>
  					</div>
@@ -49,6 +48,107 @@
  							<label class="form-field">
  								<span class="label">Requested Scholarship Amount</span>
  								<%= f.text_field :requested_amount, :class => "input", :placeholder => "$" %>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<hr>	
+ 					<h2>Applicants</h2>
+ 					<%= f.fields_for :applicants do |ff| %>
+ 					<%= render 'applicant', :f => ff %>
+ 					<% end %>
+ 					<%= link_to_add_applicant "Add Another Applicant", f %>
+ 					<hr>
+ 					<h2>Parent or Guardian</h2>
+
+ 					<div class="grid">
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">First Name</span>
+ 								<%= f.text_field :parent_first_name, :class => "input" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Last Name</span>
+ 								<%= f.text_field :parent_last_name, :class => "input" %>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<div class="grid">
+ 						<div class="xl-4 l-4 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Middle Initial</span>
+ 								<%= f.text_field :parent_middle_initial, :class => "input" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-8 l-8 ltl-12">
+ 						</div>
+ 					</div>
+
+ 					<div class="grid">
+ 						<div class="xl-5 l-5 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Email Address</span>
+ 								<%= f.text_field :email, :class => "input" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-5 l-5 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Confirm Email Address</span>
+ 								<%= f.text_field :confirm_email, :class => "input" %>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<div class="grid">
+ 						<div class="xl-5 l-5 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Phone Number</span>
+ 								<%= f.text_field :phone, :class => "input" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-6 l-6 ltl-12"></div>
+ 					</div>
+
+ 					<label class="form-field"> 
+ 						<%= check_box_tag "same_address" %>
+ 						<span class="text">Address same as applicant(s)?</span>
+ 					</label>
+
+ 					<div class="grid">
+ 						<div class="xl-6 l-6 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Address</span>
+ 								<%= f.text_field :address, :class => "input" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-2 l-2 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Apt #</span>
+ 								<%= f.text_field :apartment_number, :class => "input" %>
+ 							</label>
+ 						</div>
+ 					</div>
+
+ 					<div class="grid">
+ 						<div class="xl-5 l-5 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">City</span>
+ 								<%= f.text_field :city, :class => "input" %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-2 l-2 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">State</span>
+ 								<%= f.text_field :state, :class => "input", :readonly => true %>
+ 							</label>
+ 						</div>
+ 						<div class="xl-2 l-2 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Zip</span>
+ 								<%= f.text_field :zip, :class => "input" %>
  							</label>
  						</div>
  					</div>
@@ -67,3 +167,46 @@
  	</div>
 
  </article>
+
+ <script type="text/javascript">
+
+ // Update annual tuition
+ $("#application_school_id").on('change', function(){
+ 	data = $(this).val();
+
+ 	if (data.length > 0){
+ 		$.ajax({
+ 			dataType: "json",
+ 			url: "/api/schools/" + data + "/tuition",
+ 			success: function(data){
+ 				$("#annual-tuition").val(data.tuition)
+ 			}
+ 		});
+ 	} else {
+ 		$("#annual-tuition").val("$")
+ 	}
+ });
+
+ 	// Add applicants
+ 	$('form .add-fields').click(function(e){
+ 		var time = new Date().getTime();
+ 		var regexp = new RegExp($(this).data('id'), 'g');
+ 		$(this).before($(this).data('fields').replace(regexp, time));
+ 		e.preventDefault();
+ 	});
+
+ 	// address same as applicants
+ 	$('#same_address').click(function(){
+ 		if(this.checked){
+ 			$("#application_address").val($("#application_applicants_attributes_0_address").val());
+ 			$("#application_apartment_number").val($("#application_applicants_attributes_0_apartment_number").val());
+ 			$("#application_city").val($("#application_applicants_attributes_0_city").val());
+ 			$("#application_zip").val($("#application_applicants_attributes_0_zip").val());
+ 		} else { 
+ 			$("#application_address").val("");
+ 			$("#application_apartment_number").val("");
+ 			$("#application_city").val("");
+ 			$("#application_zip").val("");
+ 		};
+ 	});
+ 	</script>

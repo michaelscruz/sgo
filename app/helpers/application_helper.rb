@@ -16,4 +16,8 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+
+  def link_to_remove_fields(name, f)
+    f.hidden_field(:_destroy) + link_to(name, "#", :class => "remove-fields")
+  end
 end

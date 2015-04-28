@@ -1,4 +1,8 @@
 defaults: &defaults
+  s3:
+    bucket: "sgo-development"
+    access_key_id: "AKIAJZ3SHIAREQAZYJMA"
+    secret_access_key: "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"
 development:
   <<: *defaults
 test:

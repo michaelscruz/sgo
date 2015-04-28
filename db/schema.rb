@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427195829) do
+ActiveRecord::Schema.define(version: 20150420160411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,24 @@ ActiveRecord::Schema.define(version: 20150427195829) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "apartment_number"
+    t.boolean  "public_school"
+    t.string   "public_school_grade"
+    t.boolean  "tax_credit_scholarship"
+    t.string   "tax_credit_scholarship_grade"
+    t.string   "relationship_to_applicant"
+    t.boolean  "reside_with_relation"
+    t.string   "reside_with_relation_explanation"
+  end
+
+  create_table "application_files", force: true do |t|
+    t.integer  "application_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,6 +61,17 @@ ActiveRecord::Schema.define(version: 20150427195829) do
     t.decimal  "requested_amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "parent_first_name"
+    t.string   "parent_last_name"
+    t.string   "parent_middle_initial"
+    t.string   "email"
+    t.string   "confirm_email"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "apartment_number"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
   end
 
   add_index "applications", ["applicant_id"], name: "index_applications_on_applicant_id", using: :btree

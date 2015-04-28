@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create]
+  # intial user routing
+  devise_scope :user do
+    root :to => 'users/sessions#select_home'
+  end 
 
   # sign in/sign up routes
-  devise_for :users, :controllers => { 
-    registrations: 'users/registrations' 
+  devise_for :users, :controllers => {
+    registrations: 'users/registrations'
   }
 
   # household actions
@@ -25,10 +29,17 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api, :defaults => { :format => :json } do
+    get 'schools/:id/tuition', :to => "schools#annual_tuition", :as => :annual_tuition
+  end
+
+
+
+
+
   # resources :applications
   resources :donations
   
-  root 'donations#index'
   get 'static', :to => "static_pages#static_elements"
   get 'schools/1/landing', :to => "static_pages#landing_page"
   get 'dor/donations', :to => "static_pages#dor_donations_home"
