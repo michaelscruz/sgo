@@ -16,8 +16,8 @@
 #  public_school                    :boolean
 #  public_school_grade              :string(255)
 #  tax_credit_scholarship           :boolean
-#  tax_credit_scholarship_grade     :boolean
-#  relationship                     :string(255)
+#  tax_credit_scholarship_grade     :string(255)
+#  relationship_to_applicant        :string(255)
 #  reside_with_relation             :boolean
 #  reside_with_relation_explanation :string(255)
 #

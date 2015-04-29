@@ -15,6 +15,8 @@
 #  general_fund          :decimal(, )
 #  stripe_customer_token :string(255)
 #  non_user_donor_id     :integer
+#  donation_type         :string(255)
+#  draft_date            :date
 #
 
 class Donation < ActiveRecord::Base
@@ -27,6 +29,10 @@ class Donation < ActiveRecord::Base
 	accepts_nested_attributes_for :donor
 	accepts_nested_attributes_for :non_user_donor
 	accepts_nested_attributes_for :fund_designations, allow_destroy: true
+
+	def self.todays_monthly_drafts
+		Donation.where(:donation_type => "Monthly", :draft_date => Date.today.mday)
+	end
 
 	def total_for_general_fund
 		total_designated = 0
@@ -50,13 +56,19 @@ class Donation < ActiveRecord::Base
 			charge_amount = (amount * 100).to_i
 			charge = Stripe::Charge.create(customer: customer.id, amount: charge_amount, currency: 'usd', 
 				description: "Donation of #{amount} from #{non_user_donor.full_name}.")
-			self.stripe_customer_token = customer.id
+			self.stripe_customer_token = customer.id # Move to NonUserDonor in the future...
 			save!
 		end
 	rescue Stripe::InvalidRequestError => e
 		logger.error "Stripe error while creating customer: #{e.message}"
 		errors.add :base, "There was a problem with your credit card."
 		false
+	end
+
+	def draft_recurring_donation
+		charge_amount = (amount * 100).to_i
+		charge = Stripe::Charge.create(customer: self.stripe_customer_token, amount: charge_amount, currency: 'usd',
+			description: "Monthly donation from #{non_user_donor.full_name} in the amount of #{amount} for #{Date.today.month}/#{Date.today.year}.")
 	end
 
 	def set_donor_fields

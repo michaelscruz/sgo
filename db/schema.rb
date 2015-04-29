@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429205014) do
+ActiveRecord::Schema.define(version: 20150429212223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20150429205014) do
     t.string   "stripe_customer_token"
     t.integer  "non_user_donor_id"
     t.string   "donation_type"
+    t.integer  "draft_date"
   end
 
   create_table "fund_designations", force: true do |t|
