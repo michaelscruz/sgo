@@ -17,8 +17,17 @@ class DonationsController < ApplicationController
   def new
     @donation = Donation.new
     @donation.build_donor
-    @donation.build_non_user_donor
     @donation.fund_designations.build
+    if current_user
+      non_user_donor = NonUserDonor.find_by_email(current_user.email)
+      if non_user_donor
+        @donation.non_user_donor = non_user_donor
+      else
+        @donation.build_non_user_donor
+      end
+    else
+      @donation.build_non_user_donor
+    end
   end
 
   # GET /donations/1/edit
@@ -32,24 +41,22 @@ class DonationsController < ApplicationController
     begin
       @donation.total_for_general_fund
 
+      @donation.set_donor_fields
       if current_user
         @donation.donor = current_user
       elsif @donation.donor.password.blank?
-        @donation.set_donor_fields
         @donation.donor = nil
-      else
-        @donation.set_donor_fields
       end
 
       if @donation.save_with_payment
         redirect_to root_url, notice: "Thank you for your donation! It has been successfully submitted."
       else
-        puts @donation.matching_organization
         render 'new'
       end
 
     rescue RuntimeError => e
       @donation.errors.add :base, e.message
+      puts e.message
       render 'new'
     end
   end

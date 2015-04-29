@@ -31,6 +31,9 @@ class Donation < ActiveRecord::Base
 	def total_for_general_fund
 		total_designated = 0
 		self.fund_designations.each do |f|
+			unless f.percentage
+				raise "Must enter a percentage for each school."
+			end
 			total_designated += f.percentage
 		end
 		if total_designated <= 100
@@ -60,5 +63,9 @@ class Donation < ActiveRecord::Base
 		donor.first_name = non_user_donor.first_name
 		donor.last_name = non_user_donor.last_name
 		non_user_donor.email = donor.email
+		existing_nu_donor = NonUserDonor.find_by_ssn(self.non_user_donor.ssn)
+		if existing_nu_donor
+			self.non_user_donor = existing_nu_donor
+		end
     end
 end
