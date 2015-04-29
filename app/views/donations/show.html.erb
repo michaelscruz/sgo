@@ -33,50 +33,50 @@
 						<label class="form-field">
 							<span class="label">Donation Amount</span>
 							<span class="input placeholder">
-								$10,000
+								<%= @donation.amount %>
 							</span>
 						</label>
 
 						<label class="form-field">
 							<span class="label">Donor Name</span>
 							<span class="input placeholder">
-								Tyler Henke
+								<%= @donation.non_user_donor.full_name %>
 							</span>
 						</label>
 
 						<label class="form-field">
 							<span class="label">Donor Address</span>
 							<span class="input placeholder">
-								1645 E Rhorer Road<br>
-								Bloomington, IN 47401
+								<%= @donation.non_user_donor.address %><%if !@donation.non_user_donor.apt.blank? %>, Apt. <%= @donation.non_user_donor.apt %><%end%><br>
+								<%= @donation.non_user_donor.city %>, <%= @donation.non_user_donor.state %> <%= @donation.non_user_donor.zip %>
 							</span>
 						</label>
 
 						<label class="form-field">
 							<span class="label">Donor Type</span>
 							<span class="input placeholder">
-								Individual
+								<%= @donation.donor.donor_type %>
 							</span>
 						</label>
 
 						<label class="form-field">
 							<span class="label">Donor SSN</span>
 							<span class="input placeholder">
-								XXX-XX-2019
+								<%= @donation.non_user_donor.display_ssn %>
 							</span>
 						</label>
 
 						<label class="form-field">
 							<span class="label">Donation Date</span>
 							<span class="input placeholder">
-								10/20/2015
+								<%= @donation.display_donation_date %>
 							</span>
 						</label>
 
 						<label class="form-field">
 							<span class="label">TCCN Request Date</span>
 							<span class="input placeholder">
-								10/18/2015
+								<%= @donation.display_request_date %>
 							</span>
 						</label>
 
@@ -94,12 +94,16 @@
 							</span>
 						</label>
 
-						<label class="form-field">
-							<span class="label">School 1</span>
-							<span class="input placeholder">
-								Harmony Elementary
-							</span>
-						</label>
+						<% @donation.fund_designations.each do |f| %>
+
+							<label class="form-field">
+								<span class="label">School 1</span>
+								<span class="input placeholder">
+									<%= f.school.name %>
+								</span>
+							</label>
+
+						<% end %>
 
 						<label class="form-field">
 							<span class="label">Amount Restricted</span>
@@ -122,30 +126,34 @@
 						<label class="form-field">
 							<span class="label">Donation Matched</span>
 							<span class="input placeholder">
-								Yes
+								<%= @donation.matched? %>
 							</span>
 						</label>
 
-						<label class="form-field">
-							<span class="label">Matching Organization</span>
-							<span class="input placeholder">
-								Sid3car
-							</span>
-						</label>
+						<% if @donation.matched %>
 
-						<label class="form-field">
-							<span class="label">Anticipated Match Amount</span>
-							<span class="input placeholder">
-								$20,000
-							</span>
-						</label>
+							<label class="form-field">
+								<span class="label">Matching Organization</span>
+								<span class="input placeholder">
+									Sid3car
+								</span>
+							</label>
 
-						<label class="form-field">
-							<span class="label">Additional Information</span>
-							<span class="input placeholder">
-								More information can be found at http://sid3car.com
-							</span>
-						</label>
+							<label class="form-field">
+								<span class="label">Anticipated Match Amount</span>
+								<span class="input placeholder">
+									$20,000
+								</span>
+							</label>
+
+							<label class="form-field">
+								<span class="label">Additional Information</span>
+								<span class="input placeholder">
+									More information can be found at http://sid3car.com
+								</span>
+							</label>
+
+						<% end %>
 
 						<hr>
 

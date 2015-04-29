@@ -1,7 +1,7 @@
 class DonationsController < ApplicationController
   before_action :authenticate_user!, :except => [:new, :create]
   before_action :set_schools, only: [:new, :create]
-  # before_action :set_donation, only: [:show, :edit, :update, :destroy]
+  before_action :set_donation, only: [:show, :edit, :update, :destroy]
 
   # GET /donations
   # GET /donations.json
@@ -18,7 +18,7 @@ class DonationsController < ApplicationController
     @donation = Donation.new
     @donation.build_donor
     @donation.fund_designations.build
-    if current_user
+    if current_user && current_user.donor?
       non_user_donor = NonUserDonor.find_by_email(current_user.email)
       if non_user_donor
         @donation.non_user_donor = non_user_donor
@@ -41,18 +41,18 @@ class DonationsController < ApplicationController
     begin
       @donation.total_for_general_fund
 
-      if current_user
+      if current_user && current_user.donor?
         @donation.donor = current_user
-      end
-
-      @donation.set_donor_fields
-
-      if @donation.donor.password.blank?
+        @donation.set_donor_fields
+      elsif @donation.donor.password.blank?
+        @donation.set_donor_fields
         @donation.donor = nil
       end
 
+
+
       if @donation.save_with_payment
-        redirect_to root_url, notice: "Thank you for your donation! It has been successfully submitted."
+        redirect_to @donation, notice: "Thank you for your donation! It has been successfully submitted."
       else
         render 'new'
       end

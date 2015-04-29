@@ -68,4 +68,17 @@ class Donation < ActiveRecord::Base
 			self.non_user_donor = existing_nu_donor
 		end
     end
+
+    def display_donation_date
+    	date = self.created_at.to_date
+    	"#{date.month}/#{date.mday}/#{date.year}"
+    end
+
+    def display_request_date
+    	"A Day In The Future..."
+    end
+
+    def matched?
+    	self.matched ? "Yes" : "No"
+    end
 end

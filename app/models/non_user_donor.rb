@@ -25,4 +25,8 @@ class NonUserDonor < ActiveRecord::Base
   def full_name
   	[self.first_name, self.last_name].join(' ')
   end
+
+  def display_ssn
+  	"XXX-XX-#{self.ssn.last(4)}"
+  end
 end
