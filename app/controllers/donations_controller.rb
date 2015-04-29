@@ -23,7 +23,7 @@ class DonationsController < ApplicationController
       if non_user_donor
         @donation.non_user_donor = non_user_donor
       else
-        @donation.build_non_user_donor
+        @donation.build_non_user_donor(first_name: current_user.first_name, last_name: current_user.last_name)
       end
     else
       @donation.build_non_user_donor
@@ -41,10 +41,13 @@ class DonationsController < ApplicationController
     begin
       @donation.total_for_general_fund
 
-      @donation.set_donor_fields
       if current_user
         @donation.donor = current_user
-      elsif @donation.donor.password.blank?
+      end
+
+      @donation.set_donor_fields
+
+      if @donation.donor.password.blank?
         @donation.donor = nil
       end
 
@@ -82,7 +85,7 @@ class DonationsController < ApplicationController
       params.require(:donation).permit(:id, :amount, :matched, :stripe_card_token, :matching_organization, :match_amount,
         donor_attributes: [:donor_type, :email, :password, :password_confirmation, :terms_of_use],
         fund_designations_attributes: [:id, :percentage, :school_id, :donation_id, :_destroy],
-        non_user_donor_attributes: [:first_name, :last_name, :middle_initial, :ssn, :address, :apt, :city, 
+        non_user_donor_attributes: [:first_name, :last_name, :middle_initial, :ssn, :address, :apt, :city, :email,
           :state, :zip])
     end
 

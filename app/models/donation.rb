@@ -60,9 +60,9 @@ class Donation < ActiveRecord::Base
 	end
 
 	def set_donor_fields
-		donor.first_name = non_user_donor.first_name
-		donor.last_name = non_user_donor.last_name
-		non_user_donor.email = donor.email
+		self.donor.first_name = self.non_user_donor.first_name
+		self.donor.last_name = self.non_user_donor.last_name
+		self.non_user_donor.email = self.donor.email
 		existing_nu_donor = NonUserDonor.find_by_ssn(self.non_user_donor.ssn)
 		if existing_nu_donor
 			self.non_user_donor = existing_nu_donor
