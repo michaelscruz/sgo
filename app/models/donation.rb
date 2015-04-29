@@ -53,10 +53,8 @@ class Donation < ActiveRecord::Base
 		if valid?
 			customer = Stripe::Customer.create(description: "Donation of #{amount} from #{non_user_donor.full_name}.", 
 				card: stripe_card_token)
-			charge_amount = (amount * 100).to_i
-			charge = Stripe::Charge.create(customer: customer.id, amount: charge_amount, currency: 'usd', 
-				description: "Donation of #{amount} from #{non_user_donor.full_name}.")
 			self.stripe_customer_token = customer.id # Move to NonUserDonor in the future...
+			create_charge  "Donation of #{amount} from #{non_user_donor.full_name}."
 			save!
 		end
 	rescue Stripe::InvalidRequestError => e
@@ -66,9 +64,7 @@ class Donation < ActiveRecord::Base
 	end
 
 	def draft_recurring_donation
-		charge_amount = (amount * 100).to_i
-		charge = Stripe::Charge.create(customer: self.stripe_customer_token, amount: charge_amount, currency: 'usd',
-			description: "Monthly donation from #{non_user_donor.full_name} in the amount of #{amount} for #{Date.today.month}/#{Date.today.year}.")
+		create_charge "Monthly donation from #{non_user_donor.full_name} in the amount of #{amount} for #{Date.today.month}/#{Date.today.year}."
 	end
 
 	def set_donor_fields
@@ -94,4 +90,13 @@ class Donation < ActiveRecord::Base
     def matched?
     	self.matched ? "Yes" : "No"
     end
+
+private
+	
+	def create_charge description
+		charge_amount = (self.amount * 100).to_i
+		charge = Stripe::Charge.create(customer: self.stripe_customer_token, amount: charge_amount, currency: 'usd',
+			description: description)
+	end
+
 end
