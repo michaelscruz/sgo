@@ -16,6 +16,7 @@ class DonationsController < ApplicationController
   # GET /donations/new
   def new
     @donation = Donation.new
+    @donation.donation_type = params[:type]
     @donation.build_donor
     @donation.fund_designations.build
     if current_user && current_user.donor?
@@ -80,7 +81,8 @@ class DonationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
-      params.require(:donation).permit(:id, :amount, :matched, :stripe_card_token, :matching_organization, :match_amount,
+      params.require(:donation).permit(:id, :amount, :matched, :stripe_card_token, :matching_organization, :match_amount, 
+        :donation_type,
         donor_attributes: [:email, :password, :password_confirmation, :terms_of_use],
         fund_designations_attributes: [:id, :percentage, :school_id, :donation_id, :_destroy],
         non_user_donor_attributes: [:first_name, :last_name, :middle_initial, :ssn, :address, :apt, :city, :email,

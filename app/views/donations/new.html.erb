@@ -20,6 +20,7 @@
 					</div>
 
 					<%= form_for @donation do |f| %>
+						<%= f.hidden_field :donation_type %>
 						<%= f.hidden_field :stripe_card_token %>
 
 						<div class="box-content narrow">
