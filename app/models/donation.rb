@@ -65,6 +65,7 @@ class Donation < ActiveRecord::Base
 		self.non_user_donor.email = self.donor.email
 		existing_nu_donor = NonUserDonor.find_by_ssn(self.non_user_donor.ssn)
 		if existing_nu_donor
+			existing_nu_donor.copy_nu_donor(self.non_user_donor)
 			self.non_user_donor = existing_nu_donor
 		end
     end

@@ -33,7 +33,7 @@
 						<label class="form-field">
 							<span class="label">Donation Amount</span>
 							<span class="input placeholder">
-								<%= @donation.amount %>
+								<%= number_to_currency @donation.amount %>
 							</span>
 						</label>
 
@@ -55,7 +55,7 @@
 						<label class="form-field">
 							<span class="label">Donor Type</span>
 							<span class="input placeholder">
-								<%= @donation.donor.donor_type %>
+								<%= @donation.non_user_donor.donor_type %>
 							</span>
 						</label>
 
@@ -135,14 +135,14 @@
 							<label class="form-field">
 								<span class="label">Matching Organization</span>
 								<span class="input placeholder">
-									Sid3car
+									<%= @donation.matching_organization %>
 								</span>
 							</label>
 
 							<label class="form-field">
 								<span class="label">Anticipated Match Amount</span>
 								<span class="input placeholder">
-									$20,000
+									<%= number_to_currency @donation.match_amount %>
 								</span>
 							</label>
 

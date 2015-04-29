@@ -26,15 +26,6 @@
 
 							<%= f.fields_for :donor do |ff| %>
 
-								<div class="grid">
-									<div class="xl-4 l-4 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :donor_type %></span>
-											<%= ff.select :donor_type, options_for_select(["Parent/Guardian", "Concerned Citizen"]), class: "input" %>
-										</label>
-									</div>
-								</div>
-
 								<% unless current_user %>
 
 									<hr>
@@ -77,6 +68,15 @@
 							<%= f.fields_for :non_user_donor do |ff| %>
 
 								<hr>
+
+								<div class="grid">
+									<div class="xl-4 l-4 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= ff.label :donor_type %></span>
+											<%= ff.select :donor_type, options_for_select(["Parent/Guardian", "Concerned Citizen"]), class: "input" %>
+										</label>
+									</div>
+								</div>
 
 								<div class="grid">
 									<div class="xl-6 l-6 ltl-12">
