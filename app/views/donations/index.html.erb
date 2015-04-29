@@ -103,95 +103,39 @@
 
             <tbody>
 
-              <tr>
-                <td class="center">
-                  <%= check_box_tag "edit" %>
-                </td>
-                <td>
-                  <%= link_to("00192831", donation_path(1)) %>
-                </td>
-                <td>
-                  10/22/2014
-                </td>
-                <td>
-                  $200
-                </td>
-                <td>
-                  One Time
-                </td>
-                <td>
-                  Credit Card
-                </td>
-                <td>
-                  Yes
-                </td>
-                <td>
-                  Pledged
-                </td>
-                <td>
-                  15-001-2012
-                </td>
-              </tr>
+              <% current_user.donations.each do |donation| %>
 
-              <tr>
-                <td class="center">
-                  <%= check_box_tag "edit" %>
-                </td>
-                <td>
-                  <%= link_to("10238479", donation_path(1)) %>
-                </td>
-                <td>
-                  10/21/2014
-                </td>
-                <td>
-                  $50
-                </td>
-                <td>
-                  Recurring
-                </td>
-                <td>
-                  Credit Card
-                </td>
-                <td>
-                  No
-                </td>
-                <td>
-                  Pending
-                </td>
-                <td>
-                  15-001-2009
-                </td>
-              </tr>
+                <tr>
+                  <td class="center">
+                    <%= check_box_tag "edit" %>
+                  </td>
+                  <td>
+                    <%= link_to(donation.id, donation) %>
+                  </td>
+                  <td>
+                    <%= donation.display_donation_date %>
+                  </td>
+                  <td>
+                    <%= number_to_currency donation.amount %>
+                  </td>
+                  <td>
+                    One Time
+                  </td>
+                  <td>
+                    Credit Card
+                  </td>
+                  <td>
+                    <%= donation.matched? %>
+                  </td>
+                  <td>
+                    (Status TBI)
+                  </td>
+                  <td>
+                    (TCCN TBI)
+                  </td>
+                </tr>
 
-              <tr>
-                <td class="center">
-                  <%= check_box_tag "edit" %>
-                </td>
-                <td>
-                  <%= link_to("00119838", donation_path(1)) %>
-                </td>
-                <td>
-                  10/20/2014
-                </td>
-                <td>
-                  $400
-                </td>
-                <td>
-                  One Time
-                </td>
-                <td>
-                  Credit Card
-                </td>
-                <td>
-                  Yes
-                </td>
-                <td>
-                  Processed
-                </td>
-                <td>
-                  15-001-2072
-                </td>
-              </tr>
+              <%end%>
 
             </tbody>
 
