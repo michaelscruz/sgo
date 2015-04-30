@@ -1,33 +1,120 @@
-<h1>Listing disbursements</h1>
+<article class="profile">
 
-<table>
-  <thead>
-    <tr>
-      <th>Disburse date</th>
-      <th>Amount</th>
-      <th>Type</th>
-      <th>Awards</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%= render 'shared/date_header' %>
 
-  <tbody>
-    <% @disbursements.each do |disbursement| %>
-      <tr>
-        <td><%= disbursement.disburse_date %></td>
-        <td><%= disbursement.amount %></td>
-        <td><%= disbursement.type %></td>
-        <td><%= disbursement.awards %></td>
-        <td><%= disbursement.status %></td>
-        <td><%= link_to 'Show', disbursement %></td>
-        <td><%= link_to 'Edit', edit_disbursement_path(disbursement) %></td>
-        <td><%= link_to 'Destroy', disbursement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <div class="wrapper">
+
+    <% if notice %>
+
+    <div class="main-alert">
+      
+      <div class="alert alert-success">
+        
+        <%= notice %>
+
+      </div>
+    
+    </div>
+
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <div class="grid">
 
-<%= link_to 'New Disbursement', new_disbursement_path %>
+      <div class="xl-12 l-12 ltl-12">
+
+        <section class="box xl-12 ltxl-12">
+
+          <header class="box-header">
+            Applications
+          </header>
+
+          <div class="table-responsive">
+
+            <table class="box-content table">
+
+            <colgroup>
+              <col class="w-5">
+              <col class="w-10">
+              <col class="w-12">
+              <col class="w-13">
+              <col class="w-12">
+              <col class="w-13">
+              <col class="w-20">
+              <col class="w-20">
+            </colgroup>
+
+            <thead>
+              <tr>
+                <th></th>
+                <th>
+                  ID
+                </th>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Amount
+                </th>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Awards
+                </th>
+                <th>
+                  Status
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <% @disbursements.each do |disbursement| %>
+
+                <tr>
+                  <td class="center">
+                    <%= check_box_tag "edit" %>
+                  </td>
+                  <td>
+                    <%= link_to(disbursement.id, disbursement) %>
+                  </td>
+                  <td>
+                    <%= disbursement.display_date %>
+                  </td>
+                  <td>
+                    <%= number_to_currency disbursement.amount %>
+                  </td>
+                  <td>
+                    <%= disbursement.disbursement_type %>
+                  </td>
+                  <td>
+                    <%= disbursement.awards %>
+                  </td>
+                  <td>
+                    <%= disbursement.status %>
+                  </td>
+                  <td>
+                    <% if disbursement.status == "Pending SGO" %>
+                      <%= link_to "Approve", '#', class: "btn btn-secondary btn-block" %>
+                    <% end %>
+                  </td>
+                </tr>
+
+              <%end%>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</div>
+
+</article>
+

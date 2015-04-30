@@ -10,7 +10,8 @@
 #User.create(:email => "admin@example.com", :first_name => "Test", :last_name => "User", :password => "password", :password_confirmation => "password")
 
 schools = [
-	School.new(name: "Software Development Academy", tuition: 10000)
+	School.new(name: "Software Development Academy", tuition: 10000),
+	School.new(name: "Very Fine Public High School", tuition: 200)
 ]
 schools.each do |s|
 	if School.find_by_name(s.name).nil?
@@ -72,4 +73,15 @@ sgo_user = SgoUser.new(email: "sgo@example.com", first_name: "Sgo", last_name: "
 if SgoUser.find_by_email(sgo_user.email).nil?
 	sgo_user.save!
 	puts "Creating SGO User."
+end
+
+disbursements = [
+					Disbursement.new(disburse_date: Date.today, amount: 1000, disbursement_type: "One Time", awards: 12, 
+						status: "Disbursement Made", school: schools[0]),
+					Disbursement.new(disburse_date: Date.today, amount: 4000, disbursement_type: "Fall/Spring", awards: 22, 
+						status: "Pending SGO", school: schools[1])
+				]
+disbursements.each do |d|
+	d.save!
+	puts "Creating new disbursements."
 end

@@ -62,5 +62,9 @@ class User < ActiveRecord::Base
   def household?
   	return self.type == "Household"
   end
+
+  def sgo?
+    return self.type == "SgoUser"
+  end
   
 end

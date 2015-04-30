@@ -103,39 +103,39 @@
 
             <tbody>
 
-              <% current_user.donations.each do |donation| %>
+                <% @donations.each do |donation| %>
 
-                <tr>
-                  <td class="center">
-                    <%= check_box_tag "edit" %>
-                  </td>
-                  <td>
-                    <%= link_to(donation.id, donation) %>
-                  </td>
-                  <td>
-                    <%= donation.display_donation_date %>
-                  </td>
-                  <td>
-                    <%= number_to_currency donation.amount %>
-                  </td>
-                  <td>
-                    <%= donation.donation_type %>
-                  </td>
-                  <td>
-                    Credit Card
-                  </td>
-                  <td>
-                    <%= donation.matched? %>
-                  </td>
-                  <td>
-                    (Status TBI)
-                  </td>
-                  <td>
-                    (TCCN TBI)
-                  </td>
-                </tr>
+                  <tr>
+                    <td class="center">
+                      <%= check_box_tag "edit" %>
+                    </td>
+                    <td>
+                      <%= link_to(donation.id, donation) %>
+                    </td>
+                    <td>
+                      <%= donation.display_donation_date %>
+                    </td>
+                    <td>
+                      <%= number_to_currency donation.amount %>
+                    </td>
+                    <td>
+                      <%= donation.donation_type %>
+                    </td>
+                    <td>
+                      Credit Card
+                    </td>
+                    <td>
+                      <%= donation.matched? %>
+                    </td>
+                    <td>
+                      (Status TBI)
+                    </td>
+                    <td>
+                      (TCCN TBI)
+                    </td>
+                  </tr>
 
-              <%end%>
+                <%end%>
 
             </tbody>
 

@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20150430200527) do
   create_table "disbursements", force: true do |t|
     t.date     "disburse_date"
     t.decimal  "amount"
-    t.string   "type"
+    t.string   "disbursement_type"
     t.integer  "awards"
     t.string   "status"
     t.integer  "school_id"

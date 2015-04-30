@@ -15,4 +15,10 @@
 
 class Disbursement < ActiveRecord::Base
 	belongs_to :school
+
+	# Display methods
+
+	def display_date
+		"#{disburse_date.month}/#{disburse_date.mday}/#{disburse_date.year}"
+	end
 end

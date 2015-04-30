@@ -6,6 +6,13 @@ class DonationsController < ApplicationController
   # GET /donations
   # GET /donations.json
   def index
+    if !current_user
+      redirect_to root_url
+    elsif current_user.donor?
+      @donations = current_user.donations
+    elsif current_user.sgo?
+      @donations = Donation.all
+    end
   end
 
   # GET /donations/1

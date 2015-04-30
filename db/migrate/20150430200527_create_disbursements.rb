@@ -3,7 +3,7 @@ class CreateDisbursements < ActiveRecord::Migration
     create_table :disbursements do |t|
       t.date :disburse_date
       t.decimal :amount
-      t.string :type
+      t.string :disbursement_type
       t.integer :awards
       t.string :status
       t.integer :school_id
