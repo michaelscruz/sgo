@@ -53,7 +53,7 @@ class Donation < ActiveRecord::Base
 		if valid?
 			customer = Stripe::Customer.create(description: "Donation of #{amount} from #{non_user_donor.full_name}.", 
 				card: stripe_card_token)
-			self.stripe_customer_token = customer.id # Move to NonUserDonor in the future...
+			self.non_user_donor.stripe_customer_token = customer.id
 			create_charge  "Donation of #{amount} from #{non_user_donor.full_name}."
 			save!
 		end
@@ -95,7 +95,7 @@ private
 	
 	def create_charge description
 		charge_amount = (self.amount * 100).to_i
-		charge = Stripe::Charge.create(customer: self.stripe_customer_token, amount: charge_amount, currency: 'usd',
+		charge = Stripe::Charge.create(customer: self.non_user_donor.stripe_customer_token, amount: charge_amount, currency: 'usd',
 			description: description)
 	end
 
