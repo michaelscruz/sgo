@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
 
 
-  # resources :applications
+  resources :applications
   resources :donations
   
   get 'static', :to => "static_pages#static_elements"

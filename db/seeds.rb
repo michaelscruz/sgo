@@ -66,3 +66,10 @@ households.each do |h|
 		puts "Creating household #{h.full_name}."
 	end
 end
+
+sgo_user = SgoUser.new(email: "sgo@example.com", first_name: "Sgo", last_name: "User", terms_of_use: true, 
+	password: "password", password_confirmation: "password")
+if SgoUser.find_by_email(sgo_user.email).nil?
+	sgo_user.save!
+	puts "Creating SGO User."
+end

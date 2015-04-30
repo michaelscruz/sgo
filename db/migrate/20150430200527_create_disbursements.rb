@@ -6,6 +6,7 @@ class CreateDisbursements < ActiveRecord::Migration
       t.string :type
       t.integer :awards
       t.string :status
+      t.integer :school_id
 
       t.timestamps
     end

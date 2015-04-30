@@ -49,6 +49,8 @@ class Donation < ActiveRecord::Base
 
 	before_save :set_donor_token
 
+	scope :donor, lambda { |donor| where(donor_id: donor.id) }
+
 	# Class methods
 
 	def self.todays_monthly_drafts

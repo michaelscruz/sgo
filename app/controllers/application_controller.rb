@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
       # TODO: route to correct action
   	elsif user.is_a?(Household)
       household_root_path
+    elsif user.is_a?(SgoUser)
+      applications_url
   	end
   end  		
 end

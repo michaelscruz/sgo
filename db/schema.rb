@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150430200527) do
     t.string   "type"
     t.integer  "awards"
     t.string   "status"
+    t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
