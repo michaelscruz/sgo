@@ -48,7 +48,32 @@
 
 		</header>
 
-		<%= yield %>
+		<article class="profile">
+
+			<header>
+
+				<section class="tabs">
+
+					<div class="wrapper clearfix">
+
+						<nav class="nav-inline nav-tabs">
+							<ul>
+								<% if current_user && current_user.sgo? %>
+									<%= nav_link("Applications", applications_path) %>
+									<%= nav_link("Donations", donations_path) %>
+									<%= nav_link("Disbursements", disbursements_path) %>
+								<% end %>
+							</ul>
+						</nav>
+					</div>
+
+				</section>
+
+			</header>
+
+			<%= yield %>
+
+		</article>
 
 	</div>
 
