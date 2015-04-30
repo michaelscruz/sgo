@@ -147,7 +147,7 @@ class Donation < ActiveRecord::Base
 	end
 
 	def draft_recurring_donation
-		create_charge "Monthly donation from #{self.full_name} in the amount of #{number_to_currency(amount)} for #{Date.today.month}/#{Date.today.year}."
+		create_charge "Monthly donation from #{self.full_name} in the amount of $#{amount} for #{Date.today.month}/#{Date.today.year}."
 	end
 
 private

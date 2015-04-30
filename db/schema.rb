@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430183739) do
+ActiveRecord::Schema.define(version: 20150430195327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,23 +124,6 @@ ActiveRecord::Schema.define(version: 20150430183739) do
 
   add_index "fund_designations", ["donation_id"], name: "index_fund_designations_on_donation_id", using: :btree
   add_index "fund_designations", ["school_id"], name: "index_fund_designations_on_school_id", using: :btree
-
-  create_table "non_user_donors", force: true do |t|
-    t.string   "donor_type"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "middle_initial"
-    t.string   "ssn"
-    t.string   "apt"
-    t.string   "city"
-    t.string   "zip"
-    t.string   "state"
-    t.string   "email"
-    t.string   "address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "stripe_customer_token"
-  end
 
   create_table "schools", force: true do |t|
     t.string   "name"
