@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :disbursements
+
   resources :charges, only: [:new, :create]
   # intial user routing
   devise_scope :user do

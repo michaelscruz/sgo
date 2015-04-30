@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Disburse date:</strong>
+  <%= @disbursement.disburse_date %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @disbursement.amount %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @disbursement.type %>
+</p>
+
+<p>
+  <strong>Awards:</strong>
+  <%= @disbursement.awards %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @disbursement.status %>
+</p>
+
+<%= link_to 'Edit', edit_disbursement_path(@disbursement) %> |
+<%= link_to 'Back', disbursements_path %>
