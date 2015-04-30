@@ -51,9 +51,11 @@ class Donation < ActiveRecord::Base
 
 	def save_with_payment
 		if valid?
-			customer = Stripe::Customer.create(description: "Donation of #{amount} from #{non_user_donor.full_name}.", 
-				card: stripe_card_token)
-			self.non_user_donor.stripe_customer_token = customer.id
+			if self.non_user_donor.stripe_customer_token.blank?
+				customer = Stripe::Customer.create(description: "Donation of #{amount} from #{non_user_donor.full_name}.", 
+					card: stripe_card_token)
+				self.non_user_donor.stripe_customer_token = customer.id
+			end
 			create_charge  "Donation of #{amount} from #{non_user_donor.full_name}."
 			save!
 		end
