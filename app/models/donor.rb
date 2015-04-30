@@ -25,9 +25,35 @@
 #  terms_of_use           :boolean
 #  non_user_donor_id      :integer
 #  donor_type             :string(255)
+#  city                   :string(255)
+#  state                  :string(255)
+#  zip                    :string(255)
+#  ssn                    :string(255)
+#  apt                    :string(255)
+#  middle_initial         :string(255)
+#  stripe_customer_token  :string(255)
 #
 
 class Donor < User
+	include ActiveModel::Validations
+
 	belongs_to :non_user_donor
 	has_many :donations
+
+	validates_with SsnValidator
+
+	# Setter methods
+
+	def set_fields_from_donation donation
+		self.address = donation.address
+		self.city = donation.city
+		self.apt = donation.apt
+		self.state = donation.state
+		self.zip = donation.zip
+		self.ssn = donation.ssn
+		self.donor_type = donation.donor_type
+		self.first_name = donation.first_name
+		self.last_name = donation.last_name
+		self.middle_initial = donation.middle_initial
+	end
 end

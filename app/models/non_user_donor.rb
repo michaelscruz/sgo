@@ -2,43 +2,26 @@
 #
 # Table name: non_user_donors
 #
-#  id             :integer          not null, primary key
-#  donor_type     :string(255)
-#  first_name     :string(255)
-#  last_name      :string(255)
-#  middle_initial :string(255)
-#  ssn            :string(255)
-#  apt            :string(255)
-#  city           :string(255)
-#  zip            :string(255)
-#  state          :string(255)
-#  email          :string(255)
-#  address        :string(255)
-#  created_at     :datetime
-#  updated_at     :datetime
+#  id                    :integer          not null, primary key
+#  donor_type            :string(255)
+#  first_name            :string(255)
+#  last_name             :string(255)
+#  middle_initial        :string(255)
+#  ssn                   :string(255)
+#  apt                   :string(255)
+#  city                  :string(255)
+#  zip                   :string(255)
+#  state                 :string(255)
+#  email                 :string(255)
+#  address               :string(255)
+#  created_at            :datetime
+#  updated_at            :datetime
+#  stripe_customer_token :string(255)
 #
 
 class NonUserDonor < ActiveRecord::Base
 	has_many :donors
 	has_many :donations
-
-  before_save :validate_ssn
-
-  validates_presence_of :donor_type, :first_name, :last_name, :ssn, :address, :city, :state, :zip
-
-  def full_name
-  	[self.first_name, self.last_name].join(' ')
-  end
-
-  def display_ssn
-  	"XXX-XX-#{self.ssn.last(4)}"
-  end
-
-  def display_ssn_for_edit
-    if ssn.to_i.to_s == ssn
-      self.ssn.insert(5, '-').insert(3, '-')
-    end
-  end
 
   def copy_nu_donor nu_donor
   	self.donor_type = nu_donor.donor_type unless nu_donor.donor_type.blank?
@@ -55,12 +38,5 @@ class NonUserDonor < ActiveRecord::Base
   end
 
 private
-  
-  def validate_ssn
-    self.ssn = self.ssn.tr('-', '')
-    if !((self.ssn.to_i.to_s == self.ssn) && (self.ssn.length == 9))
-      errors.add(:ssn, "Invalid SSN. Must be 9 digits. May be separated by hyphens.")
-    end
-  end
 
 end

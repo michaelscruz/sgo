@@ -17,18 +17,12 @@ class DonationsController < ApplicationController
   def new
     @donation = Donation.new
     @donation.donation_type = params[:type]
-    @donation.build_donor
+    if !current_user
+      @donation.build_donor
+    end
     @donation.fund_designations.build
     if current_user && current_user.donor?
-      non_user_donor = NonUserDonor.find_by_email(current_user.email)
-      if non_user_donor
-        non_user_donor.display_ssn_for_edit
-        @donation.non_user_donor = non_user_donor
-      else
-        @donation.build_non_user_donor(first_name: current_user.first_name, last_name: current_user.last_name)
-      end
-    else
-      @donation.build_non_user_donor
+      @donation.set_fields(current_user)
     end
   end
 
@@ -62,6 +56,9 @@ class DonationsController < ApplicationController
       puts e.message
       render 'new'
     end
+    @donation.errors.each do |e|
+      puts e
+    end
   end
 
   # PATCH/PUT /donations/1
@@ -83,11 +80,10 @@ class DonationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
       params.require(:donation).permit(:id, :amount, :matched, :stripe_card_token, :matching_organization, :match_amount, 
-        :donation_type, :draft_date,
+        :donation_type, :draft_date, :first_name, :last_name, :middle_initial, :ssn, :address, :apt, :city, :state, :zip,
+        :donor_type, :email,
         donor_attributes: [:email, :password, :password_confirmation, :terms_of_use],
-        fund_designations_attributes: [:id, :percentage, :school_id, :donation_id, :_destroy],
-        non_user_donor_attributes: [:first_name, :last_name, :middle_initial, :ssn, :address, :apt, :city, :email,
-          :state, :zip, :donor_type])
+        fund_designations_attributes: [:id, :percentage, :school_id, :donation_id, :_destroy])
     end
 
     def set_schools

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430004709) do
+ActiveRecord::Schema.define(version: 20150430183739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,17 @@ ActiveRecord::Schema.define(version: 20150430004709) do
     t.integer  "non_user_donor_id"
     t.string   "donation_type"
     t.integer  "draft_date"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "ssn"
+    t.string   "middle_initial"
+    t.string   "apt"
+    t.string   "email"
+    t.string   "stripe_customer_token"
   end
 
   create_table "fund_designations", force: true do |t|
@@ -161,6 +172,13 @@ ActiveRecord::Schema.define(version: 20150430004709) do
     t.boolean  "terms_of_use"
     t.integer  "non_user_donor_id"
     t.string   "donor_type"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "ssn"
+    t.string   "apt"
+    t.string   "middle_initial"
+    t.string   "stripe_customer_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

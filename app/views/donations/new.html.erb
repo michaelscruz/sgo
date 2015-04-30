@@ -25,6 +25,15 @@
 
 						<div class="box-content narrow">
 
+							<div class="grid">
+								<div class="xl-4 l-4 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= f.label :donor_type %></span>
+										<%= f.select :donor_type, options_for_select(["Parent/Guardian", "Concerned Citizen"]), class: "input" %>
+									</label>
+								</div>
+							</div>
+
 							<%= f.fields_for :donor do |ff| %>
 
 								<% unless current_user %>
@@ -66,93 +75,80 @@
 
 							<% end %>
 
-							<%= f.fields_for :non_user_donor do |ff| %>
-
 								<hr>
 
-								<div class="grid">
-									<div class="xl-4 l-4 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :donor_type %></span>
-											<%= ff.select :donor_type, options_for_select(["Parent/Guardian", "Concerned Citizen"]), class: "input" %>
-										</label>
-									</div>
+							<div class="grid">
+								<div class="xl-6 l-6 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= f.label :first_name %></span>
+										<%= f.text_field :first_name, class: "input"  %>
+									</label>
 								</div>
-
-								<div class="grid">
-									<div class="xl-6 l-6 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :first_name %></span>
-											<%= ff.text_field :first_name, class: "input"  %>
-										</label>
-									</div>
-									<div class="xl-6 l-6 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :last_name %></span>
-											<%= ff.text_field :last_name, class: "input"  %>
-										</label>
-									</div>
+								<div class="xl-6 l-6 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= f.label :last_name %></span>
+										<%= f.text_field :last_name, class: "input"  %>
+									</label>
 								</div>
+							</div>
 
-								<div class="grid">
-									<div class="xl-6 l-6 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :middle_initial %></span>
-											<%= ff.text_field :middle_initial, class: "input"  %>
-										</label>
-									</div>
-									<div class="xl-6 l-6 ltl-12">
-									</div>
+							<div class="grid">
+								<div class="xl-6 l-6 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= f.label :middle_initial %></span>
+										<%= f.text_field :middle_initial, class: "input"  %>
+									</label>
 								</div>
-
-								<div class="grid">
-									<div class="xl-6 l-6 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :ssn, "SSN" %></span>
-											<%= ff.text_field :ssn, maxlength: 11, class: "input"  %>
-										</label>
-									</div>
-									<div class="xl-6 l-6 ltl-12">
-									</div>
+								<div class="xl-6 l-6 ltl-12">
 								</div>
+							</div>
 
-								<div class="grid">
-									<div class="xl-6 l-6 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :address, "Street Address" %></span>
-											<%= ff.text_field :address, class: "input"  %>
-										</label>
-									</div>
-									<div class="xl-2 l-2 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :apt, 'Apt #' %></span>
-											<%= ff.text_field :apt, class: "input"  %>
-										</label>
-									</div>
+							<div class="grid">
+								<div class="xl-6 l-6 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= f.label :ssn, "SSN" %></span>
+										<%= f.text_field :ssn, maxlength: 11, class: "input"  %>
+									</label>
 								</div>
-
-								<div class="grid">
-									<div class="xl-6 l-6 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :city %></span>
-											<%= ff.text_field :city, class: "input"  %>
-										</label>
-									</div>
-									<div class="xl-2 l-2 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :state %></span>
-											<%= ff.select :state, options_for_select(["IN"]	), class: "input"  %>
-										</label>
-									</div>
-									<div class="xl-3 l-3 ltl-12">
-										<label class="form-field">
-											<span class="label"><%= ff.label :zip %></span>
-											<%= ff.text_field :zip, class: "input"  %>
-										</label>
-									</div>
+								<div class="xl-6 l-6 ltl-12">
 								</div>
+							</div>
 
-							<% end %> 
+							<div class="grid">
+								<div class="xl-6 l-6 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= f.label :address, "Street Address" %></span>
+										<%= f.text_field :address, class: "input"  %>
+									</label>
+								</div>
+								<div class="xl-2 l-2 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= f.label :apt, 'Apt #' %></span>
+										<%= f.text_field :apt, class: "input"  %>
+									</label>
+								</div>
+							</div>
+
+							<div class="grid">
+								<div class="xl-6 l-6 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= f.label :city %></span>
+										<%= f.text_field :city, class: "input"  %>
+									</label>
+								</div>
+								<div class="xl-2 l-2 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= f.label :state %></span>
+										<%= f.select :state, options_for_select(["IN"]	), class: "input"  %>
+									</label>
+								</div>
+								<div class="xl-3 l-3 ltl-12">
+									<label class="form-field">
+										<span class="label"><%= f.label :zip %></span>
+										<%= f.text_field :zip, class: "input"  %>
+									</label>
+								</div>
+							</div>							
 
 							<hr>
 

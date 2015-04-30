@@ -40,29 +40,29 @@
 						<label class="form-field">
 							<span class="label">Donor Name</span>
 							<span class="input placeholder">
-								<%= @donation.non_user_donor.full_name %>
+								<%= @donation.full_name %>
 							</span>
 						</label>
 
 						<label class="form-field">
 							<span class="label">Donor Address</span>
 							<span class="input placeholder">
-								<%= @donation.non_user_donor.address %><%if !@donation.non_user_donor.apt.blank? %>, Apt. <%= @donation.non_user_donor.apt %><%end%><br>
-								<%= @donation.non_user_donor.city %>, <%= @donation.non_user_donor.state %> <%= @donation.non_user_donor.zip %>
+								<%= @donation.address %><%if !@donation.apt.blank? %>, Apt. <%= @donation.apt %><%end%><br>
+								<%= @donation.city %>, <%= @donation.state %> <%= @donation.zip %>
 							</span>
 						</label>
 
 						<label class="form-field">
 							<span class="label">Donor Type</span>
 							<span class="input placeholder">
-								<%= @donation.non_user_donor.donor_type %>
+								<%= @donation.donor_type %>
 							</span>
 						</label>
 
 						<label class="form-field">
 							<span class="label">Donor SSN</span>
 							<span class="input placeholder">
-								<%= @donation.non_user_donor.display_ssn %>
+								<%= @donation.display_ssn %>
 							</span>
 						</label>
 
