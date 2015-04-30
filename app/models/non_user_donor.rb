@@ -22,6 +22,8 @@ class NonUserDonor < ActiveRecord::Base
 	has_many :donors
 	has_many :donations
 
+  validates_presence_of :donor_type, :first_name, :last_name, :ssn, :address, :city, :state, :zip
+
   def full_name
   	[self.first_name, self.last_name].join(' ')
   end
