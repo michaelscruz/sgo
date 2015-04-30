@@ -22,6 +22,7 @@ class DonationsController < ApplicationController
     if current_user && current_user.donor?
       non_user_donor = NonUserDonor.find_by_email(current_user.email)
       if non_user_donor
+        non_user_donor.display_ssn_for_edit
         @donation.non_user_donor = non_user_donor
       else
         @donation.build_non_user_donor(first_name: current_user.first_name, last_name: current_user.last_name)

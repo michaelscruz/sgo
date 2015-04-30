@@ -22,6 +22,8 @@ class NonUserDonor < ActiveRecord::Base
 	has_many :donors
 	has_many :donations
 
+  before_save :validate_ssn
+
   validates_presence_of :donor_type, :first_name, :last_name, :ssn, :address, :city, :state, :zip
 
   def full_name
@@ -30,6 +32,12 @@ class NonUserDonor < ActiveRecord::Base
 
   def display_ssn
   	"XXX-XX-#{self.ssn.last(4)}"
+  end
+
+  def display_ssn_for_edit
+    if ssn.to_i.to_s == ssn
+      self.ssn.insert(5, '-').insert(3, '-')
+    end
   end
 
   def copy_nu_donor nu_donor
@@ -45,4 +53,14 @@ class NonUserDonor < ActiveRecord::Base
   	self.address = nu_donor.address unless nu_donor.address.blank?
   	self.apt = nu_donor.apt unless nu_donor.apt.blank?
   end
+
+private
+  
+  def validate_ssn
+    self.ssn = self.ssn.tr('-', '')
+    if !((self.ssn.to_i.to_s == self.ssn) && (self.ssn.length == 9))
+      errors.add(:ssn, "Invalid SSN. Must be 9 digits. May be separated by hyphens.")
+    end
+  end
+
 end
