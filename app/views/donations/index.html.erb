@@ -32,17 +32,27 @@
 
           <div class="grid">
 
-            <div class="xl-3 l-3 ltl-12">
-              <%= link_to("One Time Donation", new_donation_path(:type => "One Time"), :class => "btn btn-secondary btn-block") %>
-            </div>
+            <% if current_user && current_user.sgo? %>
 
-            <div class="xl-3 l-3 ltl-12">
-              <%= link_to("Monthly Donation", new_donation_path(:type => "Monthly"), :class => "btn btn-secondary btn-block") %>
-            </div>
+              <div class="xl-3 l-3 ltl-12">
+                <%= link_to("Enter Paper Donation", new_donation_path(:type => "Paper"), :class => "btn btn-secondary btn-block") %>
+              </div>
 
-            <div class="xl-3 l-3 ltl-12">
-              <%= link_to("Stock Donation", "#", :class => "btn btn-secondary btn-block") %>
-            </div>
+            <% else %>
+
+              <div class="xl-3 l-3 ltl-12">
+                <%= link_to("One Time Donation", new_donation_path(:type => "One Time"), :class => "btn btn-secondary btn-block") %>
+              </div>
+
+              <div class="xl-3 l-3 ltl-12">
+                <%= link_to("Monthly Donation", new_donation_path(:type => "Monthly"), :class => "btn btn-secondary btn-block") %>
+              </div>
+
+              <div class="xl-3 l-3 ltl-12">
+                <%= link_to("Stock Donation", "#", :class => "btn btn-secondary btn-block") %>
+              </div>
+
+            <% end %>
 
           </div>
 

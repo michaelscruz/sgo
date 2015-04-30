@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430200527) do
+ActiveRecord::Schema.define(version: 20150430224044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,8 @@ ActiveRecord::Schema.define(version: 20150430200527) do
     t.string   "apt"
     t.string   "email"
     t.string   "stripe_customer_token"
+    t.string   "payment_type"
+    t.integer  "check_number"
   end
 
   create_table "fund_designations", force: true do |t|

@@ -201,7 +201,7 @@
 										<%= f.text_field :matching_organization, class: "input" %>
 									</label>
 								</div>
-								<div class="xl4 l-4 ltl-12">
+								<div class="xl-4 l-4 ltl-12">
 									<label class="form-field">
 										<span class="label"><%= f.label :match_amount %></span>
 										<%= f.text_field :match_amount, class: "input" %>
@@ -211,64 +211,90 @@
 
 							<hr>
 
-							<% if @donation.donation_type == "Monthly" %>
+							<% if params[:type] == "Paper" %>
 
 								<div class="grid">
-									<div class="xl4 l-4 ltl-12">
+									<div class="xl-4 l-4 ltl-12">
 										<label class="form-field">
-											<span class="label">Draft Date</span>
+											<span class="label"><%= f.label :payment_type, "Payment Type" %></span>
 											<div class="select">
-												<%= f.select :draft_date, options_for_select(1..31) %>
+												<%= f.select :payment_type, options_for_select(["Cash", "Check"]) %>
 											</div>
+										</label>
+									</div>		
+								</div>
+
+								<div class="grid">
+									<div class="xl-4 l-4 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= f.label :check_number, "Check Number" %></span>
+											<%= f.text_field :check_number %>
+										</label>
+									</div>				
+								</div>
+
+							<% else %>
+
+								<% if @donation.donation_type == "Monthly" %>
+
+									<div class="grid">
+										<div class="xl-4 l-4 ltl-12">
+											<label class="form-field">
+												<span class="label">Draft Date</span>
+												<div class="select">
+													<%= f.select :draft_date, options_for_select(1..31) %>
+												</div>
+											</label>
+										</div>
+									</div>
+
+								<% end %>
+
+								<div class="grid">
+									<div class="xl-4 l-4 ltl-12">
+										<label class="form-field">
+											<span class="label">Payment Type</span>
+											<div class="select">
+												<select class="input" id="school_type_id" name="school_type_id">
+													<option value="1">Credit Card</option>
+												</select>
+											</div>
+										</label>
+									</div>
+									<div class="xl-2 l-2 ltl-12">
+									</div>
+								</div>
+
+								<div class="grid">
+									<div class="xl-6 l-6 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= label_tag :card_number, "Card Number" %></span>
+											<%= text_field_tag :card_number, nil, name: nil, class: "input" %>
+										</label>
+									</div>
+									<div class="xl-3 l-3 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= label_tag :card_month, "Expiration Date" %></span>
+											<%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+											<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
 										</label>
 									</div>
 								</div>
 
+								<div class="grid">
+									<div class="xl-2 l-2 ltl-12">
+										<label class="form-field">
+											<span class="label"><%= label_tag :card_code, "Security Code" %></span>
+											<%= text_field_tag :card_code, nil, name: nil, class: "input" %>
+										</label>
+									</div>
+								</div>
+
+								<div id="stripe_error">
+									<noscript>Javascript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>	
+								</div>
+
 							<% end %>
-
-							<div class="grid">
-								<div class="xl-4 l-4 ltl-12">
-									<label class="form-field">
-										<span class="label">Payment Type</span>
-										<div class="select">
-											<select class="input" id="school_type_id" name="school_type_id">
-												<option value="1">Credit Card</option>
-											</select>
-										</div>
-									</label>
-								</div>
-								<div class="xl-2 l-2 ltl-12">
-								</div>
-							</div>
-
-							<div class="grid">
-								<div class="xl-6 l-6 ltl-12">
-									<label class="form-field">
-										<span class="label"><%= label_tag :card_number, "Card Number" %></span>
-										<%= text_field_tag :card_number, nil, name: nil, class: "input" %>
-									</label>
-								</div>
-								<div class="xl-3 l-3 ltl-12">
-									<label class="form-field">
-										<span class="label"><%= label_tag :card_month, "Expiration Date" %></span>
-										<%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-										<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
-									</label>
-								</div>
-							</div>
-
-							<div class="grid">
-								<div class="xl-2 l-2 ltl-12">
-									<label class="form-field">
-										<span class="label"><%= label_tag :card_code, "Security Code" %></span>
-										<%= text_field_tag :card_code, nil, name: nil, class: "input" %>
-									</label>
-								</div>
-							</div>
-
-							<div id="stripe_error">
-								<noscript>Javascript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>	
-							</div>
 
 							<hr>
 
