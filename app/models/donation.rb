@@ -24,6 +24,9 @@ class Donation < ActiveRecord::Base
 	has_many :fund_designations
 	belongs_to :donor
 
+	validates_presence_of :matched, :non_user_donor_id
+	validates :amount, presence: true, numericality: { greater_than: 0 }
+
 	attr_accessor :stripe_card_token
 
 	accepts_nested_attributes_for :donor
