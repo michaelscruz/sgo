@@ -44,18 +44,32 @@ class DonationsController < ApplicationController
     begin
       @donation.total_for_general_fund
 
-      if current_user && current_user.donor?
-        @donation.donor = current_user
-        @donation.set_donor_fields
-      elsif @donation.donor.password.blank?
-        @donation.set_donor_fields
-        @donation.donor = nil
-      end
+      if @donation.donation_type == 'Paper'
 
-      if @donation.save_with_payment
-        redirect_to @donation, notice: "Thank you for your donation! It has been successfully submitted."
+        @donation.donor = nil
+        if @donation.save 
+          redirect_to @donation, notice: "Donation successfully recorded."
+        else
+          params[:type] = "Paper"
+          render 'new'
+        end
+
       else
-        render 'new'
+
+        if current_user && current_user.donor?
+          @donation.donor = current_user
+          @donation.set_donor_fields
+        elsif @donation.donor.password.blank?
+          @donation.set_donor_fields
+          @donation.donor = nil
+        end
+
+        if @donation.save_with_payment
+          redirect_to @donation, notice: "Thank you for your donation! It has been successfully submitted."
+        else
+          render 'new'
+        end
+
       end
 
     rescue RuntimeError => e

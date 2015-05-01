@@ -4,7 +4,8 @@
 
 jQuery ->
 	Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
-	donation.setUpForm()
+	if $('.box-header').text().indexOf('Paper') == 0
+		donation.setUpForm()
 
 donation =
 	setUpForm: ->
