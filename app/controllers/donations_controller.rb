@@ -62,6 +62,8 @@ class DonationsController < ApplicationController
         elsif @donation.donor.password.blank?
           @donation.set_donor_fields
           @donation.donor = nil
+        else
+          @donation.set_donor_fields
         end
 
         if @donation.save_with_payment
@@ -77,8 +79,8 @@ class DonationsController < ApplicationController
       puts e.message
       render 'new'
     end
-    @donation.errors.each do |e|
-      puts e
+    @donation.errors.each do |attr, message|
+      puts "#{attr}: #{message}"
     end
   end
 

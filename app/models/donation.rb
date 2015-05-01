@@ -44,7 +44,6 @@ class Donation < ActiveRecord::Base
 	attr_accessor :stripe_card_token
 
 	accepts_nested_attributes_for :donor
-	accepts_nested_attributes_for :non_user_donor
 	accepts_nested_attributes_for :fund_designations, allow_destroy: true
 
 	before_save :set_donor_token

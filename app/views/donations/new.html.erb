@@ -16,7 +16,7 @@
 				<!-- <form accept-charset="UTF-8" action="/schools" class="box form form-normal" method="get"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div> -->
 
 					<div class="box-header">
-						<%= params[:type] %> Donation
+						<%= @donation.donation_type %> Donation
 					</div>
 
 					<%= form_for @donation do |f| %>
