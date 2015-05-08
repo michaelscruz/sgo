@@ -5,7 +5,7 @@ class SgoController < ApplicationController
 	end
 
 	def applications
-		@applications = Application.all
+		@applications = Application.all.sort_by {|a| a.pending_sgo? ? 0 : 1}
 	end
 
 	def show_application

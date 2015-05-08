@@ -20,4 +20,8 @@ module ApplicationHelper
   def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to(name, "#", :class => "remove-fields")
   end
+
+  def display_boolean(val)
+    val ? "Yes" : "No"
+  end
 end

@@ -72,6 +72,17 @@
  						</div>
  					</div>
 
+ 					<div class="grid">
+ 						<div class="xl-3 l-3 ltl-12">
+ 							<label class="form-field">
+ 								<span class="label">Academic Year</span>
+ 								<div class="select">
+ 									<%= f.select :school_year, options_for_select(Application::SCHOOL_YEARS.map{ |e| [e,e] }), {}, :class => "input" %>
+ 								</div>
+ 							</label>
+ 						</div>
+ 					</div>
+
  					<hr>
 
  					<h2>Applicant</h2>
@@ -216,14 +227,13 @@
  						<%= f.check_box :third_party_income_verified %> <span class="text">Third Party Service</span>
  					</label>
  					<label class="form-field">
- 						<%= f.check_box :choice_scholarship_income_verified %> <span class="text">Choice Scholarship Award</span>
+ 						<%= f.check_box :choice_scholarship_income_verified %> <span class="text">Tax Credit Scholarship Award</span>
  					</label>
  					<label class="form-field">
  						<%= f.check_box :document_income_verified %> <span class="text">Income Verification Form (and Supporting Documentation)</span>
  					</label>
 
  					<hr>
-
 
  					<h2>Scholarship Award</h2>
 
@@ -236,16 +246,11 @@
  						</div>
  						<div class="xl-6 l-6 ltl-12">
  							<label class="form-field">
- 								<span class="label">Amount of Choice Scholarship Award</span>
+ 								<span class="label">Amount of Tax Credit Scholarship Award</span>
  								<%= f.text_field :choice_scholarship_amount, :class => "input currency" %>
  							</label>
  						</div>
  					</div>
-
- 					<label class="form-field">
- 						<span class="label long">If amount is less than $5,000, why?</span>
- 						<%= f.text_area :choice_scholarship_explanation, :class => "input" %>
- 					</label>
 
  					<hr>
  					

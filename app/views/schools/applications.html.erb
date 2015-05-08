@@ -88,7 +88,7 @@
 
 						<tbody>
 
-							<% @school.applications.each do |a| %>
+							<% @applications.each do |a| %>
 
 							<tr>
 								<td>
@@ -104,7 +104,9 @@
 									<%= a.current_status.display_status %>
 								</td>
 								<td>
-									<%= link_to("Verify Application", confirm_application_school_path(@school, a), :class => "btn btn-secondary") %>
+									<% if a.pending_school? %>
+										<%= link_to("Verify Application", confirm_application_school_path(@school, a), :class => "btn btn-secondary") %>
+									<% end %>
 								</td>
 							</tr>
 

@@ -45,6 +45,7 @@
  					<% end %>
 
  					<h2>School Official</h2>
+ 					
  					<div class="grid">
  						<div class="xl-6 l-6 ltl-12">
  							<label class="form-field">
@@ -115,7 +116,7 @@
  						<%= f.check_box :third_party_income_verified %> <span class="text">Third Party Service</span>
  					</label>
  					<label class="form-field">
- 						<%= f.check_box :choice_scholarship_income_verified %> <span class="text">Choice Scholarship Award</span>
+ 						<%= f.check_box :choice_scholarship_income_verified %> <span class="text">Tax Credit Scholarship Award</span>
  					</label>
  					<label class="form-field">
  						<%= f.check_box :document_income_verified %> <span class="text">Income Verification Form (and Supporting Documentation)</span>
@@ -134,16 +135,12 @@
  						</div>
  						<div class="xl-6 l-6 ltl-12">
  							<label class="form-field">
- 								<span class="label">Amount of Choice Scholarship Award</span>
+ 								<span class="label">Amount of Tax Credit Scholarship Award</span>
  								<%= f.text_field :choice_scholarship_amount, :class => "input currency" %>
+ 								<p class="help-block">Must be greater than $500</p>
  							</label>
  						</div>
  					</div>
-
- 					<label class="form-field">
- 						<span class="label long">If amount is less than $5,000, why?</span>
- 						<%= f.text_area :choice_scholarship_explanation, :class => "input" %>
- 					</label>
 
  					<%= f.submit "Submit Application", :class => "btn btn-secondary btn-block" %>
 

@@ -13,13 +13,15 @@
 #  created_at                       :datetime
 #  updated_at                       :datetime
 #  apartment_number                 :string(255)
-#  public_school                    :boolean
 #  public_school_grade              :string(255)
 #  tax_credit_scholarship           :boolean
 #  tax_credit_scholarship_grade     :string(255)
 #  relationship_to_applicant        :string(255)
 #  reside_with_relation             :boolean
 #  reside_with_relation_explanation :string(255)
+#  first_name                       :string(255)
+#  last_name                        :string(255)
+#  dob                              :date
 #
 
 class Applicant < ActiveRecord::Base

@@ -5,7 +5,6 @@
 #  id                                 :integer          not null, primary key
 #  school_id                          :integer
 #  applicant_id                       :integer
-#  requested_amount                   :decimal(, )
 #  created_at                         :datetime
 #  updated_at                         :datetime
 #  parent_first_name                  :string(255)
@@ -34,15 +33,16 @@
 #  document_income_verified           :boolean
 #  tuition_for_application            :decimal(, )
 #  choice_scholarship_amount          :decimal(, )
-#  choice_scholarship_explanation     :text
 #  scholarship_approved               :boolean
 #  approved_by_initials               :string(255)
 #  approved_date                      :date
+#  school_year                        :string(255)
 #
 
 class Application < ActiveRecord::Base
 	# static values
 	VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	SCHOOL_YEARS = ['15/16']
 	attr_accessor :family_application, :school_application, :new_school_application, :sgo_application
 
 	# dependencies
@@ -58,9 +58,12 @@ class Application < ActiveRecord::Base
 	accepts_nested_attributes_for :application_files
 
 	# validations
+
+	# universal validations
+	validates :school_year, :presence => true
+
 	validates :household, :presence => true, :if => :family_application
 	validates :school, :presence => true, :if => :family_application
-	validates :requested_amount, :presence => true, :if => :family_application
 	validates :parent_first_name, :presence => true, :if => :family_application
 	validates :parent_last_name, :presence => true, :if => :family_application
 	validates :email, :format => {:with => VALID_EMAIL}, :presence => true, :if => :family_application
@@ -75,9 +78,10 @@ class Application < ActiveRecord::Base
 	validates :school_official_confirm_email, :format => {:with => VALID_EMAIL}, :presence => true, :if => :school_application
 	validates :information_verified, :presence => true, :if => :school_application
 	validates :tuition_for_application, :presence => true, :if => :school_application
-	validates :choice_scholarship_amount, :presence => true, :if => :school_application
+	validates :choice_scholarship_amount, :presence => true, :numericality => { :greater_than_or_equal_to => 500 }, :if => :school_application
 
 	# TODO: validations for SGO approval of an application
+	# TODO: validations for family OR school initiated application
 
 	# callbacks
 	after_create :set_initial_family_status!, :if => :family_application
@@ -109,6 +113,14 @@ class Application < ActiveRecord::Base
 
 	def current_status
 		self.application_statuses.last
+	end
+
+	def pending_school?
+		self.current_status.pending_school? 
+	end
+
+	def pending_sgo?
+		self.current_status.pending_sgo? 
 	end
 
 	def display_id

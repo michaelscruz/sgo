@@ -10,6 +10,7 @@ class SchoolsController < ApplicationController
 	end
 
 	def applications
+		@applications = @school.applications.sort_by {|a| a.pending_school? ? 0 : 1}
 	end
 
 	def new_application
@@ -61,7 +62,6 @@ class SchoolsController < ApplicationController
 	def new_application_params
 		params.require(:application).permit(
 			:school_id, 
-			:requested_amount, 
 			:household_income,
 			:number_in_household,
 			:parent_first_name, 
@@ -93,7 +93,6 @@ class SchoolsController < ApplicationController
 				:last_name,
 				:grade,
 				:relationship_to_applicant,
-				:public_school,
 				:public_school_grade,
 				:tax_credit_scholarship,
 				:tax_credit_scholarship_grade,

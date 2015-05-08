@@ -10,7 +10,7 @@
 #User.create(:email => "admin@example.com", :first_name => "Test", :last_name => "User", :password => "password", :password_confirmation => "password")
 
 schools = [
-	School.new(name: "Software Development Academy", tuition: 10000)
+	School.new(name: "Software Development Academy", tuition: 10000, email: "forrest@yellowdoes.com")
 ]
 schools.each do |s|
 	if School.find_by_name(s.name).nil?

@@ -1,0 +1,38 @@
+Thank you for submitting your Tax Credit Scholarship application for the <%= @application.school_year %> school year. <%= @application.applicants.first.full_name %>'s application has been sent to <%= @application.school.name %> for review and income verification. <%= @application.school.name %> will contact you to obtain  necessary documentation to verify your household income. If you have already provided the necessary documentation, you will likely not need to provide any additional information.
+ 
+Please keep this confirmation for your records:
+ 
+=============================
+
+Application ID: <%= @application.display_id %>
+
+School: <%= @application.school.name %>
+
+Academic Year: <%= @application.school_year %>
+
+Applicant: <%= @application.applicants.first.full_name %>
+
+Applicant Address: <%= @application.applicants.first.full_address %>
+
+Applicant Grade: <%= @application.applicants.first.grade %>
+
+Ever received tax credit scholarship?: <%= @application.applicants.first.tax_credit_scholarship ? "Yes" : "No" %>
+
+Relationship to Applicant: <%= @application.applicants.first.relationship_to_applicant %>
+
+Parent or Guardian Name: <%= @application.full_name %>
+
+Parent or Guardian Phone: <%= @application.phone %>
+
+Parent or Guardian Address:  <%= @application.full_address %>
+
+Number in Household: <%= @application.number_in_household %>
+
+Annual Household Income: <%= @application.household_income %>
+
+=============================
+ 
+NOTE: If your child receives a Tax Credit Scholarship, the funds will be sent to directly to <%= @application.school.name %>. If you have any questions, please contact the school directly.
+
+--
+Replies to this email are not monitored.

@@ -47,6 +47,30 @@ class ApplicationStatus < ActiveRecord::Base
 	end
 
 	def send_status_update
-		ApplicationStatusMailer.status_change(self, self.application).deliver
+		if self.pending_school?
+			ApplicationStatusMailer.parent_application_confirmation(self.application).deliver
+			ApplicationStatusMailer.school_application_notification(self.application).deliver
+		end
+		# ApplicationStatusMailer.status_change(self, self.application).deliver
+	end
+
+	def pending_family?
+		self.status_code == PENDING_FAMILY
+	end
+
+	def pending_school?
+		self.status_code == PENDING_SCHOOL
+	end
+
+	def pending_sgo?
+		self.status_code == PENDING_SGO
+	end
+
+	def pending_dor?
+		self.status_code == PENDING_DOR
+	end
+
+	def approved?
+		self.status_code == APPROVED
 	end
 end

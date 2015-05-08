@@ -7,6 +7,7 @@
 #  tuition    :decimal(, )
 #  created_at :datetime
 #  updated_at :datetime
+#  email      :string(255)
 #
 
 class School < ActiveRecord::Base
@@ -23,6 +24,9 @@ class School < ActiveRecord::Base
 	has_many :donors, through: :donations
 	has_many :disbursements
 	has_many :school_admins
+
+	# validations
+	validates :email, :presence => true
 
 	def formatted_tuition
 		number_to_currency(self.tuition, :precision => 0)

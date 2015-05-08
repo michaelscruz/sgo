@@ -1,0 +1,19 @@
+A Tax Credit Scholarship application has been submitted and is ready for your review.
+
+=============================
+
+Student Name: <%= @application.applicants.first.full_name %>
+
+Grade: <%= @application.applicants.first.grade %>
+
+School Year: <%= @application.school_year %>
+
+=============================
+ 
+Your approval is required. To review this application, click here <%= confirm_application_school_url(@application.school, @application) %>.
+ 
+Once the application has been approved it will be sent to the Institute for Quality Education for review. For questions, email scholarships@i4qed.org or call (317)951-8781.
+
+--
+Replies to this email are not monitored.
+

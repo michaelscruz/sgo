@@ -35,19 +35,12 @@
  								<p class="help-block">Don't see your school listed? <a href="#">Contact us</a></p>
  							</label>
  						</div>
- 						<div class="xl-4 l-4 ltl-12">
+ 						<div class="xl-3 l-3 ltl-12">
  							<label class="form-field">
- 								<span class="label">Annual Tuition</span>
- 								<%= text_field_tag "annual-tuition", @application.school ? @application.school.formatted_tuition : "$", :disabled => true, :class => "input" %>
- 							</label>
- 						</div>
- 					</div>
-
- 					<div class="grid">
- 						<div class="xl-5 l-5 ltl-12">
- 							<label class="form-field">
- 								<span class="label">Requested Scholarship Amount</span>
- 								<%= f.text_field :requested_amount, :class => "input currency" %>
+ 								<span class="label">Academic Year</span>
+ 								<div class="select">
+ 									<%= f.select :school_year, options_for_select(Application::SCHOOL_YEARS.map{ |e| [e,e] }), {}, :class => "input" %>
+ 								</div>
  							</label>
  						</div>
  					</div>
@@ -156,7 +149,13 @@
 
  					<label class="form-field">
  						<span class="label">Income Verification</span>
- 						<p class="help-block">Enter your household information below. Include any government assistance, child support, etc. Please attach any files that could help the school verify this number.</p>
+ 						<p class="help-block">
+ 							In order to approve your application, we require you share with us the number of individuals living in your household as well as your adjusted gross income. Your school will collect the necessary documentation to verify this information. If you have already provided the school with the necessary documentation, you will likely not need to provide any additional information.
+ 						</p>
+ 						<br>
+ 						<p class="help-block">
+							If you have further questions about this process, please contact the school directly.
+ 						</p>
  					</label>
 
  					<div class="grid">
@@ -179,12 +178,6 @@
  						</div>
  					</div>
 
- 					<%= f.fields_for :application_files do |ff| %>
- 						<%= render 'application_file', :f => ff %>
- 					<% end %>
-
- 					<%= link_to_add_file "Add Another File", f %>
-
  					<hr>
  					<%= f.submit "Submit Application", :class => "btn btn-secondary btn-block" %>
 
@@ -202,22 +195,22 @@
 
  <script type="text/javascript">
 
- // Update annual tuition
- $("#application_school_id").on('change', function(){
- 	data = $(this).val();
+	 // Update annual tuition
+	 // $("#application_school_id").on('change', function(){
+	 // 	data = $(this).val();
 
- 	if (data.length > 0){
- 		$.ajax({
- 			dataType: "json",
- 			url: "/api/schools/" + data + "/tuition",
- 			success: function(data){
- 				$("#annual-tuition").val(data.tuition)
- 			}
- 		});
- 	} else {
- 		$("#annual-tuition").val("$")
- 	}
- });
+	 // 	if (data.length > 0){
+	 // 		$.ajax({
+	 // 			dataType: "json",
+	 // 			url: "/api/schools/" + data + "/tuition",
+	 // 			success: function(data){
+	 // 				$("#annual-tuition").val(data.tuition)
+	 // 			}
+	 // 		});
+	 // 	} else {
+	 // 		$("#annual-tuition").val("$")
+	 // 	}
+	 // });
 
  	// Add applicants
  	$('form .add-fields').click(function(e){
