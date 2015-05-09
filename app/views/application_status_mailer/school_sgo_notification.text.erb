@@ -1,4 +1,6 @@
-Congratulations! The Tax Credit Scholarship application has been approved for APPLICANT NAME in the amount of VALUE OF SCHOLARSHIP for the SCHOOL YEAR school year. Please notify the family of this award. To review the application visit URL LINK TO RECORD. For questions, email scholarships@i4qed.org or call (317)951-8781.
+Congratulations! The Tax Credit Scholarship application has been approved for <%= @application.applicants.first.full_name %> in the amount of <%= @application.choice_scholarship_amount %> for the <%= @application.school_year %> school year. 
+
+Please notify the family of this award. To review the application visit <%= show_application_school_url(@application.school, @application) %>. For questions, email scholarships@i4qed.org or call (317)951-8781.
 
 --
 Replies to this email are not monitored.

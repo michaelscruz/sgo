@@ -5,6 +5,8 @@ defaults: &defaults
   smtp:
     username: "AKIAIUMLQOVK4TWLG6PA"
     password: "AscBkv/hrps24dwALz0jXhoxKkJPy9hejyChYFFXNyey"
+  notification_recipients:
+    sgo_approval: "forrest@yellowdoes.com"
 development:
   <<: *defaults
 test:
@@ -12,3 +14,5 @@ test:
 production:
   <<: *defaults
   s3_bucket: "iqe-sgo-production"
+  notification_recipients:
+    sgo_approval: "forrest@yellowdoes.com"

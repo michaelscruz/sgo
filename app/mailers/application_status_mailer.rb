@@ -14,11 +14,12 @@ class ApplicationStatusMailer < ActionMailer::Base
 
   def school_sgo_notification(application)
   	@application = application
-  	mail :to => application.email, :subject => "IQE SGO [Application Approval]"
+    school = application.school
+  	mail :to => school.email, :subject => "IQE SGO [Application Approval]"
   end
 
   def sgo_school_notification(application)
   	@application = application
-  	mail :to => application.email, :subject => "IQE SGO [Application Review]"
+  	mail :to => APP_CONFIG["notification_recipients"]["sgo_approval"], :subject => "IQE SGO [Application Review]"
   end
 end

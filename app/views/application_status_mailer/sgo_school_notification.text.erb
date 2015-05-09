@@ -1,14 +1,16 @@
-A Tax Credit Scholarship application has been approved by SCHOOL NAME for:  
+A Tax Credit Scholarship application has been approved by <%= @application.school.name %> for:  
 
 =============================
 
-STUDENT NAME
-GRADE
-SCHOOL YEAR
+Student Name: <%= @application.applicants.first.full_name %>
+
+Grade: <%= @application.applicants.first.grade %>
+
+School Year: <%= @application.school_year %>
 
 =============================
  
-Your approval is required. To review this application, click here (LINK TO THE APPLICANT’S RECORD).
+Your approval is required. To review this application, click here <%= sgo_show_application_path(@application) %>.
 
 --
 Replies to this email are not monitored.

@@ -50,8 +50,11 @@ class ApplicationStatus < ActiveRecord::Base
 		if self.pending_school?
 			ApplicationStatusMailer.parent_application_confirmation(self.application).deliver
 			ApplicationStatusMailer.school_application_notification(self.application).deliver
+		elsif self.pending_sgo?
+			ApplicationStatusMailer.sgo_school_notification(self.application).deliver
+		elsif self.approved?
+			ApplicationStatusMailer.school_sgo_notification(self.application).deliver
 		end
-		# ApplicationStatusMailer.status_change(self, self.application).deliver
 	end
 
 	def pending_family?
